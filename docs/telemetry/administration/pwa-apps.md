@@ -36,7 +36,7 @@ and is audited. Managing apps needs `content.write`.
 ## Options of the app window
 
 | Option | Default | Effect |
-|---|---|---|
+|---|:---:|---|
 | Locked to its sections | off | no way into the full application; a page outside the chosen sections opens the start page instead |
 | Zoom the page with two fingers | on | off: the page does not zoom, but the camera picture still zooms inside the player |
 | Cameras in live view and on video walls | automatic | one camera per row on narrow screens and a grid elsewhere, or always one of them |

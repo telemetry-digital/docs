@@ -14,7 +14,7 @@ change it makes carries a reason and is written to the audit trail with the note
 
 ## Reading and changes
 
-| | Without a licence | With a licence |
+| Through an assistant | Without a licence | With a licence |
 |---|---|---|
 | Reading through an assistant | yes | yes |
 | Changes through an assistant | no — the change tools are not offered, and the consent page offers only *Reading only* | yes, within the user's permissions |

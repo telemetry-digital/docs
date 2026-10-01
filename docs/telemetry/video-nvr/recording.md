@@ -41,7 +41,7 @@ max_disk_gb = 50
 Storage per day ≈ cameras × Mbit/s × 10.8 GB. One 2 Mbit/s camera needs about 21 GB a day.
 
 | 64 cameras | Network | Disk per day | 14 days |
-|---|---|---|---|
+|---|:---:|:---:|:---:|
 | H.265, 2 Mbit/s | 128 Mbit/s | ≈ 1.4 TB | ≈ 19 TB |
 | H.264, 4 Mbit/s | 256 Mbit/s | ≈ 2.8 TB | ≈ 39 TB |
 

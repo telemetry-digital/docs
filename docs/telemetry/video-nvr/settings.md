@@ -10,7 +10,7 @@ administrator changes them. Every change is audited with the old and new values 
 every value against its bounds; **Default values** fills in the defaults.
 
 | Setting | Default | Bounds | Meaning |
-|---|---|---|---|
+|---|:---:|:---:|---|
 | Disk space for recordings | 50 GB (from `config.toml`) | 1 GB – 1 PB | the oldest recordings of all cameras are deleted beyond it |
 | Length of one recorded file | 60 s | 10–600 s | shorter loses less after a power cut, makes more files |
 | Join events within | 5 s | 0–120 s | flapping motion becomes one event (0 = never join) |

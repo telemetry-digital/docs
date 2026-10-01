@@ -15,7 +15,7 @@ organization's time zone — and exports exactly that table to **Excel (XLSX)**,
 | Daily temperature log of a medicine fridge | the fridge sensor | day | min and max | this month | lower limit 2, upper limit 8, total row |
 | Monthly consumption of electricity meters | all meters (kWh counters) | month | consumption | last 12 months or this year | a row per datastream, total row |
 | Meter readings for accounting | the meters | month | start, end and consumption | last month | a row per datastream |
-| Hourly load of one day | a meter | hour | consumption | today | |
+| Hourly load of one day | a meter | hour | consumption | today | — |
 
 Add it with *Add widget → Period table*. The names in the table come from the widget's *Series* tab (for example
 "Main meter", "Heating").

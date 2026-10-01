@@ -25,7 +25,7 @@ The **expected interval** drives gap detection: missing data becomes a visible g
 
 ## 2. Connect over MQTT
 
-| | |
+| Setting | Value |
 |---|---|
 | Host and port | your server, **8883** with TLS 1.2+; plain 1883 only in the intranet profile or a VPN |
 | User name | the device's external id |
@@ -40,7 +40,7 @@ TLS connection.
 All topics of a device live under `d/<external id>/`:
 
 | Topic | Direction | Purpose |
-|---|---|---|
+|---|:---:|---|
 | `d/{id}/telemetry` | device → server | measurements, one sample or a batch |
 | `d/{id}/attributes` | device → server | the device's own attributes (firmware, hardware, IP) |
 | `d/{id}/attributes/shared` | server → device, retained | configuration set on the server |

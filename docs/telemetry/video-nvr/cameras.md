@@ -47,8 +47,8 @@ Typical stream addresses when you enter them by hand:
 |---|---|---|
 | Hikvision | `rtsp://IP:554/Streaming/Channels/101` | `…/102` |
 | Dahua | `rtsp://IP:554/cam/realmonitor?channel=1&subtype=0` | `subtype=1` |
-| Axis | `rtsp://IP/axis-media/media.amp` | |
-| Many ONVIF cameras | `rtsp://IP:554/stream1` | |
+| Axis | `rtsp://IP/axis-media/media.amp` | — |
+| Many ONVIF cameras | `rtsp://IP:554/stream1` | — |
 
 A camera that does not record connects only while someone watches it (and a short while after), so an unwatched
 camera costs nothing.
