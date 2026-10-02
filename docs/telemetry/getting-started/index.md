@@ -24,7 +24,8 @@ services and create the first administrator. Count on a few minutes for the whol
 4. If the server sits at a site without a public address, [connect it through a Cloudflare Tunnel](cloudflare-tunnel.md).
 
 Then continue with what you came for: [cameras](../video-nvr/index.md), [devices](../devices/index.md) or
-[dashboards](../dashboards/index.md).
+[dashboards](../dashboards/index.md). To find anything later, use the search at the top of every page or **Ctrl+K**
+(see [Search everything](first-sign-in.md#search-everything)).
 
 ![The application after signing in: the menu on the left and a production dashboard with counters, plan fulfilment, pieces per hour and machine states](img/home-dashboard.webp)
 
