@@ -1,7 +1,7 @@
 ---
 title: VPN
 slug: vpn
-sidebar_position: 9
+sidebar_position: 10
 tags: [vpn, wireguard, remote-access, site-to-site, security]
 ---
 

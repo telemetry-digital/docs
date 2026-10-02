@@ -143,6 +143,23 @@ the time it was generated. The page lists the latest 100 reports with *Generated
 or built-in), *Size* and *File hash*. *Download* checks the file against its recorded hash before it is sent; a file
 that does not match is refused and the failure is audited.
 
+## Scheduled reports
+
+Reports mailed on a schedule (`config.write`): see [Scheduled reports by e-mail](../object-counting/scheduled-reports.md).
+
+| Field | Limits |
+|---|---|
+| Name | 1–80 characters |
+| Content | object counting summary of an area; a period table widget of a dashboard; a report template (observations of a datastream, alarms) |
+| Period | previous day, previous week (Monday to Sunday), previous month, in the organization's time zone |
+| Schedule | a cron expression of five fields (minute, hour, day of month, month, day of week); presets daily 07:00, Monday 07:00, 1st of the month 07:00 |
+| Recipients | up to 10 e-mail channels and 50 addresses; at least one |
+| Attachments | PDF and/or Excel (CSV for templates); at least one |
+| Enabled | a disabled report is not sent |
+
+*Send now* sends the report for the period before now; *Delivery log* lists the last 100 runs with their state,
+recipients, attachments (name, size, SHA-256) and error. Every change and every sending is audited.
+
 ## Connectors
 
 Connectors bring data from systems that do not send it on their own: a ChirpStack network server (LoRaWAN), an OPC UA

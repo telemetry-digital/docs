@@ -50,6 +50,8 @@ The default size is 6 × 5 grid cells.
 | start, end and consumption | start, end, consumption |
 | min, max and out of limits | min, max, out of limits |
 | samples | samples |
+| sum | sum |
+| sum and max | sum, max |
 
 | Value | Meaning |
 |---|---|
@@ -58,6 +60,7 @@ The default size is 6 × 5 grid cells.
 | start, end | the first and the last reading in the period |
 | consumption | the sum of the increases of a counter between readings (see below) |
 | samples | the number of readings |
+| sum | the sum of the readings — passages counted by [object counting](../object-counting/index.md), people or vehicles per period |
 | out of limits | the number of readings below the lower or above the upper limit |
 
 **Consumption** of a meter is computed from consecutive readings: an increase counts fully; a drop to less than half
