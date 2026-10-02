@@ -20,7 +20,9 @@ peer: the server accepts from each peer only its own address (and a site's route
 
 ## Add a rule
 
-Click **Add rule** (or **Edit** in a row). Every save asks for a reason; a change applies at once.
+Click **Add rule** (or **Edit** in a row). Every save asks for a reason; a change applies at once. A rule made by the
+administrator of an organization belongs to the organization and has limits — see
+[Rules of an organization](organizations-and-approvals.md#rules-of-an-organization).
 
 ![The Edit access rule dialog: the name Technicians → PLC line 1, the source all technicians, the destination Site network Nitra plant - line router with the host 192.168.10.20/32, protocol TCP and the ports 102, 502](img/vpn-rule-plc.webp)
 
@@ -40,8 +42,8 @@ Click **Add rule** (or **Edit** in a row). Every save asks for a reason; a chang
 
 | Source | Covers |
 |---|---|
-| all peers | every peer |
-| all technicians, all devices, all sites | every peer of that kind; a site includes its routed subnets |
+| all peers | every peer (server administrators only) |
+| all technicians, all devices, all sites | every peer of that kind; a site includes its routed subnets (server administrators only) |
 | an organization (▣) | every peer that belongs to the organization |
 | a single peer | that peer; a site includes its routed subnets |
 
@@ -67,7 +69,7 @@ protocol, the ports and — when empty — the name.
 | MQTT inside the VPN (plain, no TLS) | 1883 | always |
 | Web interface | the web port, 443 | the web interface listens beyond the machine itself, or behind the HTTPS proxy |
 | MQTT with TLS | 8883 | MQTT over TLS is configured |
-| SSH (administration of the host) | 22 | always |
+| SSH (administration of the host) | 22 | on Linux, for server administrators only |
 
 ## Examples
 
@@ -102,7 +104,7 @@ towards it and takes it out of other rules' sources.
 
 ## The generated firewall rules
 
-**Firewall rules** on the *Server* card shows what the server agent generated from the peers and rules: one
+**Firewall rules** on the *Server* card (server administrators only) shows what the server agent generated from the peers and rules: one
 nftables table `ctrl32_vpn` with an `input` chain (traffic to the server) and a `forward` chain (traffic through the
 server to peers and sites). Each accepted line carries the rule's identifier as a comment; the last line of each chain
 drops everything else (*default deny*).
@@ -110,4 +112,5 @@ drops everything else (*default deny*).
 ![The Firewall rules dialog with the generated nftables table ctrl32_vpn: the input chain with ping of the server and the MQTT rule, the forward chain with the PLC rule, each ending with counter drop default deny](img/vpn-firewall.webp)
 
 The table is replaced in one step on every change, after the agent checked it. It judges only traffic from and to the
-VPN interface; other firewalls of the host (`ufw`, Docker's rules) cannot open what it drops.
+VPN interface; other firewalls of the host (`ufw`, Docker's rules) cannot open what it drops. On a Windows server the
+dialog is called *Access rules enforced by the server agent* and lists the same rules as the agent checks them.

@@ -5,7 +5,8 @@ sidebar_position: 9
 tags: [administration, system, server, backups, replication, licence, reference]
 ---
 
-The **System** menu manages the server itself. All its pages need `system.admin`. Every change asks for a **reason**
+The **System** menu manages the server itself. All its pages need `system.admin` — the built-in role `server_admin`
+(see [Users and permissions](users-and-permissions.md#server-administration)). Every change asks for a **reason**
 (up to 200 characters) and is written to the [audit trail](audit.md).
 
 | Page | Address |
@@ -60,7 +61,7 @@ The list shows *Name* (with *this one* for your own), *Slug*, *Administrator*, *
 | First administrator: E-mail | — | up to 254 characters; unique on the server |
 | Reason (audit trail) | — | required |
 
-The administrator gets the `org_admin` role and a one-time password shown **once**. They must change it at the first
+The administrator gets the `org_admin` role — the organization only, not the server — and a one-time password shown **once**. They must change it at the first
 sign-in and set up an authenticator.
 
 ### Edit, disable, reset

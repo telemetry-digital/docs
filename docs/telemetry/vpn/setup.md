@@ -5,15 +5,17 @@ sidebar_position: 1
 tags: [vpn, wireguard, setup, server]
 ---
 
-The VPN is managed on **System → VPN** (`/server/vpn`, permission `system.admin`). The earlier address
-`/server/wireguard` leads there too.
+Server administrators manage the VPN on **System → VPN** (`/server/vpn`, permission `system.admin`); the earlier
+address `/server/wireguard` leads there too. Only they change the server settings. The administrator of an
+organization opens **Settings → VPN** (`/vpn`, permission `vpn.manage`) and manages the organization's own peers and
+rules — see [Organizations, access grants and approvals](organizations-and-approvals.md).
 
 ## Before you start
 
-- The server runs on **Linux** with the server agent (the installer sets it up). Without the agent the page says
-  *Server agent not configured*; on Windows it says *The VPN is managed on Linux servers only*.
+- The server runs the server agent (the installer sets it up on Linux and Windows). Without the agent the page says
+  *Server agent not configured*.
 - Choose a **UDP port** (51820 by default) and make sure it reaches the server: open it in the cloud provider's
-  firewall or forward it on your router. The server opens it in `ufw` itself.
+  firewall or forward it on your router. The server opens it in `ufw` (Linux) or in Windows Firewall itself.
 - Choose a **VPN range** that is not used anywhere else — not on the server's own networks and not in any site's LAN.
   The default `10.66.0.1/24` leaves room for 253 peers.
 - Decide the **endpoint**: the public name or address and port under which peers find the server, for example
@@ -36,7 +38,7 @@ The VPN is managed on **System → VPN** (`/server/vpn`, permission `system.admi
 | DNS for peers (optional) | — | an IP address | the name server written into every peer configuration |
 | Reason (audit trail) | — | up to 200 characters | required |
 
-On **Apply** the server agent:
+On **Apply** the server agent on Linux:
 
 - installs `wireguard-tools` and `nftables` if they are missing (Debian, Ubuntu);
 - creates the server's key pair (the private key never leaves the agent);
@@ -49,6 +51,30 @@ On **Apply** the server agent:
 
 Disabling stops the interface; peers and rules are kept.
 
+## Windows servers
+
+On Windows the server agent runs WireGuard itself, inside its own process: no driver, no extra program and no change
+to Windows routing. Every packet from a peer passes the agent's check, which uses the same access rules as on Linux
+(default deny, replies of allowed connections pass).
+
+On **Apply** the agent on Windows creates the server's key pair, starts the VPN inside the agent and adds the inbound
+Windows Firewall rule **ctrl32 WireGuard** for the UDP port (removed again when the VPN is disabled). The VPN page
+shows *Runs: Windows: inside the server agent*, and **Firewall rules** shows the rules the agent enforces instead of
+an nftables table.
+
+| Item | On Windows |
+|---|---|
+| Services of the server (MQTT, the web interface) | reached through `127.0.0.1`: the service sees that address instead of the peer's; it must listen on the loopback address or on all addresses |
+| UDP services of the server | not offered |
+| SSH preset | not offered |
+| Forwarding between peers and to sites | inside the agent |
+| The server's own connections into sites (connectors reading a PLC at a site) | not available — use a Linux server for that |
+| The agent stops | the VPN stops too (fail closed) |
+
+!!! note "Not yet field-tested"
+    The Windows VPN is tested on a development machine with real WireGuard clients; test it with your own peers
+    before relying on it in production.
+
 ## The VPN page
 
 ### Server
@@ -56,6 +82,7 @@ Disabling stops the interface; peers and rules are kept.
 | Row | Meaning |
 |---|---|
 | State | *running*, *enabled but not running* or *disabled* |
+| Runs | *Linux: WireGuard and nftables* or *Windows: inside the server agent* |
 | Listen port | the UDP port |
 | Server address | the server's VPN address with the range |
 | Endpoint for peers | where peers connect to |
@@ -66,11 +93,14 @@ Disabling stops the interface; peers and rules are kept.
 
 **Firewall rules** shows the generated firewall table (see [Access rules](access-rules.md#the-generated-firewall-rules)).
 **Apply again** sends all peers and rules to the server agent once more (with a reason); the server also does this by
-itself every five minutes and whenever a time-limited access ends.
+itself every five minutes and whenever a time-limited access ends. Both are for server administrators only.
+
+When **Four eyes for VPN access** is on, a note at the top of the page says so (see
+[Four eyes for VPN access](organizations-and-approvals.md#four-eyes-for-vpn-access)).
 
 ### Licence
 
-Shows whether the server is **licensed** or uses the **free** VPN, and how many peers are used — on the free VPN as
+Shows whether the server is **licensed** or uses the **free** VPN, and how many peers of the whole server are used — on the free VPN as
 *used / 5*. Without a licence the card links to *System → License*. See
 [Free and with a licence](index.md#free-and-with-a-licence).
 

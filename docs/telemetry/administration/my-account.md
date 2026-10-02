@@ -53,7 +53,7 @@ codes** of the form `abcd-efgh`, once. Store them safely: each one replaces an a
 
 If you lose the authenticator, an administrator resets it (*Users → user → Reset MFA*); you then set it up again.
 
-Two-factor sign-in is required for the roles `org_admin`, `qa` and `engineer`, and for everyone on a server in the
+Two-factor sign-in is required for the roles `server_admin`, `org_admin`, `qa` and `engineer`, and for everyone on a server in the
 internet profile.
 
 ## API tokens

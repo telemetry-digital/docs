@@ -41,7 +41,7 @@ What an administrator of a telemetry.digital server takes care of.
 |---|---|
 | Users | `user.admin` |
 | Settings | `content.write` |
-| System | `system.admin` |
+| System | `system.admin` (role `server_admin`) |
 | My account | none |
 
 ## The rule behind all of it

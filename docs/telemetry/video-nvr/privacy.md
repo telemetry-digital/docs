@@ -73,7 +73,7 @@ and inform people with a sign.
 | `video.audio` | hear camera sound live and recorded, export it | no | no | yes |
 | `display.control` | send cameras and commands to displays | yes | yes | yes |
 | `display.manage` | pair, change and disconnect displays | no | yes | yes |
-| `system.admin` | change the server-wide video settings | no | no | yes |
+| `system.admin` | change the server-wide video settings (role `server_admin`) | no | no | no |
 
 The built-in roles *viewer* and *qa* have no video permissions. Custom roles can combine them freely.
 

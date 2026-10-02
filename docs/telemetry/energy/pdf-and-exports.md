@@ -34,7 +34,7 @@ With [white labeling](../administration/white-labeling.md) the footer of PDF rep
 
 Exporting data needs the permission `data.export`, and every export is written to the audit trail.
 
-*Settings → Organization export* (permission `system.admin`) downloads one ZIP with the whole configuration as
+*Settings → Organization export* (permission `user.admin`) downloads one ZIP with the whole configuration as
 JSON, all records of a chosen period as CSV and a manifest with the SHA-256 of every file and the head of the audit
 chain.
 
