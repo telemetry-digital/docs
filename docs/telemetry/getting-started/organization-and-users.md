@@ -47,7 +47,8 @@ Built-in roles:
 | operator | operators on shift | read and export data, acknowledge alarms, annotate, send commands; watch live cameras, use PTZ, control displays |
 | qa | quality reviewers | read and export data, read and review the audit trail, sign reports |
 | engineer | whoever sets things up | everything of an operator plus devices, firmware, configuration, API tokens; cameras, recordings, evidence and displays |
-| org_admin | the organization's administrator | everything, including users, the audit trail and the system |
+| org_admin | the organization's administrator | everything in the organization, including users, the audit trail and its VPN |
+| server_admin | the server's administrator | the *System* pages: every organization, server settings, the VPN of the whole server, backups, updates, licence |
 
 Details of every permission: [Users and permissions](../administration/users-and-permissions.md).
 

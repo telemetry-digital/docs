@@ -13,39 +13,43 @@ has it and what it unlocks.
 
 Built-in roles cannot be changed. ✓ = the role has the permission, — = it does not.
 
-| Permission | viewer | operator | qa | engineer | org_admin |
-|---|:---:|:---:|:---:|:---:|:---:|
-| `data.read` | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `data.export` | — | ✓ | ✓ | ✓ | ✓ |
-| `data.annotate` | — | ✓ | — | ✓ | ✓ |
-| `alarm.ack` | — | ✓ | — | ✓ | ✓ |
-| `device.manage` | — | — | — | ✓ | ✓ |
-| `device.console` | — | — | — | ✓ | ✓ |
-| `device.command` | — | ✓ | — | ✓ | ✓ |
-| `fota.read` | — | ✓ | ✓ | ✓ | ✓ |
-| `fota.manage` | — | — | — | ✓ | ✓ |
-| `config.write` | — | — | — | ✓ | ✓ |
-| `content.write` | — | — | — | ✓ | ✓ |
-| `token.manage` | — | — | — | ✓ | ✓ |
-| `user.admin` | — | — | — | — | ✓ |
-| `audit.read` | — | — | ✓ | — | ✓ |
-| `audit.review` | — | — | ✓ | — | — |
-| `report.sign` | — | — | ✓ | — | — |
-| `system.admin` | — | — | — | — | ✓ |
-| `video.view` | — | ✓ | — | ✓ | ✓ |
-| `video.playback` | — | — | — | ✓ | ✓ |
-| `video.ptz` | — | ✓ | — | ✓ | ✓ |
-| `video.manage` | — | — | — | ✓ | ✓ |
-| `video.evidence` | — | — | — | ✓ | ✓ |
-| `video.unmask` | — | — | — | — | ✓ |
-| `video.audio` | — | — | — | — | ✓ |
-| `display.control` | — | ✓ | — | ✓ | ✓ |
-| `display.manage` | — | — | — | ✓ | ✓ |
+| Permission | viewer | operator | qa | engineer | org_admin | server_admin |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| `data.read` | ✓ | ✓ | ✓ | ✓ | ✓ | — |
+| `data.export` | — | ✓ | ✓ | ✓ | ✓ | — |
+| `data.annotate` | — | ✓ | — | ✓ | ✓ | — |
+| `alarm.ack` | — | ✓ | — | ✓ | ✓ | — |
+| `device.manage` | — | — | — | ✓ | ✓ | — |
+| `device.console` | — | — | — | ✓ | ✓ | — |
+| `device.command` | — | ✓ | — | ✓ | ✓ | — |
+| `fota.read` | — | ✓ | ✓ | ✓ | ✓ | — |
+| `fota.manage` | — | — | — | ✓ | ✓ | — |
+| `config.write` | — | — | — | ✓ | ✓ | — |
+| `content.write` | — | — | — | ✓ | ✓ | — |
+| `token.manage` | — | — | — | ✓ | ✓ | — |
+| `user.admin` | — | — | — | — | ✓ | — |
+| `audit.read` | — | — | ✓ | — | ✓ | — |
+| `audit.review` | — | — | ✓ | — | — | — |
+| `report.sign` | — | — | ✓ | — | — | — |
+| `system.admin` | — | — | — | — | — | ✓ |
+| `video.view` | — | ✓ | — | ✓ | ✓ | — |
+| `video.playback` | — | — | — | ✓ | ✓ | — |
+| `video.ptz` | — | ✓ | — | ✓ | ✓ | — |
+| `video.manage` | — | — | — | ✓ | ✓ | — |
+| `video.evidence` | — | — | — | ✓ | ✓ | — |
+| `video.unmask` | — | — | — | — | ✓ | — |
+| `video.audio` | — | — | — | — | ✓ | — |
+| `display.control` | — | ✓ | — | ✓ | ✓ | — |
+| `display.manage` | — | — | — | ✓ | ✓ | — |
+| `vpn.manage` | — | — | — | — | ✓ | — |
 
 Two flags of the built-in roles also matter:
 
-- **org_admin** is the *administrator* role: the first administrator of an organization gets it, and the
-  *Administrator* column of *System → Organizations* shows its holder.
+- **org_admin** is the *administrator* role of an organization: the first administrator of an organization gets it,
+  and the *Administrator* column of *System → Organizations* shows its holder. It administers the organization only —
+  it does not include `system.admin`.
+- **server_admin** administers the whole server: it holds `system.admin` and nothing else, and is usually given in
+  addition to `org_admin`. Only a server administrator grants or removes it.
 - **qa** is the *quality* role.
 
 !!! note "Operators do not play back recordings"
@@ -85,17 +89,23 @@ Two flags of the built-in roles also matter:
 
 | Permission | Unlocks |
 |---|---|
-| `user.admin` | the *Users* menu: accounts, roles and permissions, account requests, camera access of users, resetting passwords and MFA, unlocking, signing a user out everywhere; changing the security policy; switching AI assistants on or off and disconnecting any user's assistant |
+| `user.admin` | the *Users* menu: accounts, roles and permissions, account requests, camera access of users, resetting passwords and MFA, unlocking, signing a user out everywhere; changing the security policy; switching AI assistants on or off and disconnecting any user's assistant; the organization export |
 | `audit.read` | exporting the audit trail and the access log |
 | `audit.review` | reserved for recording audit trail reviews; no function of this version checks it |
 | `report.sign` | reserved for electronic signatures of reports; no function of this version checks it |
-| `system.admin` | the *System* menu: organizations of the whole server, Server, Domain and TLS, VPN, backups, redundant database, updates, licence, front page; the organization export; saving the video settings |
+| `system.admin` | server administration: the *System* menu — organizations of the whole server, Server, Domain and TLS, VPN of the whole server, backups, redundant database, updates, licence, front page; saving the video settings; granting and removing `server_admin` and changing the accounts of server administrators |
 
 !!! warning "system.admin is server-wide"
     *System → Organizations* lists and changes **every** organization on the server, and the System pages control the
-    machine. The built-in `org_admin` role includes `system.admin`. On a server shared by several tenants, give the
-    tenants' administrators an organization role without `system.admin` and keep the built-in `org_admin` for the
-    people who run the server.
+    machine. Only the built-in role `server_admin` holds `system.admin`. After the upgrade to 0.65 every user who had
+    `org_admin` also holds `server_admin`, so nobody lost access — review who holds it under *Users → Roles and
+    permissions* and remove it where it is not needed, especially on a server shared by several tenants.
+
+### VPN
+
+| Permission | Unlocks |
+|---|---|
+| `vpn.manage` | *Settings → VPN*: the peers, access rules and access grants of the own organization; approving technicians' VPN access held by four eyes. The VPN server settings and the peers and rules of the whole server need `system.admin`. See [VPN for organizations](../vpn/organizations-and-approvals.md) |
 
 ### Cameras and displays
 
@@ -127,7 +137,7 @@ Some functions need only a signed-in user, with no permission:
 - the list of permissions and roles;
 - your own AI assistant connections.
 
-*Settings → Approvals* lists change requests to users with `config.write` or `device.manage`. Approving or rejecting
+*Settings → Approvals* lists change requests to users with `config.write`, `device.manage`, `vpn.manage` or `system.admin`. Approving or rejecting
 one needs the permission of the change it holds (see [Settings pages](settings-reference.md)), and its author can
 never approve it.
 
@@ -135,7 +145,8 @@ never approve it.
 
 *Users → Roles and permissions → New role* creates a role of the organization from any permissions in the catalogue.
 The name is 2–32 characters: a lowercase letter first, then `a-z`, `0-9` or `_`. An organization role can be changed
-later (*Save permissions*, with a reason); built-in roles cannot.
+later (*Save permissions*, with a reason); built-in roles cannot. A role with `system.admin` can be created or changed
+only by a server administrator.
 
 ## API tokens and AI assistants
 

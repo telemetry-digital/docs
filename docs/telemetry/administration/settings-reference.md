@@ -20,7 +20,8 @@ values in the [audit trail](audit.md); a save without a reason is refused.
 | Languages | `/settings/languages` | `content.write` |
 | Translations | `/settings/translations` | `content.write` |
 | Apps | `/settings/apps` | `content.write` |
-| Organization export | `/settings/export` | `system.admin` |
+| VPN | `/vpn` | `vpn.manage` (shown to organization administrators without `system.admin`) |
+| Organization export | `/settings/export` | `user.admin` |
 | Notifications | `/settings/notifications` | `config.write` |
 | Approvals | `/settings/approvals` | the permission of each change |
 | Security policy | `/settings/policy` | `user.admin` (`config.write` to read) |
@@ -217,8 +218,8 @@ See [Connecting AI assistants](../ai-assistants/connecting.md) and [AI assistant
 
 ## Organization export
 
-One ZIP file with the whole configuration of the organization and its records for a period. It needs `system.admin`
-and is audited.
+One ZIP file with the whole configuration of the organization and its records for a period. It needs `user.admin`
+(an organization administrator's task) and is audited.
 
 | Field | Default |
 |---|:---:|
@@ -281,11 +282,13 @@ Changes held by the four-eyes policies wait here.
 | Alarm limits | *Four eyes for alarm limits* is on: new alarm rule versions and disabling a rule | `config.write` |
 | Datastream assignments | *Four eyes for datastream assignments* is on: assigning or removing a datastream on a device | `device.manage` |
 | Flows | *Four eyes for commands* is on: deploying a flow that sends commands | `content.write` and `device.command` |
+| VPN access | *Four eyes for VPN access* is on: a time-limited access grant for a technician (VPN peer of the kind Technician) | `vpn.manage` or `system.admin` (for a peer of the whole server: `system.admin`) |
 
 **Pending changes** shows *Change* (summary and reason), *Kind*, *Requested by*, *Requested* and *Expires*, with
 **Approve** and **Reject** (each asks for a reason). The author of a request sees *your own request* instead of the
 buttons. Approving replays the original request under the approver's name; both names go to the audit trail.
-Requests expire after **7 days**.
+Requests expire after **7 days**. An approved VPN access starts at the approval and lasts the requested time (see
+[Access grants](../vpn/organizations-and-approvals.md#access-grants)).
 
 **History** shows each decision: approved, rejected, failed (approved, but the change itself failed) or expired.
 
@@ -299,6 +302,7 @@ Commands held by *Four eyes for commands* are approved on the device page (tab *
 | Four eyes for commands | off | every command (set point, switch, button, connector write, device command, scene, AI assistant, flow) waits until a different user with `device.command` approves it; deploying a flow that sends commands becomes a change request |
 | Four eyes for alarm limits | off | new alarm rule versions and disabling a rule become change requests approved by a different user with `config.write` |
 | Four eyes for datastream assignments | off | assigning or removing a datastream on a device becomes a change request approved by a different user with `device.manage` |
+| Four eyes for VPN access | off | a technician's VPN access becomes active only after a different user with `vpn.manage` or `system.admin` approves a time-limited access grant here under *Approvals*; new technicians are added disabled, and enabling one or changing its expiry directly is refused; grants require a licence |
 | Reason (audit trail) | — | required |
 
 The other rules of the organization's policy have fixed values in this version and are not shown on the page:
@@ -311,6 +315,6 @@ The other rules of the organization's policy have fixed values in this version a
 | Lock duration | 15 min |
 | Shortest password | 12 characters |
 | Character classes in a password | at least 3 of 4 |
-| Roles that must use two-factor sign-in | org_admin, qa, engineer |
+| Roles that must use two-factor sign-in | server_admin, org_admin, qa, engineer |
 
 In the internet profile every user must use two-factor sign-in.

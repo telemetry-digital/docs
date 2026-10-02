@@ -1,7 +1,7 @@
 ---
 title: VPN security, upgrade and troubleshooting
 slug: vpn-troubleshooting
-sidebar_position: 4
+sidebar_position: 5
 tags: [vpn, security, audit, upgrade, troubleshooting]
 ---
 
@@ -11,12 +11,13 @@ tags: [vpn, security, audit, upgrade, troubleshooting]
 
 | Action | Needs |
 |---|---|
-| See the VPN page | `system.admin` |
-| Server settings, edit, disable, enable and remove peers, access rules, apply again | `system.admin` and a reason |
-| Add a peer, rotate a key (a configuration with a private key is shown) | `system.admin`, a reason, your password and — with two-factor sign-in — the authenticator code |
+| See the VPN page | `system.admin` (everything) or `vpn.manage` (the own organization) |
+| Server settings, firewall rules, apply again, peers and rules of the whole server | `system.admin` and a reason |
+| Edit, disable, enable and remove peers, access rules, access grants of the own organization | `vpn.manage` and a reason |
+| Add a peer, rotate a key (a configuration with a private key is shown) | `system.admin` or `vpn.manage`, a reason, your password and — with two-factor sign-in — the authenticator code |
+| Approve a technician's access under four eyes | a different user with `vpn.manage` or `system.admin`, and a reason |
 
-Organizations are an attribute of a peer and a rule source; managing the VPN stays with server administrators. AI
-assistants are never offered adding a peer or rotating a key.
+AI assistants are never offered adding a peer, rotating a key or granting access.
 
 ### What a peer cannot reach
 
@@ -44,7 +45,9 @@ Every change is written to the [audit trail](../administration/audit.md) with it
 |---|---|
 | `server.wireguard` | the server settings were applied |
 | `vpn.peer_add`, `vpn.peer_update`, `vpn.peer_rotate`, `vpn.peer_remove` | a peer was added, changed (also disabled or enabled), got a new key or was removed |
-| `vpn.peer_expire` | a time-limited access ended (actor *system*) |
+| `vpn.peer_expire` | a time-limited access ended (actor *system*), with the grant |
+| `vpn.grant` | access was granted for a time window (who asked, who approved) |
+| `change_request.create`, `change_request.approve`, `change_request.reject` | a technician's access was requested, approved or rejected under four eyes |
 | `vpn.rule_add`, `vpn.rule_update`, `vpn.rule_remove` | an access rule was added, changed or removed |
 | `vpn.apply` | *Apply again* |
 | `vpn.import` | peers of an earlier version were imported (see below) |
@@ -68,7 +71,8 @@ the other new fields can be set afterwards with **Edit**.
 
 | Item | Limit |
 |---|---|
-| Operating system | Linux with nftables (Debian, Ubuntu); Windows in a later version |
+| Operating system | Linux with nftables (Debian, Ubuntu), or Windows with the VPN inside the server agent (see [Windows servers](setup.md#windows-servers)) |
+| Access grants | 15 minutes to 30 days |
 | Addresses | IPv4 only |
 | Topology | hub and spoke; the server needs a reachable UDP port (no NAT traversal, no mesh) |
 | Peers | up to 5 free; with a licence up to 1 000 |
@@ -88,7 +92,13 @@ the other new fields can be set afterwards with **Edit**.
 | The peer connects but reaches nothing | an access rule for exactly that source, destination and port; is the peer enabled and not expired? |
 | A technician reaches the site router but not the PLC | the router routes replies back: is it the LAN's default gateway? Otherwise masquerade on the Raspberry Pi or add a route on the gateway ([Peers](peers.md#where-the-site-device-sits)) |
 | *… overlaps …* when saving a site | the subnet is used by another site, the VPN range or the server's own network — sites need distinct LAN ranges |
-| *requires a license* | sites, expiry dates and more than 5 peers require a licence; existing peers keep working |
+| *requires a license* | sites, expiry dates, access grants and more than 5 peers require a licence; existing peers keep working |
+| *four eyes for VPN access is on: request a time-limited grant* | under four eyes a technician cannot be enabled or get an expiry directly: use **Request access** and have a second person approve it |
+| The technician still shows *awaiting approval* | the request waits under **Settings → Approvals**; it must be approved by someone other than the person who asked |
+| *peer not found* or *destination not found* for a peer you know exists | it belongs to another organization or to the whole server: only a server administrator manages it |
+| *an organization's rule may use its own peers …* or *… is not offered to organizations* | the limits of [Rules of an organization](organizations-and-approvals.md#rules-of-an-organization) |
+| Windows: a service of the server is not reachable through the VPN | it must listen on `127.0.0.1` or all addresses; UDP services are not offered on Windows |
+| Windows: a connector cannot read a PLC at a site | on Windows the server cannot open connections into sites; use a Linux server |
 | The configuration was lost | **Rotate key** and configure the peer again |
 
 On the server, these commands show the live state:
