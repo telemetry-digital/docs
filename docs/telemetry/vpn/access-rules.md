@@ -54,7 +54,7 @@ Only active peers count: a disabled or expired peer drops out of every rule at o
 | Destination | Reaches |
 |---|---|
 | This server | the server's own VPN address — its services (MQTT, the web interface, SSH) |
-| Site network | the routed subnets of a site, or one host or subnet inside them, through the site's router |
+| Site network | the routed subnets of a site, or one host or subnet inside them, through the site's router — or through a customer server connected by an [uplink](uplink-hub.md), whose own uplink rules must allow it too |
 | Peer | one peer's VPN address, for example a technician's laptop that a site must reach |
 
 ### Services of this server

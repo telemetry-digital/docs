@@ -15,6 +15,7 @@ a router that connects a whole site. Each peer has its own key pair and one fixe
 | Technician | a laptop or phone with the WireGuard app; reaches what the access rules allow, for example a PLC at a site | the VPN range and the routed subnets of every site | free (up to 5 peers) |
 | Device | a gateway or device that sends data through the tunnel, for example MQTT to this server without TLS | the VPN range only | free (up to 5 peers) |
 | Site (router) | a router or Raspberry Pi at a site that connects its whole LAN (site-to-site) | the VPN range and the routed subnets of the other sites | requires a licence |
+| Server (uplink) | another telemetry.digital server without a public address that connects out to this server as its hub (see [Uplink to a hub](uplink-hub.md)) | the VPN range only | requires a licence |
 
 What a peer *routes* into the tunnel is only the way there: the server's [access rules](access-rules.md) decide
 what it actually reaches.
@@ -27,11 +28,11 @@ Click **Add peer**, choose the kind and fill in the form. The VPN server must be
 
 | Field | Default | Allowed | Meaning |
 |---|:---:|---|---|
-| Kind | Technician | Technician, Device, Site (router) | see *Peer kinds*; it cannot be changed later |
+| Kind | Technician | Technician, Device, Site (router), Server (uplink) | see *Peer kinds*; it cannot be changed later |
 | Name | — | 1–63 characters: letters, digits, space, dot, dash or underscore, starting with a letter or digit; unique | shown in the lists and in the configuration file name |
 | Organization | (whole server) | an organization of the server; for the administrator of an organization always the own organization | who manages the peer, and a rule source (*all peers of an organization*) |
 | Device (optional) | (none) | a device of the server | links a device peer to the device it carries data for |
-| Routed subnets | — | sites only: 1–16 IPv4 networks, one per line, from /8 to /32 | the LAN behind the router, for example `192.168.10.0/24` |
+| Routed subnets | — | sites only: 1–16 IPv4 networks, one per line, from /8 to /32; for a Server (uplink) 0–16 | the LAN behind the router, for example `192.168.10.0/24`; for a Server (uplink) the networks behind that server the hub may route to it |
 | Access expires (optional) | — | a date and time in the future | time-limited access: the peer is disabled automatically; requires a licence; not for technicians under four eyes (use an access grant) |
 | Note (optional) | — | up to 200 characters | for example the router model or the purpose |
 | Reason (audit trail) | — | up to 200 characters | required |
@@ -58,7 +59,8 @@ access through an approved [access grant](organizations-and-approvals.md#access-
 ## The configuration — shown once
 
 After **Create** the dialog shows the configuration **once**. The private key is not stored on the server: when the
-configuration is lost, issue a new one with **Rotate key**.
+configuration is lost, issue a new one with **Rotate key**. A **Server (uplink)** gets an uplink configuration to paste
+on that server instead (see [Uplink to a hub](uplink-hub.md)).
 
 ![The configuration of a new technician peer shown once: a QR code for the WireGuard app, the configuration text, the buttons Download .conf and Copy](img/vpn-peer-config.webp)
 
