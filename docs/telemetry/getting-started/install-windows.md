@@ -14,7 +14,7 @@ Open **PowerShell as administrator** and run:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass -Force
-irm https://telemetry.digital/install.ps1 -OutFile install.ps1; .\install.ps1
+irm https://portal.telemetry.digital/install.ps1 -OutFile install.ps1; .\install.ps1
 ```
 
 This installs an **intranet** server: web on port 8080, MQTT on port 1883, with the firewall ports opened.

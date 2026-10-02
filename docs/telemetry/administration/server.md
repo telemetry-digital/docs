@@ -55,7 +55,7 @@ Camera recordings are not in the backup — they live on their own disk (see
 
 ## Updates
 
-The Updates page offers new versions from the distribution point (`https://telemetry.digital/dl/` by default).
+The Updates page offers new versions from the distribution point (`https://portal.telemetry.digital/dl/` by default).
 Downloads are **verified by SHA-256** before they are installed; the agent then runs the database migrations and
 restarts the service. Running the installer again also updates an installation and keeps the configuration.
 

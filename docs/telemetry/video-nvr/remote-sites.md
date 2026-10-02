@@ -57,14 +57,14 @@ installer next to it.
 Linux or Raspberry Pi (Debian, Ubuntu, Raspberry Pi OS with systemd):
 
 ```sh
-curl -fsSL https://telemetry.digital/install-relay.sh -o install-relay.sh
+curl -fsSL https://portal.telemetry.digital/install-relay.sh -o install-relay.sh
 sudo bash install-relay.sh --config relay.toml
 ```
 
 Windows (PowerShell as administrator):
 
 ```powershell
-irm https://telemetry.digital/install-relay.ps1 -OutFile install-relay.ps1; .\install-relay.ps1 -Config .\relay.toml
+irm https://portal.telemetry.digital/install-relay.ps1 -OutFile install-relay.ps1; .\install-relay.ps1 -Config .\relay.toml
 ```
 
 The installer downloads the program and checks it against `SHA256SUMS`, stores the configuration where only the

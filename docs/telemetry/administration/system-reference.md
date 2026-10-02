@@ -223,7 +223,7 @@ verification, and the history of events.
 | Installed | the running version and its release date |
 | Updates | *Updates included until* a date, *Updates ended on* a date (the system keeps running), or *all versions* |
 | Available | the newest version at the distribution point, with *update available* or *up to date* |
-| Distribution point | `[agent] update_url`, default `https://telemetry.digital/dl` |
+| Distribution point | `[agent] update_url`, default `https://portal.telemetry.digital/dl` |
 | Checked | when it was last checked |
 
 **Install update** asks for the **Version to install** (filled in with the available one) and a reason. The agent
