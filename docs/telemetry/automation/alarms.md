@@ -27,8 +27,8 @@ Reading rules needs `data.read`; **New rule**, new versions and disabling need `
 | Field | Type | Default | Allowed | Notes |
 |---|---|:---:|:---:|---|
 | Datastream | datastream | — | a datastream of your organization | required |
-| Type | choice | high | high, low, low battery, power loss, door open, communication loss | see *Rule types*; a hint under the form says what the type checks |
-| Warning limit | number | — | any number | *high*, *low* and *low battery* need a warning or an action limit, or both; off for power loss and door open |
+| Type | choice | high | high, low, low battery, power loss, door open, communication loss, sensor fault | see *Rule types*; a hint under the form says what the type checks |
+| Warning limit | number | — | any number | *high*, *low* and *low battery* need a warning or an action limit, or both; off for power loss, door open and sensor fault |
 | Action limit | number | — | any number | the stronger limit; for communication loss both limits are seconds |
 | Delay (s) | number | 0 | 0–604800 | how long the condition must last before the alarm is raised |
 | Hysteresis | number | 0 | 0 or more | how far the value must come back before the alarm clears |
@@ -63,15 +63,29 @@ original request under the approver's name, and both names go to the audit trail
 | power loss (`power_loss`) | the value is 0 (false) — severity *action*; no limits | any other value |
 | door open (`door_open`) | the value is other than 0 (true) — severity *warning*; no limits; the delay is how long the door may stay open | the value is 0 |
 | communication loss (`comm_loss`) | no new value for longer than the warning or action limit in **seconds**; without limits 1.5 × the datastream's expected interval (severity *action*) | a new value arrives; the alarm's value is the number of seconds without data |
+| sensor fault (`sensor_fault`) | a value arrives with the quality *sensor fault* — severity *action*; no limits; the delay is how long the fault may last | the next value with another quality |
 
 What is refused when a rule is saved, because the server would ignore it:
 
-- the type *sensor_fault* — devices do not report sensor faults; use *high*/*low* limits on implausible values or
-  *communication loss*;
-- limits or hysteresis on *power loss* and *door open*, and hysteresis on *communication loss*;
+- limits or hysteresis on *power loss*, *door open* and *sensor fault*, and hysteresis on *communication loss*;
 - *communication loss* without limits on a datastream without an expected interval, and limits of 0 or less.
 
-Communication loss is checked every 5 seconds. Older rules of the type *sensor_fault* stay listed but raise nothing.
+Communication loss is checked every 5 seconds.
+
+### Sensor faults
+
+A value gets the quality **sensor fault** when
+
+- the device marks it as faulty in its telemetry — with `"fault": ["temp"]`, `{"temp": "open circuit"}` or, next to
+  `v`/`values`, `"fault": true` for every value of the message (see [MQTT and HTTP](../devices/mqtt-http.md)); or
+- the value lies outside the **physical range** of the datastream — what the sensor can measure at all, set in the
+  datastream's detail (*Physical range from … to …*, with a reason). A PT1000 probe measures −40 to 85 °C; a
+  disconnected probe that reports −127 °C is a fault, not a cold fridge.
+
+Such a value is stored like any other, so nothing is lost, but it is **not a reading**: the rules *high*, *low*,
+*low battery*, *power loss* and *door open* skip it, so a broken probe raises one *sensor fault* alarm instead of a
+false temperature alarm. It still proves that the device communicates, so it ends a *communication loss*. Charts
+mark it in red, and minimum, maximum and average leave it out.
 
 How a high rule with warning 8, action 10 and hysteresis 0.5 behaves:
 

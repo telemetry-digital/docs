@@ -33,7 +33,7 @@ registration of the authenticator app.
 ## Look around
 
 - The **menu** on the left (a drawer on phones) holds Dashboards, Home, Energy, Cameras, Displays, Flows, Devices,
-  Incidents, Assets, Firmware, Users, Settings and System — you see only what your permissions allow.
+  Incidents, Assets, Firmware, Users, Audit, Settings and System — you see only what your permissions allow.
 - **My account** holds your password and two-factor settings, API tokens, connected AI assistants and the language.
   The interface is available in 19 languages.
 - Before anyone signs in, the address `/` shows the sign-in page with a short overview of the system, or your own

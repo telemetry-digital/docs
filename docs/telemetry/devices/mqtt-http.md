@@ -86,7 +86,17 @@ JSON, at most 64 KiB and 2000 samples per message. Any of these shapes works:
 - `bf: 1` marks a value replayed from the device's offline buffer: it closes the gap and is stored as *backfilled*.
 - Keys are lower case (`temp`, `batt_level`); `Temp-1` is normalized to `temp_1`.
 - A key without an assigned datastream is not stored as a measurement; the message shows on the device page under
-  *Messages* with the status *unknown key*.
+  *Messages* with the status *unknown key*, and the key with its values under *Telemetry*, where a datastream can be
+  created for it.
+- `fault` marks values from a faulty sensor; they are stored with the quality *sensor fault*:
+
+```json
+{"ts": 1758620000, "v": {"temp": -127, "rh": 61}, "fault": ["temp"]}
+```
+
+  The list names the faulty keys; an object such as `{"temp": "open circuit"}` works too (`false` = no fault), and
+  next to `v` or `values`, `"fault": true` marks every value of the sample. In a flat message a number, `true` or a
+  text under `fault` stays an ordinary value called `fault`.
 
 ## HTTP instead of MQTT
 

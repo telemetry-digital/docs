@@ -50,7 +50,9 @@ Two flags of the built-in roles also matter:
   it does not include `system.admin`.
 - **server_admin** administers the whole server: it holds `system.admin` and nothing else, and is usually given in
   addition to `org_admin`. Only a server administrator grants or removes it.
-- **qa** is the *quality* role.
+- **qa** is the *quality* role. It is the only built-in role that records reviews of the audit trail
+  (`audit.review`) and signs reports (`report.sign`): administrators do not review or sign their own work. Give these
+  permissions to other people through an organization role if your procedures need it.
 
 !!! note "Operators do not play back recordings"
     The built-in `operator` watches live cameras (`video.view`) and turns PTZ cameras, but has no `video.playback`.
@@ -62,16 +64,16 @@ Two flags of the built-in roles also matter:
 
 | Permission | Unlocks |
 |---|---|
-| `data.read` | reading assets, sites, datastreams, measurements, devices and their messages, attributes and command history, dashboards, process screens, flows, alarms, incidents, Home and Energy, the live update stream, `/metrics`, the audit chain check |
-| `data.export` | exports of measurements, alarms and raw messages (CSV, JSON, PDF), period tables, report templates (read), stored reports and their PDF files |
-| `data.annotate` | reserved for annotating measurements and gaps; no function of this version checks it |
+| `data.read` | reading assets, sites, datastreams, measurements, devices and their messages, the *Telemetry* tab of a device, attributes and command history, annotations, dashboards, process screens, flows, alarms, incidents, Home and Energy, the live update stream, `/metrics`, the audit chain check |
+| `data.export` | exports of measurements, alarms and raw messages (CSV, JSON, PDF), the CSV and Excel export of one key on the *Telemetry* tab, period tables, report templates (read), stored reports, their PDF files and their signatures |
+| `data.annotate` | adding annotations to measurements (one value or a period) and retracting them; see [The device page](../devices/device-page.md#annotations) |
 | `alarm.ack` | acknowledging and suppressing alarms; creating and updating incidents |
 
 ### Devices
 
 | Permission | Unlocks |
 |---|---|
-| `device.manage` | creating, editing, approving, rejecting and revoking devices; device tokens; datastream assignments of a device; shared attributes; provisioning profiles; MQTT accounts; the automatic device discovery inbox (adopt, ignore); renaming entities; scenes (create, change, delete) |
+| `device.manage` | creating, editing, approving, rejecting and revoking devices; device tokens; datastream assignments of a device, including *Create datastream and assign* for a key without a datastream on the *Telemetry* tab; shared attributes; provisioning profiles; MQTT accounts; the automatic device discovery inbox (adopt, ignore); renaming entities; scenes (create, change, delete) |
 | `device.console` | opening, using and closing a remote console on a device |
 | `device.command` | sending commands to devices and entities, writes through connectors, activating scenes; approving and rejecting commands and automation actions held by four eyes |
 | `fota.read` | the Firmware pages: images and campaigns |
@@ -81,7 +83,7 @@ Two flags of the built-in roles also matter:
 
 | Permission | Unlocks |
 |---|---|
-| `config.write` | sites, assets, datastreams and alarm rules (create, change); connectors and Modbus register profiles; notification channels, escalation policies and the delivery log; automation rules; flow settings; reading the security policy |
+| `config.write` | sites, assets, datastreams (including their physical range) and alarm rules (create, change); connectors and Modbus register profiles; notification channels, escalation policies and the delivery log; automation rules; flow settings; reading the security policy |
 | `content.write` | the *Settings* menu; dashboards (create, change, delete, share links); process screen objects and SVG import; flows (create, change, deploy, disable, restore, import, inject); report templates (change, preview, revert); branding and white label; languages and translations; apps (PWA); energy settings |
 | `token.manage` | creating, listing and revoking your own API tokens |
 
@@ -90,9 +92,9 @@ Two flags of the built-in roles also matter:
 | Permission | Unlocks |
 |---|---|
 | `user.admin` | the *Users* menu: accounts, roles and permissions, account requests, camera access of users, resetting passwords and MFA, unlocking, signing a user out everywhere; changing the security policy; switching AI assistants on or off and disconnecting any user's assistant; the organization export |
-| `audit.read` | exporting the audit trail and the access log |
-| `audit.review` | reserved for recording audit trail reviews; no function of this version checks it |
-| `report.sign` | reserved for electronic signatures of reports; no function of this version checks it |
+| `audit.read` | *Audit → Audit trail* and *Reviews*: reading the audit trail and its reviews; exporting the audit trail and the access log |
+| `audit.review` | recording a signed review of the audit trail — a period or one entry (*Audit → Audit trail*); see [Audit trail](audit.md#reviews) |
+| `report.sign` | signing stored PDF reports electronically (*Audit → Report signatures*); see [PDF reports and exports](../energy/pdf-and-exports.md#electronic-signatures) |
 | `system.admin` | server administration: the *System* menu — organizations of the whole server, Server, Domain and TLS, VPN of the whole server, backups, redundant database, updates, licence, front page; saving the video settings; granting and removing `server_admin` and changing the accounts of server administrators |
 
 !!! warning "system.admin is server-wide"
@@ -155,3 +157,6 @@ only by a server administrator.
   the owner's current permissions.
 - An **AI assistant** acts with the permissions of the user who approved it, or only reads if it was approved for
   reading. See [AI assistants: security](../ai-assistants/security.md).
+- **Electronic signatures and audit reviews** are given only by a signed-in person in the browser, who enters the
+  password again. An API token or an AI assistant cannot sign a report or record a review, even with `report.sign` or
+  `audit.review` in its scopes.

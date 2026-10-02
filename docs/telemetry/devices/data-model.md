@@ -96,14 +96,18 @@ meter, the state of a door.
 
 Clicking a datastream opens its detail:
 
-- **Site**, **Quantity** with unit, **Expected interval** (or "no gap detection"), **Accuracy**.
+- **Site**, **Quantity** with unit, **Expected interval** (or "no gap detection"), **Accuracy**, **Physical range**
+  (or "not set").
 - **Source device** — the device that currently feeds the datastream and since when, with a link to the device, or
   "none — assign one on the device page".
 - **Last value** — value, unit, measurement time and its **quality**.
 - **Rules** — automation rules that read the datastream or derive (write) it, with their state.
 - **Id** — the datastream's identifier, for the API.
-- **Edit** (with `config.write`): change **Unit** and **Expected interval**, with a reason. The key, the kind and the
-  asset cannot be changed after creation.
+- **Edit** (with `config.write`): change **Unit**, **Expected interval** and the **Physical range** (*from* and
+  *to*; empty = no limit), with a reason. The key, the kind and the asset cannot be changed after creation.
+
+The **physical range** is what the sensor can measure at all — for example −40 to 85 °C for a PT1000 probe. It is
+not an alarm limit: a value outside it cannot be a real reading, so it is stored with the quality *sensor_fault*.
 
 #### Quality of a value
 
@@ -112,10 +116,15 @@ Clicking a datastream opens its detail:
 | ok | a normal measurement |
 | backfilled | a value replayed from the device's offline buffer (`bf: 1`) |
 | clock_suspect | the device's time stamp was more than 5 minutes in the future |
-| sensor_fault | the sensor reported a fault |
-| out_of_range | the value was outside the valid range |
-| stale | the value is old |
+| sensor_fault | the device marked the value as faulty (`fault` in its telemetry), or the value is outside the datastream's physical range |
+| out_of_range | reserved; not set by this version |
+| stale | reserved; not set by this version |
 | simulated | a simulated value |
+
+A value has one quality. *sensor_fault* wins over the others, because the value is not a reading at all; a
+backfilled value from a faulty sensor still counts as backfilled for gaps and retrospective alarms. Values with
+*sensor_fault* are kept and exported, marked in red on charts, left out of minimum, maximum and average, and skipped
+by the value alarm rules (see [Sensor faults](../automation/alarms.md#sensor-faults)).
 
 ## Alarm rules (limits)
 
@@ -147,13 +156,14 @@ You create them in two places:
 | power_loss | the value is 0 (false): the power supply failed; no limits |
 | door_open | the value is other than 0 (true): a door is open; the delay is how long it may stay open; no limits |
 | comm_loss | no new value for longer than the limits in seconds; without limits 1.5 × the expected interval |
+| sensor_fault | a value with the quality *sensor_fault*; no limits; the next value with another quality clears it |
 
 An alarm of type high clears when the value falls below the limit minus the hysteresis; an alarm of type low clears
 when it rises above the limit plus the hysteresis.
 
 Every type is described with examples in [Alarms](../automation/alarms.md). A rule the server could not evaluate
-as given is refused when saved: *sensor_fault* (devices do not report sensor faults), limits or hysteresis on
-*power_loss* and *door_open*, and hysteresis on *comm_loss*.
+as given is refused when saved: limits or hysteresis on *power_loss*, *door_open* and *sensor_fault*, and hysteresis
+on *comm_loss*.
 
 **Assets → Alarm rules** lists the current versions: asset, datastream, type, warning, action, delay, hysteresis,
 version (the reason as a tooltip) and since when. Clicking a row opens the datastream. In the datastream detail,

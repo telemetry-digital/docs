@@ -2,19 +2,21 @@
 title: The device page
 slug: devices-device-page
 sidebar_position: 2
-tags: [devices, mqtt, commands, console, attributes]
+tags: [devices, mqtt, commands, console, attributes, telemetry]
 ---
 
-**Devices** in the main menu lists every device of the organization; clicking one opens its page with six tabs:
-**Overview**, **Datastreams**, **Commands**, **Attributes**, **Console** and **Messages**. This page describes every
-field and button.
+**Devices** in the main menu lists every device of the organization; clicking one opens its page with seven tabs:
+**Overview**, **Telemetry**, **Datastreams**, **Commands**, **Attributes**, **Console** and **Messages**. This page
+describes every field and button.
 
 ## Permissions
 
 | What | Permission |
 |---|:---:|
-| See devices, their values, commands, attributes and messages | `data.read` |
-| Create, rename, place, issue tokens, revoke; assign datastreams; set shared attributes | `device.manage` |
+| See devices, their values (*Telemetry*), commands, attributes and messages | `data.read` |
+| Export the values of one key to CSV or Excel | `data.export` |
+| Annotate measurements | `data.annotate` |
+| Create, rename, place, issue tokens, revoke; assign datastreams; create a datastream for a key; set shared attributes | `device.manage` |
 | Send, approve and reject commands | `device.command` |
 | Open the remote console | `device.console` |
 
@@ -130,6 +132,100 @@ widgets. The current position is shown with its source (*fixed* or *reported*) a
 - **Use reported position** forgets the fixed position; reported positions apply again.
 
 Reported positions of exactly 0, 0 are ignored.
+
+## Telemetry
+
+The **Telemetry** tab shows everything the device sends, in one table: every key it has published, with its latest
+value, and how it changed.
+
+![The Telemetry tab: a search box, sorting, the range of the statistics and a table of keys with their source, latest value, quality, time of the last value, a 24-hour sparkline, minimum, maximum and average](img/device-telemetry.webp)
+
+### Where the keys come from
+
+| Source | Badge | Meaning |
+|---|:---:|---|
+| Datastream | datastream | a key assigned to a datastream: its values are stored as measurements, with alarms, dashboards and reports |
+| No datastream | no datastream | a key the device publishes but no datastream stores; its values are read from the raw messages of the last 90 days |
+| Status | status | a key of the device's status (heartbeat) messages: battery, signal, uptime, firmware, buffer |
+
+### The table
+
+| Column | Content |
+|---|---|
+| Key | the key the device publishes; datastreams also show the asset and the quantity |
+| Source | see above |
+| Latest value | the newest value with its unit; texts and objects are shown as they came |
+| Quality | *ok*, or the quality of the value, for example *sensor fault* (see [Data model](data-model.md#quality-of-a-value)) |
+| Last value | how long ago (for example "4 minutes ago") and the exact time below |
+| Last 24 h | a sparkline: averages per 30 minutes of the last 24 hours |
+| Min, Max, Average | over the range chosen in *Statistics over*; values marked *sensor fault* are counted (⚠ with their number) but left out |
+
+| Control | Default | Meaning |
+|---|:---:|---|
+| Search keys | — | filters by key, asset, quantity or source |
+| Sort | Name | **Name**, or **Last update** (newest first) |
+| Statistics over | 24 hours | 1 hour, 24 hours, 7 days, 30 days, or **Custom range** with *From*, *To* and **Apply** |
+
+The table is **live**: new values of datastreams, keys without a datastream and status keys appear as they arrive,
+without reloading ("live" and the time of the last update in the corner). A key the device starts sending appears at
+once.
+
+### A key: chart and values
+
+Click a key to open its chart and values below the table.
+
+![The detail of a key: range buttons 1 h, 24 h, 7 d, 30 d and Custom, the aggregation, Export CSV and Export Excel, the chart with a value marked in red as a sensor fault and an annotated time, the statistics, the table of values and the annotations](img/device-telemetry-chart.webp)
+
+| Control | Default | Meaning |
+|---|:---:|---|
+| 1 h, 24 h, 7 d, 30 d, Custom | the range of the table | the range of the chart and the values; *Custom* with *From* and *To* (at most 366 days) |
+| Aggregation | Automatic | **Automatic**: every value up to 5000 in the range, otherwise averages per bucket (about 300 buckets, from 1 minute to 1 day) with a band from the minimum to the maximum; **Raw values**; **Average**, **Minimum** or **Maximum** per bucket |
+| Export CSV, Export Excel | — | the values of the range, oldest first, at most 100 000 rows: measured and received time, value, unit, quality, time source and annotation (with `data.export`; written to the audit trail) |
+
+- Moving the mouse over the chart shows the nearest value under it; clicking takes its time into the annotation
+  form.
+- Values marked *sensor fault* are red dots; they do not stretch the scale of the chart.
+- Annotations are shaded on the chart; hovering one shows its text.
+- **Values** lists them newest first, 25 to a page (**Newer**, **Older**), with the quality, the time the server
+  received them and the annotation.
+
+### Annotations
+
+For a datastream key, users with `data.annotate` add **annotations**: a comment on one value or on a period, for
+example "door kept open while unloading". An annotation never changes the data.
+
+| Field | Default | Limits | Meaning |
+|---|:---:|:---:|---|
+| From | an hour ago | required | the time of the value, or the start of the period |
+| To (optional) | — | at most 366 days after *From* | the end of the period; empty = one value |
+| Category | Note | Note, Expected event, Maintenance, Calibration, Sensor fault, Data issue | what kind of comment it is |
+| Comment | — | 1–1000 characters | the text |
+
+Annotations are shown on the chart, in the table of values and in the exports of the key and of the datastream's
+measurements (column *annotation*). They are records: **Retract** asks for a reason and adds a retraction; the
+annotation is no longer shown or exported, but stays in the database and in the audit trail.
+
+### Keys without a datastream
+
+![The detail of a key without a datastream: its chart and values, and the form Create datastream and assign with the asset, quantity, unit, kind and a reason](img/device-telemetry-unassigned.webp)
+
+A key without a datastream is kept only in the raw messages. **Create datastream and assign** (with
+`device.manage`) creates a datastream with the key on the chosen asset and assigns it to the device in one step:
+
+| Field | Default | Meaning |
+|---|:---:|---|
+| Asset | — | where the datastream belongs (required) |
+| Quantity | the key | for example `temperature` |
+| Unit | — | at most 16 characters |
+| Kind | gauge | gauge (measured value), counter (meter reading), state or event |
+| Reason (audit trail) | — | required |
+
+Values are stored as measurements from the next message on; earlier values stay in the raw messages. With *four
+eyes for assignments* the action waits for a second person (see [Data model](data-model.md#four-eyes-approval)).
+
+!!! note "Status keys"
+    Status keys come from the device's status messages (`d/{id}/status` or `POST /api/v1/d/status`). Their latest
+    value is the status the device reported last; the chart and values come from the stored status messages.
 
 ## Datastreams
 
