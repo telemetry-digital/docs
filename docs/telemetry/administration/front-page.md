@@ -7,6 +7,8 @@ tags: [administration, landing-page, branding]
 
 The page visitors see before signing in is edited graphically: *System → Front page* (permission `system.admin`).
 
+![The front page editor: blocks to add and the list of blocks on the left, the page preview in the middle, the page settings on the right, and the buttons Computer, Tablet, Phone, undo, redo, Versions, View public page, Save draft and Publish](img/front-page-editor.webp)
+
 Until you publish a page of your own, visitors go straight to the **sign-in page**, which shows a short overview of
 the system next to the form.
 

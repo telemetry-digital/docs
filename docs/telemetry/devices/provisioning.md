@@ -21,6 +21,10 @@ devices already provisioned keep their tokens). Options:
 - **Automatic datastreams**: every new telemetry key creates a datastream under the device's asset (numbers become
   gauges, booleans states, texts and objects states with the text), at most 64 per device.
 
+Profiles and the devices waiting for approval are on the *Provisioning* tab of **Devices and connections**.
+
+![The Provisioning tab: a provisioning profile with its key, strategy create new devices, approval yes and 0 of 50 devices, the buttons Edit, New secret and Revoke, and the empty list Devices waiting for approval](img/provisioning.webp)
+
 ## How a device registers
 
 Over **MQTT**: connect with the user name `provision`, publish to `/provision/request`:

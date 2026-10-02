@@ -26,6 +26,18 @@ half its previous reading is taken as reset, and its new reading counts.
 - Each meter's **share** of the total.
 - **Production** (for example solar panels) in green, with the price paid for produced energy.
 
+![The Energy page for one week: consumption, production, cost and current power, daily bars of consumption in red and production in green, and the table By meter with each meter's kWh and share](img/energy-week.webp)
+
+*Energy for one week.*
+
+![The Energy page for a year: monthly bars of consumption and production and the share of each meter](img/energy-year.webp)
+
+*The same page for a year.*
+
+![The Energy page on a phone: the Day, Week, Month and Year switch, the consumption, production, cost and power tiles and the monthly bars](img/energy-phone.webp)
+
+*The Energy page on a phone.*
+
 ## Settings
 
 *Energy → Settings*:
@@ -34,6 +46,8 @@ half its previous reading is taken as reset, and its new reading counts.
 - Each meter's **role**: consumption, production, or not counted.
 - A device with several energy sensors (Tasmota reports Total, Today and Yesterday) counts only the one named
   *total* unless you choose otherwise.
+
+![The Energy settings dialog with price per kWh, currency, the price paid for produced energy, the list of meters with their role, and a reason](img/energy-settings.webp)
 
 ## More than the overview
 

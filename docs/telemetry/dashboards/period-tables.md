@@ -11,7 +11,7 @@ organization's time zone — and exports exactly that table to **Excel (XLSX)**,
 ## Typical set-ups
 
 | Need | Datastreams | Row per | Values | Period | Other |
-|---|---|---|---|---|---|
+|---|---|:---:|---|---|---|
 | Daily temperature log of a medicine fridge | the fridge sensor | day | min and max | this month | lower limit 2, upper limit 8, total row |
 | Monthly consumption of electricity meters | all meters (kWh counters) | month | consumption | last 12 months or this year | a row per datastream, total row |
 | Meter readings for accounting | the meters | month | start, end and consumption | last month | a row per datastream |
@@ -19,6 +19,10 @@ organization's time zone — and exports exactly that table to **Excel (XLSX)**,
 
 Add it with *Add widget → Period table*. The names in the table come from the widget's *Series* tab (for example
 "Main meter", "Heating").
+
+![A period table of daily minimum and maximum temperatures of two fridges, with the period selector, the Excel, CSV and PDF buttons and one value above the limit in red](img/period-table.webp)
+
+*A daily temperature log with limits 2–8 °C; the value above the limit is red.*
 
 ## What the values mean
 
@@ -33,6 +37,10 @@ Add it with *Add widget → Period table*. The names in the table come from the 
 Periods start at local midnight and on the local 1st of the month, also on the days the clocks change (23 or 25
 hours). Days without data stay empty. Values outside the limits are red; a `*` marks a period with readings of doubtful
 quality. ◀ ▶ move to the previous or next period, *Current* returns; the export takes the period shown.
+
+![A dashboard with consumption counters of four meters and two period tables: daily consumption for the last 7 days and monthly consumption and production for 12 months, each with a total row](img/energy-period-tables.webp)
+
+*Daily and monthly consumption of meters as period tables.*
 
 ## Export
 

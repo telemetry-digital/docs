@@ -10,6 +10,10 @@ server, a controller with Modbus, or a LoRaWAN network server. Connectors are se
 New connector**. Each one appears as a device, so datastreams, alarms, gaps, dashboards and reports work exactly as
 with MQTT devices.
 
+![Settings → Connectors: a list of connectors with their kind, ingest address, messages, last contact and state, and the section Register profiles for Modbus](img/connectors.webp)
+
+![The New connector dialog with name, kind ChirpStack HTTP integration, the option Auto-create devices by DevEUI and a reason](img/new-connector.webp)
+
 ## OPC UA client
 
 The server reads nodes of an OPC UA server every N seconds — and writes them.

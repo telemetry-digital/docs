@@ -15,6 +15,8 @@ The address is shown under *Settings → AI assistants* and *My account → AI a
 an administrator has switched AI access on, and that `http.base_url` in `config.toml` holds the address users reach
 the server at (for example `https://telemetry.example.com`) — the sign-in metadata is built from it.
 
+![The How to connect box under Settings → AI assistants with the MCP address of the server and short instructions for assistants and other MCP clients](img/how-to-connect.webp)
+
 ## Sign in from the assistant (OAuth)
 
 Most AI assistants (MCP clients) let you add a **custom connector** or **remote MCP server** by its address:
@@ -30,6 +32,8 @@ there is nothing to set up on the server for each client.
 
 Clients that cannot sign in through the browser can use a personal API token: create one under *My account → API
 tokens* and send it as `Authorization: Bearer <token>` to the MCP address.
+
+![The New API token dialog with a name, the scopes limited to your permissions and the expiry](img/new-api-token.webp)
 
 ## See and disconnect assistants
 

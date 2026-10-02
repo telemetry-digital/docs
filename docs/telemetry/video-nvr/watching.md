@@ -13,6 +13,8 @@ Live and recorded video play in the browser without plug-ins.
 Click a tile for the camera page. The *Stream information* switch shows codec, picture size, frames per second and
 kbit/s on each tile.
 
+![The live view with camera tiles, the Stream information switch, the tile layout buttons and the tile size selector](img/live-view.webp)
+
 ## The camera page
 
 One player for live and recorded video, with a control bar:
@@ -23,7 +25,13 @@ One player for live and recorded video, with a control bar:
 - save picture, full screen;
 - PTZ for cameras that have it (see [Events and motion](events-and-motion.md)).
 
+![A camera page playing live: the picture with a LIVE badge, the control bar with back and forward buttons, pause, LIVE, speeds 0.5× to 16×, zoom and further buttons, the stream information line and the day's timeline](img/camera-live.webp)
+
 Below the player: **the day's timeline** and **the detail of one hour**. Click to play from a time.
+
+![A camera page in playback: the recorded segments on the day's timeline and in the hour detail, and the buttons Download selection (MP4), Hold as evidence and Evidence package (ZIP)](img/camera-playback.webp)
+
+*Playback from the recording, with the timeline and the hour detail.*
 
 Keyboard: space pause, ← → 10 s, Shift + ← → 1 minute, Home previous recording, + − 0 zoom, L live, F full screen,
 I stream information.
@@ -37,6 +45,8 @@ the present. LIVE returns to the live picture. Playback never stops recording.
 
 Drag in the hour detail to select up to **one hour** and download it as **MP4**. Exports are ordinary MP4 files for
 VLC or any player. Every playback and every export is written to the audit trail with the camera and the time range.
+
+![A selected range of about nine minutes in the hour detail with the buttons Download selection (MP4), Hold as evidence and Evidence package (ZIP)](img/export-selection.webp)
 
 - Exporting needs the permission `video.playback`.
 - Sound is in the export only for people with `video.audio`.

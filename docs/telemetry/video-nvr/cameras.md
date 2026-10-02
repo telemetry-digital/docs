@@ -8,6 +8,8 @@ tags: [video, cameras, onvif, rtsp, tapo]
 Cameras are added under *Cameras → Camera management → Add camera*. Any IP camera that sends **RTSP** (H.264, H.265
 or MJPEG) or **HTTP MJPEG** works; ONVIF adds events, PTZ and automatic filling of the addresses.
 
+![The Add camera dialog with name, location, camera group, connection, camera make, IP address, main and sub-stream URL, user name, password, transport, Test connection, ONVIF address, Find cameras in the network and Fill in from ONVIF](img/add-camera.webp)
+
 ## The fastest way: camera make
 
 *Add camera → Camera make* fills in the stream, ONVIF and snapshot addresses from the IP address for:
@@ -44,7 +46,7 @@ its profiles and fills the main and sub-stream addresses.
 Typical stream addresses when you enter them by hand:
 
 | Make | Main stream | Sub-stream |
-|---|---|---|
+|---|---|:---:|
 | Hikvision | `rtsp://IP:554/Streaming/Channels/101` | `…/102` |
 | Dahua | `rtsp://IP:554/cam/realmonitor?channel=1&subtype=0` | `subtype=1` |
 | Axis | `rtsp://IP/axis-media/media.amp` | — |
@@ -52,6 +54,12 @@ Typical stream addresses when you enter them by hand:
 
 A camera that does not record connects only while someone watches it (and a short while after), so an unwatched
 camera costs nothing.
+
+*Camera management* lists every camera with its stream, its state — the codec, picture size, frames per second and
+kbit/s of the main and sub-stream, or *on demand* for a camera that connects only while watched — its recording mode
+and retention, and the space its recordings take.
+
+![Camera management: a table of cameras with location, stream address, state with codec, size, frame rate and bit rate, recording mode and stored size](img/camera-management.webp)
 
 Every change of a camera needs a reason and is written to the audit trail.
 

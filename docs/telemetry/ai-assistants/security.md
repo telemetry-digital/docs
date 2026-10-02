@@ -30,6 +30,9 @@ exports, backups — are not passed to the assistant: it gets their size and the
 - **Permissions**: the assistant acts as you. What it may do is limited by your permissions and camera groups.
   *Reading only* refuses every change. Camera sound, unmasked pictures and evidence need their own permissions
   (`video.audio`, `video.unmask`, `video.evidence`), exactly as in the web interface.
+
+    ![My account → AI assistants: connected assistants with their access — reading only or my permissions — the time connected, last use and state](img/my-assistants.webp)
+
 - **Audit**: changes are audited as always, with the actor "user (AI assistant *client* via MCP)". Approving,
   disconnecting and switching AI access are audited too.
 - **Reasons**: every change an assistant makes carries a reason, like any change.

@@ -12,6 +12,22 @@ labeling**, which requires a [licence](../licence/index.md).
 
 *Settings → Branding and theme*: your **logo**, **colours**, **font**, themes and map tiles. No licence needed.
 
+![Settings → Branding and theme: the logo, primary colour, font family, default mode, corner radius, font size, map tiles and a reason](img/branding.webp)
+
+The default mode is light, dark or following the system; every user can still switch light or dark for themselves in
+the menu.
+
+![A dashboard in the dark theme](img/dark-theme.webp)
+
+*The dark theme.*
+
+*Settings → Languages* chooses which of the 19 interface languages the organization's users may pick and the default
+language; *Settings → Translations* replaces any built-in text with your own wording.
+
+![Settings → Languages: English as the base language, check boxes for 18 more languages and the default language](img/languages.webp)
+
+![Settings → Translations: the English text, the built-in translation and your translation for every string, with a filter and Show only untranslated](img/translations.webp)
+
 ## White labeling (requires a licence)
 
 With an active licence an organization's users see your product instead of *ctrl32 telemetry*:

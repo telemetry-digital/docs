@@ -9,6 +9,8 @@ tags: [video, settings, incidents]
 administrator changes them. Every change is audited with the old and new values and a **reason**. The server checks
 every value against its bounds; **Default values** fills in the defaults.
 
+![The video settings page in groups: Storage and recording, Events, Viewing, Monitoring (incidents) and Remote cameras (relay) — security](img/video-settings.webp)
+
 | Setting | Default | Bounds | Meaning |
 |---|:---:|:---:|---|
 | Disk space for recordings | 50 GB (from `config.toml`) | 1 GB – 1 PB | the oldest recordings of all cameras are deleted beyond it |

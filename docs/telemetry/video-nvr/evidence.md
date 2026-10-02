@@ -17,6 +17,12 @@ On the camera's page drag over the hour detail and choose **Hold as evidence**: 
 - **Release** (with a reason) hands them back to the normal retention.
 - *Cameras → Evidence* lists all held recordings.
 
+![A selected range in the hour detail of a camera page with the buttons Download selection (MP4), Hold as evidence and Evidence package (ZIP)](img/export-selection.webp)
+
+![The Evidence page: the fingerprint of the server key for verifying evidence packages, the public key and the list of held recordings](img/evidence.webp)
+
+*Cameras → Evidence with the key fingerprint and the held recordings.*
+
 ## Fingerprints while recording
 
 Every recorded file gets its **SHA-256** computed while it is written, without extra disk reads. An export can

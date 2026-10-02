@@ -12,10 +12,22 @@ MQTT. The MQTT broker is built into the server; nothing else needs to be install
 
 1. **Devices → New device**: external id (for example a serial number, a DevEUI or `esp32-0b87b0`, at most 64
    characters), a name and the transport `mqtt` or `http`.
+
+    ![The New device dialog with external id, name, transport and a reason](img/new-device.webp)
+
 2. The page shows a **claim code** (valid 24 hours, one use), or press **Issue token** for a device token. A token is
    shown **once**; the server stores only its hash. Lost it? Issue a new one.
+
+    ![The overview of a device: name, creation time, last message, messages in 24 hours, firmware and id; the credentials with issued and revoked tokens; the buttons Issue / rotate token and Revoke device](img/device-overview.webp)
+
 3. **Assets → your asset → datastreams**: create a datastream for each value the device sends (a key such as `temp`,
    a unit, a kind — gauge, counter, state or event — and the expected interval), then **assign** them to the device.
+
+    ![The New asset dialog with type, name and a reason](img/new-asset.webp)
+
+    ![The Datastreams tab of a device: the keys temp and rh with their asset, quantity and since when, a Remove button each, and a selector to assign another datastream with a reason](img/device-datastreams.webp)
+
+    *Each key the device sends must match an assigned datastream.*
 
 The **expected interval** drives gap detection: missing data becomes a visible gap instead of a silent hole.
 
@@ -94,6 +106,8 @@ curl -s -X POST https://telemetry.example.com/api/v1/d/telemetry \
 
 **Devices → the device** shows *connected*, last seen, the incoming messages with their decode status and the
 datastream values.
+
+![The message viewer of a device: received time, direction, topic, JSON payload and the status ok for every message, updated live](img/device-messages.webp)
 
 !!! note "Limits to design for"
     Telemetry message ≤ 64 KiB and ≤ 2000 samples; string values ≤ 256 bytes; device time more than 5 minutes in

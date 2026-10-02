@@ -26,6 +26,10 @@ services and create the first administrator. Count on a few minutes for the whol
 Then continue with what you came for: [cameras](../video-nvr/index.md), [devices](../devices/index.md) or
 [dashboards](../dashboards/index.md).
 
+![The application after signing in: the menu on the left and a production dashboard with counters, plan fulfilment, pieces per hour and machine states](img/home-dashboard.webp)
+
+*After signing in: the menu on the left and the default dashboard.*
+
 !!! tip "Intranet or internet"
     Without a domain the server runs in the **intranet** profile: plain HTTP (port 8080) and plain MQTT (port 1883)
     are allowed, TLS is optional. With a public host name it runs in the **internet** profile: TLS everywhere and

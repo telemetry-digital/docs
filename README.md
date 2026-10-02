@@ -17,7 +17,7 @@ docs/telemetry/<section>/<page>.md pages of the section (children of its index.m
 
 Rules every file follows:
 
-- Only `*.md` files under `docs/`, English only for now.
+- Only `*.md` files and their images under `docs/`, English only for now.
 - Every file starts with YAML front matter: `title`, `slug` (short, kebab-case, unique in the whole repository),
   `sidebar_position` (integer, the order among siblings) and `tags` (a list). Optional: `draft`, `image`,
   `image_alt`.
@@ -26,8 +26,8 @@ Rules every file follows:
 - Admonitions in the MkDocs spelling — `!!! note "Title"` with a 4-space indented body. Types: note, tip, info,
   warning, danger, example, success.
 - No raw HTML of any kind.
-- Screenshots go next to the pages of a section, in `docs/telemetry/<section>/img/*.png`, and are linked relatively
-  (`![Live view](img/live-view.png)`).
+- Screenshots go next to the pages of a section, in `docs/telemetry/<section>/img/*.webp` (short kebab-case names),
+  and are linked relatively with meaningful alt text (`![The live view with camera tiles](img/live-view.webp)`).
 - Links between pages are relative `.md` paths, for example `[relay](../video-nvr/remote-sites.md)`.
 
 ## Adding a page

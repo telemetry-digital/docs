@@ -20,6 +20,8 @@ password shown once (*New password* issues another and disconnects the account's
 topics they like inside a **private namespace**: two accounts never see each other's
 messages.
 
+![The tab MQTT accounts and bridges: two MQTT accounts with their generated user names, connection state, number of entities and new devices, the buttons Edit, New password and Delete, and the buttons New MQTT account and New bridge](img/mqtt-accounts.webp)
+
 Ready-to-paste settings:
 
 - **zigbee2mqtt** (`configuration.yaml`): `mqtt.server`, `mqtt.user`, `mqtt.password`, and
@@ -33,6 +35,10 @@ Ready-to-paste settings:
 
 New devices are added automatically, or — with *New devices: ask first* — collected in an inbox for you to adopt or
 ignore.
+
+![The tab Discovered devices: a Shelly Plus1PM named Boiler with 7 entities waiting, and the buttons Adopt and Ignore](img/discovered-devices.webp)
+
+*A device waiting in Discovered devices.*
 
 ## Devices already on your own broker
 

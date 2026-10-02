@@ -14,6 +14,14 @@ There are three ways to show your data, and you can mix them on one screen:
 
 Values update live, without reloading the page.
 
+![A dashboard with a table of latest values, a list of devices with their state and a list of active alarms with severity](img/overview.webp)
+
+*A dashboard with latest values, devices and alarms.*
+
+![A dashboard on a phone: the widgets stacked in one column](img/phone-dashboard.webp)
+
+*On a phone the widgets are stacked in one column.*
+
 ## Pages in this section
 
 1. [Dashboard widgets](widgets.md) — the widget catalogue, settings, filters, public links.
@@ -27,6 +35,13 @@ Video walls and cameras on a floor plan are described with the [Video NVR](../vi
 
 Dashboards and process screens are **versioned**: every save is a new version with a reason, written to the audit
 trail. Creating and changing them needs the permission to edit content; viewing needs only read access.
+
+![The Dashboards page: a table of dashboards and process pictures with the number of widgets, version, default flag and creation time, and the buttons Open and Edit](img/dashboards.webp)
+
+**New dashboard** asks for the name, the kind and start (a dashboard or a process picture, empty or from an example),
+whether it is the default screen on the home page, and a reason.
+
+![The New dashboard dialog with name, kind and start, the option Show on the home page (default) and a reason](img/new-dashboard.webp)
 
 ## Maps
 

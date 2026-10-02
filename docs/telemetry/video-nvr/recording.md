@@ -28,6 +28,10 @@ reads the files.
 Retention runs every minute: first each camera's days, then the disk limit. Removing a camera keeps its recordings
 until its retention ends. Recordings **held as evidence** are never deleted — see [Evidence](evidence.md).
 
+![Camera management with the Recording column showing continuous, on events or off with the retention days, and the Stored column with the size of each camera's recordings](img/camera-management.webp)
+
+*The Recording and Stored columns of Camera management.*
+
 Where recordings are stored is set in `config.toml`:
 
 ```toml

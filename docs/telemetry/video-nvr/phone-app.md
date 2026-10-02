@@ -14,6 +14,8 @@ shows only the cameras** — the person opens it and sees the live view, nothing
    page: one wall).
 2. Give it an address, for example `cameras`, and a reason. The app lives at `https://<your server>/app/cameras`.
 
+![The New app dialog with the Cameras preset: name Cameras, address /app/cameras, start page Cameras — live view, only the Cameras menu section, locked to its sections, page zoom off and one camera per row](img/new-camera-app.webp)
+
 The **Cameras** preset also locks the app to its sections, turns off page zoom (the camera picture still zooms with
 two fingers inside the player) and shows one camera per row on narrow screens. See [PWA apps](../administration/pwa-apps.md)
 for all options.
@@ -33,6 +35,14 @@ Open `https://<your server>/app/cameras` on the phone — on a computer the inst
 - Access from outside goes through the same HTTPS address as the web interface, with the same sign-in, two-factor
   sign-in and permissions. For a server without a public address, see
   [Cloudflare Tunnel](../getting-started/cloudflare-tunnel.md).
+
+![The live view on a phone: one camera per row, two tiles marked with a motion label](img/phone-live.webp)
+
+*The live view on a phone; tiles with an event carry a label.*
+
+![A camera page on a phone: the live picture, the control bar, the stream information and the day's timeline](img/phone-camera.webp)
+
+*The camera page on a phone.*
 
 !!! warning "An app is a view, not a permission boundary"
     The app shows only the cameras a person may see, because the server checks permissions on every request. Locking

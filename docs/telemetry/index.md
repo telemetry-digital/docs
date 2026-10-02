@@ -13,6 +13,10 @@ The server is one program for Linux or Windows plus a PostgreSQL database. You i
 next to your machines and cameras or on a server in a data centre. A few features — more cameras, white labeling
 and changes through AI assistants — require a licence (see [Licence](licence/index.md)).
 
+![A process screen of a hydraulic circuit with a tank at 32 %, a running pump, an open valve and live pressure and temperature values](img/process-screen.webp)
+
+*A process screen with live values, a production counter and a speed trend.*
+
 ## What it does
 
 | Area | In short |

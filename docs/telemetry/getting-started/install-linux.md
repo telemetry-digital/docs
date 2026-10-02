@@ -43,6 +43,10 @@ network, change the `[mqtt]` section of `config.toml` (or give the server a doma
 The installer is **idempotent**: running it again repairs or updates an installation and keeps your configuration
 and passwords.
 
+When the installer finishes, the server's address shows the sign-in page:
+
+![The sign-in page with user name and password, the links Forgot password and Request an account, and a short overview of the system](img/sign-in.webp)
+
 ## Options
 
 | Option | Meaning |

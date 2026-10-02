@@ -29,6 +29,10 @@ profile refuses to start the relay port without TLS.
 **secret and a ready `relay.toml` are shown once** — use *Download relay.toml*. Only an encrypted copy stays on the
 server.
 
+![The Add camera dialog with the Connection field, which chooses whether the server connects to the camera or the camera sends its video to the server](img/add-camera.webp)
+
+*The Connection field of the Add camera dialog.*
+
 ## 3. Install the relay at the site
 
 Put the downloaded `relay.toml` on the computer at the site, fill in the camera's local address and run the

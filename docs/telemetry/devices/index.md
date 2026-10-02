@@ -20,6 +20,12 @@ measured and when it arrived), its quality, and gaps where expected data is miss
 
 All paths are shown with the actual host, ports and credentials under **Devices and connections → Add a device**.
 
+![Devices and connections → Add a device: cards for a smart-home device, an existing MQTT broker, a fleet of devices, a single device and an industrial connector, and the tabs Discovered devices, MQTT accounts and bridges, and Provisioning](img/add-a-device.webp)
+
+The **Devices** page lists every device with its external id, name, transport, last contact, firmware and state.
+
+![The Devices page: a table of devices with external id, name, transport (http, mqtt, mqtt_discovery), last seen, firmware and a state such as recent or never connected](img/devices.webp)
+
 ## Working with devices
 
 - [Commands, settings and firmware updates](commands-and-firmware.md) — commands with acknowledgement, shared

@@ -13,6 +13,10 @@ The server receives each camera's stream, stores it and forwards it to browsers 
 re-encodes video. That is why one server records many cameras on little processor time, and why the picture you
 play back is exactly the camera's own.
 
+![The live view: a grid of camera tiles, each with its name, a status dot and the time](img/live-view.webp)
+
+*Cameras → Live view — every camera you may see as a tile.*
+
 ## What you get
 
 - **Cameras**: RTSP and ONVIF IP cameras (H.264, H.265, MJPEG), discovery in the local network, presets for common

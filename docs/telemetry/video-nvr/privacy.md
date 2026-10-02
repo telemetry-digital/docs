@@ -57,6 +57,8 @@ A camera may belong to a **camera group** (*Camera management → Edit → Camer
 (*Users → user → Cameras*) sees only those cameras — live view, recordings, walls, events, PTZ, marks and floor plans,
 also through the API and AI assistants. An operator limited to groups can send only those cameras to displays.
 
+![The Add camera dialog with the field Camera group (who may see it; optional) below name and location](img/add-camera.webp)
+
 ## Audit: who watched what
 
 - Every **playback** and every **export** is written to the audit trail with the user, the camera and the time range.

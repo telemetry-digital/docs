@@ -17,6 +17,8 @@ and can be disconnected at any time.
    room – left monitor*) and choose what it shows.
 3. The display starts showing its content within a few seconds.
 
+![The Pair display dialog with the code shown on the display, name, location, the items it shows in turn, enlarging cameras with an event, the language, the incident option and a reason](img/pair-display.webp)
+
 The code is valid for 15 minutes and pairs once. Knowing the code is not enough to become the display: only the
 browser that showed the code collects the display's credential. Pairing, changes, commands and disconnecting are
 written to the audit trail.
@@ -43,6 +45,10 @@ screen.
 Give each display a **location** (hall, line): the list can be filtered by it, and a message or command can go to all
 displays of a location at once.
 
+![A production dashboard: the shift clock, pieces made on two lines in 8 hours, scrap, plan fulfilment bars, line states, pieces per hour as bars and a machine state timeline](img/production-lines.webp)
+
+*A production screen for a display.*
+
 ## Operator commands
 
 On **Displays** (permission `display.control`; operators have it) or from a camera's page (*show on display*):
@@ -56,6 +62,8 @@ On **Displays** (permission `display.control`; operators have it) or from a came
 | Message | *information* (band at the bottom), *warning* (band at the top) or *alarm* (the whole screen, flashing), for 1–60 minutes; to one display, the selected ones, all of a location, or all |
 
 Pairing, changing and disconnecting displays needs `display.manage` (engineers and administrators).
+
+![The Displays page: a paired display with what it shows and its state, the buttons Send camera, Identify, Back to content, Reload and Edit, the location filter, Message to displays and Pair display, and the steps for setting up a display computer](img/displays.webp)
 
 ## Setting up the computer
 

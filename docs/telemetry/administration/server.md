@@ -18,6 +18,13 @@ agent that performs only a closed list of operations — it is never a general s
 
 Every action is audited.
 
+The Server pages work through the server agent `ctrl32-telemetry-agent` (a systemd unit or a Windows service, set up
+by the installers). Where it does not run, the pages show read-only information and say so.
+
+![System → Domain and TLS: the certificate and the configuration with domain, additional domains, e-mail for certificate notices, certificate challenge and a reason](img/domain-and-tls.webp)
+
+![System → WireGuard: the configuration with listen port, server address, endpoint for devices, DNS and a reason, and the list of devices (peers)](img/wireguard.webp)
+
 ## Backups
 
 A backup is one package with:
@@ -29,6 +36,8 @@ A backup is one package with:
 
 Backups can be **encrypted with a password**, made by hand or **on a schedule** (a time of day, keeping the last N),
 downloaded and deleted (with a reason). A failed backup opens an incident.
+
+![System → Backups: the state, the daily schedule with time, number of backups kept, an optional passphrase and a reason, and the list of stored backups](img/backups.webp)
 
 **Restoring** is deliberately not a button: it is destructive and is done on the command line following
 `RESTORE.txt` in the package.
@@ -53,6 +62,8 @@ Attach a second PC with a one-time code for:
 - a **one-time copy** with a verified, safe detach;
 - a **continuous replica** offsite;
 - a **hot standby** with manual failover and fencing (the former primary cannot come back as a second primary).
+
+![System → Redundant database: this server's role, node, epoch and replicas, the functions one-time copy, continuous replica and hot standby, and the list of replicas with the button Attach a replica](img/redundant-database.webp)
 
 ## Health and monitoring
 

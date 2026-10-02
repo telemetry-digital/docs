@@ -21,10 +21,23 @@ The data model is simple:
   event) — for example `temp` in °C. Devices send values for datastream keys; see
   [Devices and data](../devices/index.md).
 
+Sites are listed under *Assets → Sites*, each with its time zone and address; *Assets → Assets* shows the assets of
+one site with their datastreams.
+
+![The Sites page listing four sites with their time zone, address, number of assets and creation time](img/sites.webp)
+
+![The Assets page for one site: cards for rooms and devices, each with its datastream keys and quantities](img/assets.webp)
+
 ## Add users
 
 1. **Users → New user**: name, user name, e-mail and one or more **roles**.
 2. The user signs in, chooses a password and, where required, sets up two-factor sign-in.
+
+![The Users page listing accounts with user name, name, e-mail, roles, two-factor state, status and last sign-in](img/users.webp)
+
+![The New user dialog with user name, full name, e-mail, the roles engineer, operator, org_admin, qa, viewer and an organization role, each with its permissions, and a reason](img/new-user.webp)
+
+*Every role in the dialog lists the permissions it grants.*
 
 Built-in roles:
 
@@ -41,6 +54,8 @@ Details of every permission: [Users and permissions](../administration/users-and
 !!! tip "Let people ask for an account"
     Self-service registration lets people request an account; an administrator approves the request before it can
     be used.
+
+![The Request an account page with full name, e-mail and message, and the button Send request](img/request-account.webp)
 
 ## Limit who sees which cameras
 

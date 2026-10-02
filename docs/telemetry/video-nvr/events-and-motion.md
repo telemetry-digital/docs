@@ -57,6 +57,10 @@ Cameras with pan, tilt and zoom are controlled from the player: hold an arrow or
 the presets stored in the camera. The speed (slow, normal, fast) and whether the controls are shown are remembered in
 your browser (on phones the controls are hidden until you press the PTZ button).
 
+![A camera page with the PTZ panel open over the picture: zoom in and out, presets, speed and arrow buttons](img/camera-ptz.webp)
+
+*The PTZ controls over the live picture.*
+
 PTZ needs the permission `video.ptz`. Moves are audited once per 5 minutes per user and camera; preset changes
 always.
 

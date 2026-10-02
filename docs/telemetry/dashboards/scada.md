@@ -10,6 +10,10 @@ by state, valves open or closed, pipes with moving flow while the medium moves, 
 PT-102) with live values and units. When something is abnormal the object changes colour and blinks until the value
 returns to normal.
 
+![A process screen: a tank at 32 %, a running pump, an open valve, pipes with flow marks, a pressure bubble PT-101 and a temperature bubble TT-102, with a counter widget and a speed trend](img/process-screen.webp)
+
+*A process screen with widgets over the drawing.*
+
 ## Create a screen
 
 **Dashboards → New → Process picture**. Start empty, from the example *Process picture — mixing plant (demo)*, or
@@ -26,6 +30,8 @@ The editor works like a desktop SCADA editor:
 - Select, multi-select with a rubber band, move, resize, rotate, snap to a grid, align and distribute, bring to front
   and send to back, copy, paste and duplicate, lock objects, nudge with the arrow keys, zoom and pan, undo and redo.
 - Every save is a new version with a reason.
+
+![The process screen editor: drawing tools and the symbol library with vessels and pumps on the left, the canvas in the middle, the toolbar with align, arrange, zoom and grid buttons above, and the picture properties on the right](img/process-screen-editor.webp)
 
 ## Bring it to life
 

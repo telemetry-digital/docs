@@ -26,6 +26,10 @@ telemetry.digital keeps records you can prove.
   starts, and opens an incident.
 - Objects such as assets, datastreams, screens, rules and profiles are **versioned**: older versions stay readable.
 
+![A list of versions of an object, each with its state, the time it was saved, the author and the reason](img/versions.webp)
+
+*Versions of a flow, each with its author and reason.*
+
 ## Reading and exporting
 
 Reading the audit trail needs `audit.read` (administrators and quality reviewers). The audit trail and the access log

@@ -52,6 +52,10 @@ Reachable from anywhere through a Cloudflare Tunnel — no open ports, no certif
 5. Creates the first administrator; the one-time password is saved in `admin-bootstrap.txt` in
    `C:\ProgramData\ctrl32-telemetry`.
 
+Then open `http://<server>:8080` in a browser — the sign-in page appears:
+
+![The sign-in page with user name and password, the links Forgot password and Request an account, and a short overview of the system](img/sign-in.webp)
+
 ## Other switches
 
 | Switch | Meaning |

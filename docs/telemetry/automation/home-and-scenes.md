@@ -14,6 +14,10 @@ Cards show values with units and a 24-hour trend, switches, brightness, colour a
 blinds with open, stop, close and position, locks, thermostats with target temperature and mode, numbers, selects,
 texts and buttons. Changes appear live. A card's chart button opens the history (24 hours, 7 or 30 days).
 
+![The Home page: scene buttons, room filters, and cards for a door, a light with switch, brightness and colour temperature, a plug, humidity and temperature with a trend](img/home.webp)
+
+*The Home page with two scenes and the devices grouped by rooms.*
+
 Every control action is a **device command**: the permission `device.command`, the four-eyes policy when the
 organization requires it, the audit trail with a reason (for example *Home: turn on Hall light*), and a status —
 *sent* until the device reports the requested state, then *acknowledged*; *failed* when it does not within 15

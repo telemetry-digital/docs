@@ -8,6 +8,8 @@ tags: [automation, alarms, flows]
 telemetry.digital watches your data and acts on it: it raises alarms and notifies people, runs automation flows,
 controls smart-home devices and keeps an incident log of what went wrong and why.
 
+![The Flows page: two running flows with their version, number of nodes, errors and the time and author of the last change, and the buttons Settings, Import and New flow](img/flows.webp)
+
 ## Pages in this section
 
 1. [Flows](flows.md) — visual automation in the style of Node-RED, built into the server.

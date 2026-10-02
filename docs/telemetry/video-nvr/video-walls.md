@@ -11,6 +11,8 @@ tags: [video, video-wall, floor-plan, widgets]
 8 × 6 — for example 5 × 4 = 20 cameras per monitor — and a camera per tile. *Fill with all cameras* places them in
 order.
 
+![The Video walls page listing two walls with a preview of their screens and tiles, the number of cameras and the buttons Open on all monitors, Edit and Delete](img/video-walls.webp)
+
 - **Open on all monitors** opens one window per screen. In Chrome and Edge the browser asks once for permission to
   place windows and puts each on its own monitor; a click in each window switches it to full screen. In other
   browsers drag each window to its monitor and press F11.
@@ -19,6 +21,14 @@ order.
   hides after 3 seconds without mouse movement.
 - Each screen chooses its stream: automatic, sub-stream or main stream. *Automatic* uses the sub-stream above a
   number of tiles (default 4).
+
+![A wall screen with 20 camera tiles in a 5 × 4 layout](img/wall-control-room.webp)
+
+*One screen of a control-room wall: 5 × 4 cameras.*
+
+![A wall screen with four camera tiles in a 2 × 2 layout](img/wall-gatehouse.webp)
+
+*A small 2 × 2 wall for a gatehouse.*
 
 Walls never play sound. Changes of walls need a reason and are audited.
 
@@ -35,10 +45,16 @@ A floor plan or site map is a process screen with the plan as a background image
 3. *Add widget → Process → Camera on a plan* for each camera: direction (0° = up, clockwise), field of view and
    reach draw the camera's view cone.
 
+![The process screen editor with the floor plan of a site, the symbol library on the left and the picture properties on the right](img/floor-plan-edit.webp)
+
 The pin is **green** when the camera is online, **red** when offline, and **orange, pulsing** while an event is in
 progress. A click opens the live picture in a window (privacy masks apply) with a link to the camera page. Pins of
 cameras outside your camera groups are not drawn. On a display the window closes by itself after a minute; public
 shared dashboards show the pins without state.
+
+![A site floor plan with halls, a warehouse, offices and a gate, with camera pins and their view cones; two pins near the gate are orange](img/floor-plan.webp)
+
+*Cameras on a floor plan; the orange pins have an event in progress.*
 
 ## Camera widget
 

@@ -23,5 +23,9 @@ What an administrator of a telemetry.digital server takes care of.
 ## The rule behind all of it
 
 Every configuration change asks for a **reason**, and the reason is stored with the change in the audit trail.
+
+![A dialog asking for the reason of a change before it is saved](img/change-reason.webp)
+
+*Every save asks for a reason for the audit trail.*
 Sensitive features — camera sound, unmasked video, evidence, AI access — are off by default and need their own
 permission.

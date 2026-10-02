@@ -20,6 +20,8 @@ With [white labeling](white-labeling.md) it carries your product name and icon.
 live cameras and shows only the Cameras menu, a tablet at the gate that opens one video wall, or a smart-home app with
 Home and Energy.
 
+![Settings → Apps: two apps with their address, start page, menu sections and state, and the buttons Install page, Edit and Delete](img/apps.webp)
+
 | Setting | Meaning |
 |---|---|
 | Name | shown on the install page and in the app's header |
@@ -32,6 +34,8 @@ Home and Energy.
 
 The create dialog has **presets**: *Cameras*, *Video wall*, *Dashboards* and *Smart home*. Every change needs a reason
 and is audited. Managing apps needs `content.write`.
+
+![The New app dialog with the presets Cameras, Video wall, Dashboards and Smart home, name, name on the home screen, address, start page, menu sections and the options of the app window](img/new-app.webp)
 
 ## Options of the app window
 
@@ -53,6 +57,10 @@ phone.
 - **iPhone and iPad** (Safari): *Share* → *Add to Home Screen* → *Add*.
 
 Several apps and the main app can be installed side by side.
+
+![The application on a phone showing a production dashboard](img/phone-app.webp)
+
+*The application on a phone.*
 
 !!! warning "An app is a view, not a permission boundary"
     The menu of an app is filtered by the user's permissions first, and the server checks permissions on every
