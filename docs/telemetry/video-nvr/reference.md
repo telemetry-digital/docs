@@ -1,7 +1,7 @@
 ---
 title: Video reference
 slug: video-reference
-sidebar_position: 11
+sidebar_position: 12
 tags: [video, reference, limits, api]
 ---
 
@@ -34,6 +34,17 @@ each section.
 | Enabled | on | — |
 
 See [Adding cameras](cameras.md).
+
+## Camera list limits
+
+| Item | Limit |
+|---|---|
+| Import file | 2 MB, Excel (`.xlsx`) or CSV (UTF-8, UTF-16 or Windows-1250; `;`, `,` or tab) |
+| Rows per import | 1000 |
+| Exports with passwords | 3 in a row, then 1 a minute per user; not with API tokens or AI assistants |
+| PDF with passwords | not stored on the server |
+
+See [Camera list — export and import](export-and-import.md).
 
 ## Viewing and export limits
 
@@ -90,6 +101,7 @@ See [Remote sites](remote-sites.md).
 | `video.evidence` | no | yes | yes |
 | `video.unmask` | no | no | yes |
 | `video.audio` | no | no | yes |
+| `video.credentials_export` | no | no | yes |
 | `display.control` | yes | yes | yes |
 | `display.manage` | no | yes | yes |
 
@@ -113,6 +125,9 @@ groups and audit:
 | `GET /video/cameras/{id}/ptz/presets`, `POST /video/cameras/{id}/ptz` | `video.ptz` |
 | `GET /video/events` | `video.playback` |
 | `GET /video/storage` | `video.manage` |
+| `GET /video/inventory?format=xlsx or csv or pdf`, `GET /video/inventory/template` | `video.manage` |
+| `POST /video/inventory/import` (multipart: file, update, create, apply, reason) | `video.manage` |
+| `POST /video/inventory/credentials` (format, reason, password, code) | `video.credentials_export` and `video.manage` |
 | `GET /video/walls`, `GET /video/walls/{id}` | `video.view` |
 | `POST /video/walls`, `PUT /video/walls/{id}`, `DELETE /video/walls/{id}?reason=` | `video.manage` |
 | `GET /video/holds`, `GET /video/evidence/key` | `video.playback` |
@@ -131,3 +146,5 @@ Paths are relative to `/api/v1`. Times are RFC 3339.
 | `ctrl32-telemetry camera-relay -config relay.toml -check` | tests the relay configuration and exits |
 | `ctrl32-telemetry service install-relay -config relay.toml` | installs the relay as a service (also `uninstall-relay`, `start-relay`, `stop-relay`, `restart-relay`) |
 | `ctrl32-telemetry verify-evidence [-key base64] package.zip` | verifies an evidence package |
+| `ctrl32-telemetry cameras export -org SLUG -file cameras.xlsx` | writes the camera list; `-passwords -reason "why"` with passwords |
+| `ctrl32-telemetry cameras import -org SLUG -file cameras.xlsx -reason "why"` | imports a camera list; `-dry-run`, `-no-update`, `-no-create` |

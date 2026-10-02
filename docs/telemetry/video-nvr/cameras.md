@@ -63,6 +63,7 @@ For some makes the dialog shows a tip:
 | Snapshot address | empty | `http(s)://…`, ≤ 500 characters, no credentials | one JPEG picture of an H.264/H.265 camera, for motion detection |
 | Privacy masks | none | ≤ 16 areas | drawn over the picture after the camera is saved; see [Privacy masks](privacy.md#privacy-masks) |
 | Motion zones | none (whole picture) | ≤ 16 areas | where motion counts, drawn after the camera is saved |
+| Note | empty | ≤ 500 characters | free note: mounting, cabling, recorder channel, warranty; it goes into the [camera list](export-and-import.md) |
 | Enabled | on | — | a disabled camera is neither connected nor recorded and is missing from the live view |
 | Reason | — | ≤ 200 characters, required | written to the audit trail with the old and new values |
 
@@ -117,6 +118,12 @@ the answer is shown (the relay reads the streams itself).
 | State | the status dot and state with codec, size, frames per second and bit rate of the main stream and the sub-stream, or the last error |
 | Recording | *continuous* or *on events* with the retention days, or *off*; badges for ONVIF events, relay control, sound and motion detection |
 | Stored | the size of the camera's recordings |
+
+Above the table, **Camera list** exports every camera with all its settings to Excel, CSV or PDF (*With passwords…*
+adds the passwords after you confirm your own), and **Import…** adds or updates cameras from such a file with a
+preview — see [Camera list — export and import](export-and-import.md).
+
+![Camera management: the Camera list buttons and Import above the camera table, the state of each camera with codec, size, frame rate and bit rate, recording and stored size](img/camera-management.webp)
 
 The list refreshes every 5 seconds. Below it, **Storage** shows the space recordings use, the limit and the
 percentage. On a server without a licence a badge above the list shows **Cameras: N of 4 without a licence** — the
