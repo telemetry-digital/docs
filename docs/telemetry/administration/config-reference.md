@@ -168,6 +168,21 @@ Without Typst the server runs, but PDF reports and PDF exports answer *unavailab
 
 See [Recording and storage](../video-nvr/recording.md) and [Remote sites](../video-nvr/remote-sites.md).
 
+## [analytics]
+
+The detector of [object counting](../object-counting/cameras.md) on camera pictures. Without `onnxruntime` and a model
+the cameras show *not installed*; counting with sensors works without it.
+
+| Key | Type | Default | Meaning |
+|---|:---:|:---:|---|
+| `ffmpeg` | path | next to the binary, else on PATH | the ffmpeg program (an LGPL build) that decodes the camera's picture |
+| `onnxruntime` | path | — | the ONNX Runtime library (`libonnxruntime.so`, `onnxruntime.dll`), 1.17 or newer |
+| `model_nano` | path | — | the YOLOX nano model (fast, the default detector) |
+| `model_tiny` | path | — | the YOLOX tiny model (more accurate, about 3× the CPU) |
+| `nano_sha256`, `tiny_sha256` | string | — | the SHA-256 of the model files; another file is refused |
+| `threads` | int | `1` | inference threads per camera |
+| `max_cameras` | int | `4` | cameras analysed at the same time |
+
 ## [license]
 
 | Key | Type | Default | Meaning |

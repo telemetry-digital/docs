@@ -36,6 +36,7 @@ widget becomes 300 × 200 px).
 | State indicator | Values | datastreams | 3 × 2 | [Value widgets](widgets-values.md) |
 | LED indicators | Values | datastreams | 4 × 2 | [Value widgets](widgets-values.md) |
 | Alarm count | Values | — | 2 × 2 | [Value widgets](widgets-values.md) |
+| Occupancy | Values | datastreams | 3 × 2 | [Object counting](../object-counting/outputs.md#widgets) |
 | Trend chart | Charts | datastreams | 6 × 3 | [Chart widgets](widgets-charts.md) |
 | Bars over time | Charts | datastreams | 6 × 3 | [Chart widgets](widgets-charts.md) |
 | State timeline | Charts | datastreams | 6 × 2 | [Chart widgets](widgets-charts.md) |
@@ -45,12 +46,15 @@ widget becomes 300 × 200 px).
 | Pie / doughnut | Charts | datastreams | 4 × 3 | [Chart widgets](widgets-charts.md) |
 | Polar area | Charts | datastreams | 4 × 3 | [Chart widgets](widgets-charts.md) |
 | Radar | Charts | datastreams (at least 3) | 4 × 3 | [Chart widgets](widgets-charts.md) |
+| In and out per entrance | Charts | datastreams | 6 × 3 | [Object counting](../object-counting/outputs.md#widgets) |
+| Share per entrance | Charts | datastreams | 4 × 3 | [Object counting](../object-counting/outputs.md#widgets) |
 | Values table | Lists | datastreams | 6 × 3 | [List widgets](widgets-lists.md) |
 | Entity table | Lists | datastreams | 6 × 4 | [List widgets](widgets-lists.md) |
 | Time-series table | Lists | datastreams | 6 × 3 | [List widgets](widgets-lists.md) |
 | Period table | Lists | datastreams | 6 × 5 | [Period tables](period-tables.md) |
 | Alarms | Lists | — | 6 × 3 | [List widgets](widgets-lists.md) |
 | Devices | Lists | devices | 6 × 3 | [List widgets](widgets-lists.md) |
+| Vehicle speeds | Lists | datastreams | 6 × 4 | [Object counting](../object-counting/outputs.md#widgets) |
 | Setpoint | Control | devices, datastreams | 3 × 2 | [Control widgets](widgets-controls.md) |
 | Switch | Control | devices, datastreams | 3 × 2 | [Control widgets](widgets-controls.md) |
 | Button | Control | devices | 3 × 2 | [Control widgets](widgets-controls.md) |

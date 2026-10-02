@@ -24,7 +24,8 @@ white labeling, changes through AI assistants and the larger VPN require a licen
 | Devices and data | MQTT (TLS), HTTP, LoRaWAN through ChirpStack, OPC UA and Modbus TCP — reading and writing. Automatic device discovery for devices that announce themselves over MQTT. Firmware updates, remote console, commands with acknowledgement. |
 | Dashboards and SCADA | Dashboards with more than 40 widget types, process screens drawn in a vector editor with industrial symbols, displays (kiosks) and video walls, daily and monthly period tables with export. |
 | Video NVR | RTSP/ONVIF cameras with continuous or event recording, live view and playback, PTZ, motion detection, privacy masks, locked evidence, a phone app, and remote sites through an encrypted relay. |
-| Energy and reports | Consumption per meter, hour, day and month with cost; PDF reports, Excel and CSV exports. |
+| Energy and reports | Consumption per meter, hour, day and month with cost; PDF reports, Excel and CSV exports, reports mailed on a schedule. |
+| Object counting | People and vehicles counted at the entrances of buildings and car parks by the server's own detector on any camera or by sensors; occupancy, shares of the entrances, vehicle speed. |
 | VPN | Your server as a WireGuard hub: technicians reach PLCs and HMIs at your sites, routers connect whole site networks, devices send data through the tunnel — everything behind access rules that deny by default. |
 | Automation and AI | Visual flows, alarm rules with escalation by e-mail, webhook, SMS, voice and Web Push; AI assistants (MCP clients) working through the same permissions as you. |
 | Records you can prove | Append-only measurements, a hash-chained audit trail with a reason for every change, two-factor sign-in, roles, organizations as separate tenants. |
@@ -48,6 +49,7 @@ white labeling, changes through AI assistants and the larger VPN require a licen
 - [Devices and data](devices/index.md) — connect devices over MQTT, HTTP, OPC UA, Modbus and LoRaWAN.
 - [Dashboards and SCADA](dashboards/index.md) — widgets, process screens, displays and period tables.
 - [Energy](energy/index.md) — meters, consumption, cost and reports.
+- [Object counting](object-counting/index.md) — people and vehicles at entrances, occupancy, speed, reports by e-mail.
 - [Automation and alarms](automation/index.md) — flows, alarm rules, notifications and incidents.
 - [AI assistants](ai-assistants/index.md) — let an AI assistant read and work in the system over MCP.
 - [VPN](vpn/index.md) — remote access for technicians to PLCs and HMIs, site-to-site networks and devices, with

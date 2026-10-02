@@ -1,7 +1,7 @@
 ---
 title: Automation and alarms
 slug: automation
-sidebar_position: 6
+sidebar_position: 7
 tags: [automation, alarms, flows, incidents, notifications]
 ---
 

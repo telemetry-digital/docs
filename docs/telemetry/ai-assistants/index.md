@@ -1,7 +1,7 @@
 ---
 title: AI assistants (MCP)
 slug: ai-assistants
-sidebar_position: 7
+sidebar_position: 8
 tags: [ai, mcp, assistants]
 ---
 
