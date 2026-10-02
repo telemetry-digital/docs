@@ -10,7 +10,7 @@ by state, valves open or closed, pipes with moving flow while the medium moves, 
 PT-102) with live values and units. When something is abnormal the object changes colour and blinks until the value
 returns to normal.
 
-![A process screen: a tank at 32 %, a running pump, an open valve, pipes with flow marks, a pressure bubble PT-101 and a temperature bubble TT-102, with a counter widget and a speed trend](img/process-screen.webp)
+![A process screen: a tank at 34 %, a running pump, an open valve, pipes with flow marks, a pressure bubble PT-101 and a temperature bubble TT-102, with a counter widget and a speed trend](img/process-screen.webp)
 
 *A process screen with widgets over the drawing.*
 

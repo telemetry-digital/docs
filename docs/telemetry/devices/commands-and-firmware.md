@@ -19,7 +19,7 @@ The device answers with the same id on `d/{id}/cmd/ack`. The command's status fo
 The *Commands* tab of a device shows the command log — method, arguments, status, result and who sent it — and a form
 to send a command with a method, JSON arguments, a time to live (TTL) and a reason.
 
-![The Commands tab of a device: a command log with a reboot command marked expired, and the form Send command with method, TTL, JSON arguments and a reason](img/device-commands.webp)
+![The Commands tab of a device: a command log with a reboot command marked sent, and the form Send command with method, TTL, JSON arguments and a reason](img/device-commands.webp)
 
 ## Shared attributes (configuration)
 

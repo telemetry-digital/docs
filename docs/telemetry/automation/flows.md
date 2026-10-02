@@ -77,7 +77,7 @@ flows until you deploy them again. **Groups** frame nodes in a named, coloured r
 - Every save is a **new version** with a reason; *Versions* lists them and *Restore* brings an old one back as a
   draft. Flows move between servers with Export and Import.
 
-    ![The Versions dialog of a flow: version 2 deployed and version 1 draft, each with the time it was saved, the author and the reason](img/flow-versions.webp)
+    ![The Versions dialog of a flow: the deployed version with the time it was saved, the author and the reason](img/flow-versions.webp)
 
 - **Deploy** needs a reason and the permission to edit content; flows with command or attribute nodes also need
   `device.command`. With the four-eyes policy such a deploy becomes a change request that another user approves.

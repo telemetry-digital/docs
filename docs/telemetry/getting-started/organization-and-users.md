@@ -24,7 +24,7 @@ The data model is simple:
 Sites are listed under *Assets → Sites*, each with its time zone and address; *Assets → Assets* shows the assets of
 one site with their datastreams.
 
-![The Sites page listing four sites with their time zone, address, number of assets and creation time](img/sites.webp)
+![The Sites page listing three sites with their time zone, address, number of assets and creation time](img/sites.webp)
 
 ![The Assets page for one site: cards for rooms and devices, each with its datastream keys and quantities](img/assets.webp)
 

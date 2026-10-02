@@ -52,9 +52,9 @@ progress. A click opens the live picture in a window (privacy masks apply) with 
 cameras outside your camera groups are not drawn. On a display the window closes by itself after a minute; public
 shared dashboards show the pins without state.
 
-![A site floor plan with halls, a warehouse, offices and a gate, with camera pins and their view cones; two pins near the gate are orange](img/floor-plan.webp)
+![A site floor plan with halls, a warehouse, offices and a gate, with camera pins and their view cones](img/floor-plan.webp)
 
-*Cameras on a floor plan; the orange pins have an event in progress.*
+*Cameras on a floor plan with their view cones; a click on a pin opens the live picture.*
 
 ## Camera widget
 

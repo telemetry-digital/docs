@@ -36,7 +36,7 @@ Open `https://<your server>/app/cameras` on the phone — on a computer the inst
   sign-in and permissions. For a server without a public address, see
   [Cloudflare Tunnel](../getting-started/cloudflare-tunnel.md).
 
-![The live view on a phone: one camera per row, two tiles marked with a motion label](img/phone-live.webp)
+![The live view on a phone: one camera per row, each tile with its name, a status dot and the time](img/phone-live.webp)
 
 *The live view on a phone; tiles with an event carry a label.*
 
