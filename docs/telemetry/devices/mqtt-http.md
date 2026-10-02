@@ -1,7 +1,7 @@
 ---
 title: MQTT and HTTP devices
 slug: devices-mqtt-http
-sidebar_position: 1
+sidebar_position: 3
 tags: [devices, mqtt, http, tls]
 ---
 
@@ -15,13 +15,16 @@ MQTT. The MQTT broker is built into the server; nothing else needs to be install
 
     ![The New device dialog with external id, name, transport and a reason](img/new-device.webp)
 
-2. The page shows a **claim code** (valid 24 hours, one use), or press **Issue token** for a device token. A token is
-   shown **once**; the server stores only its hash. Lost it? Issue a new one.
+2. The dialog shows a **claim code** (valid 24 hours, one use), or press **Issue a token now instead** for a device
+   token (later: **Issue / rotate token** on the device's *Overview*). A token is shown **once**; the server stores
+   only its hash. Lost it? Issue a new one — the previous tokens stop working.
 
     ![The overview of a device: name, creation time, last message, messages in 24 hours, firmware and id; the credentials with issued and revoked tokens; the buttons Issue / rotate token and Revoke device](img/device-overview.webp)
 
-3. **Assets → your asset → datastreams**: create a datastream for each value the device sends (a key such as `temp`,
-   a unit, a kind — gauge, counter, state or event — and the expected interval), then **assign** them to the device.
+3. **Assets**: on your asset press **+ datastream** for each value the device sends (a key such as `temp`, a
+   quantity, a unit, a kind — gauge, counter, state or event — and the expected interval). Then, on the device's
+   *Datastreams* tab, **assign** them to the device. All fields are described in
+   [Sites, assets and datastreams](data-model.md).
 
     ![The New asset dialog with type, name and a reason](img/new-asset.webp)
 
@@ -29,7 +32,8 @@ MQTT. The MQTT broker is built into the server; nothing else needs to be install
 
     *Each key the device sends must match an assigned datastream.*
 
-The **expected interval** drives gap detection: missing data becomes a visible gap instead of a silent hole.
+The **expected interval** drives gap detection: when no value arrives for 1.5 × the interval, a visible gap opens
+instead of a silent hole.
 
 !!! tip "Self-provisioning with a claim code"
     A device that knows only its claim code (printed on a label, typed by the installer) trades it once for a token:
@@ -104,8 +108,8 @@ curl -s -X POST https://telemetry.example.com/api/v1/d/telemetry \
 
 ## Check it
 
-**Devices → the device** shows *connected*, last seen, the incoming messages with their decode status and the
-datastream values.
+**Devices → the device** shows the state *online* (an open MQTT session) or *recent*, the last message, and on the
+*Messages* tab the incoming messages with their decode status. See [The device page](device-page.md) for every tab.
 
 ![The message viewer of a device: received time, direction, topic, JSON payload and the status ok for every message, updated live](img/device-messages.webp)
 

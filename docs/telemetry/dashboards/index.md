@@ -2,17 +2,18 @@
 title: Dashboards and SCADA
 slug: dashboards
 sidebar_position: 4
-tags: [dashboards, scada, visualisation]
+tags: [dashboards, scada, visualisation, reference]
 ---
 
 There are three ways to show your data, and you can mix them on one screen:
 
-- **Dashboards** of widgets — values, gauges, charts, tables, controls. Quick to build, good on phones.
-- **Process screens (SCADA)** — the plant drawn in a vector editor with industrial symbols, pipes with flow, live
-  values and faceplates with commands.
-- **Both on one screen** — a process screen with widgets placed over the drawing.
+- **Dashboards** — widgets on a 12-column grid: values, gauges, charts, tables, maps, cameras and controls. Quick to
+  build and readable on a phone.
+- **Process pictures (SCADA)** — the plant drawn in a vector editor with industrial symbols, pipes with flow, texts
+  with live values, faceplates and commands.
+- **Process pictures with widgets** — any widget can sit on the drawing, at a pixel position.
 
-Values update live, without reloading the page.
+Values update live while the page is open, without reloading.
 
 ![A dashboard with a table of latest values, a list of devices with their state and a list of active alarms with severity](img/overview.webp)
 
@@ -24,26 +25,47 @@ Values update live, without reloading the page.
 
 ## Pages in this section
 
-1. [Dashboard widgets](widgets.md) — the widget catalogue, settings, filters, public links.
-2. [Process screens (SCADA)](scada.md) — the editor, symbols, dynamics, faceplates, SVG import.
-3. [Displays (kiosks)](displays.md) — screens at a wall that show content in turn without anyone signed in.
-4. [Period tables](period-tables.md) — daily and monthly tables with Excel, CSV and PDF export.
+| Page | What it covers |
+|---|---|
+| [Dashboard editor](dashboard-editor.md) | the list, new dashboards and starters, viewing, time range, the grid editor, the property panel, dashboard settings, public link, default dashboard, versions, phone layout |
+| [Widget catalogue](widgets.md) | every widget type at a glance and the settings all widgets share: appearance, click actions, series, conditional formatting, time window, viewer filters |
+| [Value widgets](widgets-values.md) | latest value, value card, aggregated value, gauges, progress, level, thermometer, battery, signal, compass, LEDs, state indicator, alarm count |
+| [Chart widgets](widgets-charts.md) | trend chart, bars over time, state timeline, heatmap, compare values, share, pie, polar area, radar |
+| [List widgets](widgets-lists.md) | values table, entity table, time-series table, period table, alarms, devices |
+| [Control widgets](widgets-controls.md) | setpoint, switch, button, knob, slider, round switch — commands with a reason |
+| [Other widgets and process symbols](widgets-other.md) | map, text, Markdown, clock, image, QR code, navigation card, camera, tank, pump, valve, pipe, instrument, camera on a plan |
+| [Process picture editor](scada.md) | the SCADA editor: tools, selection, snap, zoom, layers, library, SVG import, keyboard shortcuts |
+| [Drawing elements, dynamics and faceplates](scada-elements.md) | element types, the symbol library, element properties, dynamics, click actions, faceplates, writing values |
+| [Displays (kiosks)](displays.md) | pairing a screen at a wall, what it shows, operator commands and messages, video wall screens |
+| [Period tables](period-tables.md) | daily, weekly and monthly tables with Excel, CSV and PDF export |
 
-Video walls and cameras on a floor plan are described with the [Video NVR](../video-nvr/video-walls.md).
+## Permissions
+
+| Action | Permission |
+|---|---|
+| Open the list, view dashboards and process pictures | `data.read` |
+| Create, edit, retire dashboards; create, regenerate or disable public links; import graphics into the library | `content.write` |
+| Send commands from control widgets, faceplates and picture objects | `device.command` |
+| Download Excel, CSV and PDF from period tables | `data.export` |
+| See camera widgets and camera pins with live state | `video.view` |
+| Send content, cameras and messages to displays | `display.control` |
+| Pair, change and disconnect displays | `display.manage` |
+
+Which roles carry these permissions is described in
+[Users and permissions](../administration/users-and-permissions.md).
 
 ## Versions and reasons
 
-Dashboards and process screens are **versioned**: every save is a new version with a reason, written to the audit
-trail. Creating and changing them needs the permission to edit content; viewing needs only read access.
+Dashboards and process pictures are **versioned**: every save creates a new version and asks for a reason, which is
+written to the audit trail together with the version number, the number of widgets and drawing elements and the
+default flag. Retiring a dashboard, creating or disabling a public link and changing a display also ask for a reason.
 
-![The Dashboards page: a table of dashboards and process pictures with the number of widgets, version, default flag and creation time, and the buttons Open and Edit](img/dashboards.webp)
-
-**New dashboard** asks for the name, the kind and start (a dashboard or a process picture, empty or from an example),
-whether it is the default screen on the home page, and a reason.
-
-![The New dashboard dialog with name, kind and start, the option Show on the home page (default) and a reason](img/new-dashboard.webp)
+!!! note "Changes through AI assistants"
+    Reading dashboards through an AI assistant is free. Creating or changing them through an AI assistant requires a
+    licence; in the web application no licence is needed. See [Licence](../licence/index.md).
 
 ## Maps
 
-Devices with a position (from their heartbeat) can be shown on a map, with your organization's map tiles or a
-self-hosted map archive (PMTiles), so maps work without any external service.
+Devices with a position — fixed on the device or reported in its heartbeat — can be shown on a map widget. The map
+tiles come from *Settings → Branding*: your own tile server, a provider with a key, or a self-hosted map archive
+(PMTiles), so maps work without any external service. See [Other widgets](widgets-other.md).

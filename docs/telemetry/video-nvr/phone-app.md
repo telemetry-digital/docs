@@ -10,15 +10,27 @@ shows only the cameras** — the person opens it and sees the live view, nothing
 
 ## Create a camera app
 
-1. *Settings → Apps → New app*, preset **Cameras** (start page: live view, menu: Cameras) or **Video wall** (start
-   page: one wall).
+1. *Settings → Apps → New app*, preset **Cameras** or **Video wall**.
 2. Give it an address, for example `cameras`, and a reason. The app lives at `https://<your server>/app/cameras`.
 
 ![The New app dialog with the Cameras preset: name Cameras, address /app/cameras, start page Cameras — live view, only the Cameras menu section, locked to its sections, page zoom off and one camera per row](img/new-camera-app.webp)
 
-The **Cameras** preset also locks the app to its sections, turns off page zoom (the camera picture still zooms with
-two fingers inside the player) and shows one camera per row on narrow screens. See [PWA apps](../administration/pwa-apps.md)
-for all options.
+| Preset | Start page | Sections | Locked | Page zoom | Cameras |
+|---|---|---|:---:|:---:|:---:|
+| Cameras | Cameras — live view (`/video`) | Cameras | yes | off | one per row |
+| Video wall | the first video wall (or the wall list) | Cameras | no | on | automatic |
+
+The option **Cameras in live view and on video walls** decides the layout inside the app:
+
+| Value | Layout |
+|---|---|
+| automatic — one per row on phones | one camera per row on screens narrower than 700 px, a grid otherwise |
+| one camera per row | always one camera per row |
+| grid | always a grid |
+
+A viewer's own choice of the layout buttons on the device wins over the app's setting. With page zoom off, the camera
+picture still zooms with two fingers inside the player. See [PWA apps](../administration/pwa-apps.md) for all
+options.
 
 ## Install it on the phone
 
@@ -30,6 +42,7 @@ Open `https://<your server>/app/cameras` on the phone — on a computer the inst
 ## What it does
 
 - Live video, recordings with the same controls as in the browser (pinch to zoom) and video walls.
+- On narrow screens the PTZ controls are hidden until you press the PTZ button.
 - Live video on iPhone needs iOS 17.1 or later; MJPEG cameras work everywhere.
 - **Nothing of the video or the data is stored on the phone** — the app caches only its own shell.
 - Access from outside goes through the same HTTPS address as the web interface, with the same sign-in, two-factor

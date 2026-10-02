@@ -10,7 +10,9 @@ labeling**, which requires a [licence](../licence/index.md).
 
 ## Branding
 
-*Settings → Branding and theme*: your **logo**, **colours**, **font**, themes and map tiles. No licence needed.
+*Settings → Branding and theme*: your **logo** (PNG, SVG, JPEG, WebP or GIF, up to 256 KiB), **primary colour**,
+**font**, default mode, corner radius, font size and map tiles. No licence needed. Every field is listed in
+[Settings pages](settings-reference.md).
 
 ![Settings → Branding and theme: the logo, primary colour, font family, default mode, corner radius, font size, map tiles and a reason](img/branding.webp)
 
@@ -51,7 +53,10 @@ The `/license` page keeps showing the software licence.
 3. **System → License → Activate with the order number**: enter the order number and a reason. The server asks the
    licence service, checks the licence it gets (signature, server name) and installs it. Activation is audited.
 4. **Settings → Branding and theme → White label**: product name, app name, footer text and links, icon,
-   introduction, *Use the white label*, a reason, save.
+   introduction, *Use the white label*, a reason, save. The page reloads with your product name.
+
+You can prepare the white-label settings before the licence is installed, but *Use the white label* can be switched
+on only with a valid licence. The fields and their limits are listed in [Settings pages](settings-reference.md).
 
 **A server without internet access**: ask for a licence key instead (give the order number and the server's host
 name) and install it under *System → License → Install a licence key (offline)*. It is verified offline.
