@@ -9,7 +9,7 @@ tags: [vpn, wireguard, remote-access, site-to-site, security]
 PLCs and HMIs at your sites, routers connect whole site networks, and devices send data through the tunnel — and
 every one of them reaches only what a rule allows.
 
-![System → VPN with four eyes for VPN access on: the server card with state, port, address, endpoint and firewall, the licence card, the peers (a site router, technicians — one awaiting approval, one with an approved access until midnight — and a gateway) and three access rules](img/vpn-page.webp)
+![System → VPN with four eyes for VPN access on: the server card with state, port, address, endpoint and firewall, the licence card, the peers (a site router, technicians — one awaiting approval, one with an approved access until midnight — and a gateway) and access rules, with the card Uplink to a hub of this server and a customer server connected as a Server (uplink) peer](img/vpn-page.webp)
 
 ## What it is for
 
@@ -22,6 +22,7 @@ every one of them reaches only what a rule allows.
 | A contractor needs access for one night shift | an **access grant** of 8 hours, approved by a second person when four eyes is on |
 | Each customer manages its own sites | the administrator of an organization manages the organization's peers and rules under **Settings → VPN** |
 | The server reads a PLC at a site (OPC UA, Modbus connectors) | nothing to add on a Linux server: the server itself may always reach its peers and the site networks |
+| A telemetry.digital server in a customer's LAN without a public address is serviced remotely | an **uplink** to a hub with a public address, for example your server in the cloud — rules on the hub and on the customer server (see [Uplink to a hub](uplink-hub.md)) |
 
 ## How it works
 
@@ -44,6 +45,7 @@ every one of them reaches only what a rule allows.
 | VPN server, access rules, firewall rules view | yes | yes |
 | Technician and device peers | up to 5 | unlimited |
 | Site peers with routed subnets (site-to-site) | — | yes |
+| Customer servers connected by uplink (a Server (uplink) peer on the hub) | — | yes |
 | Time-limited access (an expiry date or an access grant) | — | yes |
 | Technician access approved by a second person (four eyes) | — | yes |
 
@@ -80,10 +82,13 @@ expiry is refused with a message that says why.
    time-limited access, four eyes for technicians.
 5. [Security, upgrade and troubleshooting](troubleshooting.md) — what is blocked, the audit trail, moving from the
    earlier WireGuard page, limits and checks on the server.
+6. [Uplink to a hub](uplink-hub.md) — a server without a public address connects out to a hub; technicians reach it
+   and its LAN as the rules on both sides allow; the HTTPS transport for networks that block UDP.
 
 ## Requirements
 
 - A server with the server agent, installed by the installer: **Linux** (Debian or Ubuntu) or **Windows**. On
   Windows a few things work differently — see [Windows servers](setup.md#windows-servers).
-- A UDP port the peers can reach — open it in your provider's or your router's firewall too.
+- A UDP port the peers can reach — open it in your provider's or your router's firewall too. A server without one
+  joins a hub through an [uplink](uplink-hub.md).
 - IPv4.

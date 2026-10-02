@@ -17,7 +17,8 @@ rules — see [Organizations, access grants and approvals](organizations-and-app
 - Choose a **UDP port** (51820 by default) and make sure it reaches the server: open it in the cloud provider's
   firewall or forward it on your router. The server opens it in `ufw` (Linux) or in Windows Firewall itself.
 - Choose a **VPN range** that is not used anywhere else — not on the server's own networks and not in any site's LAN.
-  The default `10.66.0.1/24` leaves room for 253 peers.
+  The default `10.66.0.1/24` leaves room for 253 peers. A hub for customer servers that connect by
+  [uplink](uplink-hub.md) should use a range of its own, for example `10.99.0.1/16`.
 - Decide the **endpoint**: the public name or address and port under which peers find the server, for example
   `vpn.example.com:51820`. When you leave it empty and the server has a domain, the domain is used.
 
@@ -113,7 +114,8 @@ nothing is reachable from the VPN*.
 
 ## First steps after enabling
 
-1. Add the peers — a site router first if technicians are to reach a site ([Peers](peers.md)).
+1. Add the peers — a site router first if technicians are to reach a site ([Peers](peers.md)), or a **Server
+   (uplink)** for a telemetry.digital server without a public address ([Uplink to a hub](uplink-hub.md)).
 2. Configure the router or the WireGuard app with the configuration shown once.
 3. Add the access rules for exactly what each peer needs ([Access rules](access-rules.md)).
 4. Check that the peer shows *online* and a recent *Last handshake*.

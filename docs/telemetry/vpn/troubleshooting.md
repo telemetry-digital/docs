@@ -16,8 +16,10 @@ tags: [vpn, security, audit, upgrade, troubleshooting]
 | Edit, disable, enable and remove peers, access rules, access grants of the own organization | `vpn.manage` and a reason |
 | Add a peer, rotate a key (a configuration with a private key is shown) | `system.admin` or `vpn.manage`, a reason, your password and — with two-factor sign-in — the authenticator code |
 | Approve a technician's access under four eyes | a different user with `vpn.manage` or `system.admin`, and a reason |
+| Connect this server to a hub (uplink), replace its configuration | `system.admin`, a reason, your password and — with two-factor sign-in — the authenticator code |
+| Uplink rules, the uplink's transport, disconnecting | `system.admin` and a reason |
 
-AI assistants are never offered adding a peer, rotating a key or granting access.
+AI assistants are never offered adding a peer, rotating a key, granting access or connecting an uplink.
 
 ### What a peer cannot reach
 
@@ -36,6 +38,8 @@ AI assistants are never offered adding a peer, rotating a key or granting access
 - Peer private keys are created on the server, shown once and **never stored**.
 - Preshared keys are kept only by the server agent (readable by root); the database holds public keys only.
 - The server's private key never leaves the agent.
+- An uplink configuration holds the private key of the customer server: shown once on the hub, kept only by the
+  server agent of the customer server, deleted when it disconnects.
 
 ### Audit trail
 
@@ -51,6 +55,8 @@ Every change is written to the [audit trail](../administration/audit.md) with it
 | `vpn.rule_add`, `vpn.rule_update`, `vpn.rule_remove` | an access rule was added, changed or removed |
 | `vpn.apply` | *Apply again* |
 | `vpn.import` | peers of an earlier version were imported (see below) |
+| `vpn.uplink_connect`, `vpn.uplink_replace`, `vpn.uplink_transport`, `vpn.uplink_disconnect` | this server was connected to a hub, got a new uplink configuration, changed the transport or was disconnected (see [Uplink to a hub](uplink-hub.md)) |
+| `vpn.uplink_rule_add`, `vpn.uplink_rule_update`, `vpn.uplink_rule_remove` | an uplink rule was added, changed or removed |
 
 ## Upgrade from the earlier WireGuard page
 
@@ -74,7 +80,8 @@ the other new fields can be set afterwards with **Edit**.
 | Operating system | Linux with nftables (Debian, Ubuntu), or Windows with the VPN inside the server agent (see [Windows servers](setup.md#windows-servers)) |
 | Access grants | 15 minutes to 30 days |
 | Addresses | IPv4 only |
-| Topology | hub and spoke; the server needs a reachable UDP port (no NAT traversal, no mesh) |
+| Topology | hub and spoke; a hub needs a reachable UDP port (no mesh); a server without a public address joins a hub through an [uplink](uplink-hub.md) |
+| Uplinks | one per server; technicians always go through the hub; the hub's other sites are not routed to a customer server |
 | Peers | up to 5 free; with a licence up to 1 000 |
 | Routed subnets | up to 16 per site, from /8 to /32 |
 | Access rules | up to 500; up to 20 sources and 20 port entries per rule |
