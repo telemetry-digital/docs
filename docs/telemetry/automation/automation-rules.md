@@ -93,7 +93,7 @@ Conditions and expressions use these names, for example `t_in - t_out`.
 | Action | Fields | Notes |
 |---|---|---|
 | Notify a channel | Channel; Subject (up to 200 characters); Text (up to 4 000 characters) | placeholders `{rule}`, `{event}`, `{inputs}` and `{<input name>}` |
-| Call a webhook | URL (`http://` or `https://`, up to 1 024 characters); Secret (HMAC-SHA256, optional, up to 256 characters) | not checked against an allow-list |
+| Call a webhook | URL (`http://` or `https://`, up to 1 024 characters); Secret (HMAC-SHA256, optional, up to 256 characters) | only hosts of the organization's allow-list (*Flows → Settings*) |
 | Send a device command | Device; Key (writable register / node: lower-case letters, digits and `_`, starting with a letter, up to 32 characters); Value or expression (`20`, `true`, `t_out + 2`) | commanding: needs `device.command` |
 | Raise an alarm | Severity (warning, action, critical; default warning); Escalation policy (default: none, global e-mail) | not allowed in the exit list |
 | Write a derived datastream | Derived datastream; Expression (up to 512 characters) | the datastream must not be an input of the same rule |
@@ -105,8 +105,10 @@ Details of each action:
   `exit`; `{inputs}` lists every input as `name = value` (or *(no data)*); `{t_in}` is the value of the input
   `t_in`. Every delivery is in the delivery log with the event `rule`.
 - **Call a webhook** sends the same JSON message as a webhook channel (event `rule`, the rule's identifier, name,
-  version, transition and input values), signed in `X-Ctrl32-Signature` when you give a secret. The address is not
-  checked against the flows' allow-list.
+  version, transition and input values), signed in `X-Ctrl32-Signature` when you give a secret. The host must be on the organization's allow-list
+  (*Flows → Settings*), like the flows' *HTTP request* node — checked when the rule is saved and again when the
+  webhook is sent; otherwise saving answers *webhook: host "…" is not on the organization's allow-list*. Add the
+  hosts of existing rules to the list before you change them.
 - **Send a device command** sends the method `write` with `{"key": <key>, "value": <value>}`. The command is valid
   for 5 minutes, recorded with the issuer `rule:<name>` and the reason *automation rule name*, and dispatched at once
   — the four-eyes check happened when the rule was approved. (Through the API you can also set another method or

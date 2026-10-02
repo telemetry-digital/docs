@@ -37,7 +37,8 @@ legend position and legend values — see [time window](widgets.md).
   legend marks them with ▸.
 - **Limits** are drawn as dashed lines: amber for the warning limit, red for the action limit.
 - **Min–max band**: with automatic or average aggregation, a light band shows the minimum and maximum of each bucket.
-- **Doubtful readings** (quality other than *ok*) are marked with orange dots.
+- **Doubtful readings** (quality other than *ok* and *backfilled*) are marked with orange dots; values replayed
+  from a device's offline buffer count as good data, as in the period tables.
 - **Legend**: a click on a series hides or shows it until the widget reloads (at the next refresh or new value); to hide a
   series permanently use *Hidden* on the Series tab or the viewer filter *series*. With *Legend values* each entry shows
   min, max, avg, total or latest of the points shown.

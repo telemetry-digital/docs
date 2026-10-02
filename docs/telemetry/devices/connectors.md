@@ -116,7 +116,7 @@ about a minute.
 !!! note "The server must reach the PLC"
     With OPC UA and Modbus the server is the client. A server in a data centre cannot reach a PLC behind a NAT —
     install the server at the site (see [Cloudflare Tunnel](../getting-started/cloudflare-tunnel.md)) or connect the
-    site with WireGuard.
+    site's router to the server's [VPN](../vpn/index.md) as a site peer — the server may always reach site networks.
 
 ## Modbus TCP client
 

@@ -31,11 +31,11 @@ Starts a message for every value stored in a datastream.
 
 ## Alarm
 
-Starts a message when an alarm is raised or cleared.
+Starts a message when an alarm is raised, cleared or acknowledged.
 
 | Setting | Type | Default | Allowed | Notes |
 |---|---|:---:|:---:|---|
-| Events | several choices | raised | raised, cleared, acknowledged | see the note below |
+| Events | several choices | raised | raised, cleared, acknowledged | the events that start a message |
 | Severity | choice | (any) | (any), warning, action, critical | only alarms of this severity |
 | Only this datastream | datastream | — | a datastream | empty = every datastream |
 
@@ -43,15 +43,15 @@ Starts a message when an alarm is raised or cleared.
 |---|---|
 | `value` | the alarm value |
 | `topic` | the datastream's name |
-| `msg.event` | `raised` or `cleared` |
+| `msg.event` | `raised`, `cleared` or `acknowledged` |
 | `msg.severity` | `warning`, `action` or `critical` |
 | `msg.alarm_id` | the alarm's identifier |
 
 When an alarm rule's value crosses the action limit while a warning alarm is active, the alarm's severity rises to
 *action* and the trigger receives a second *raised* event with the severity `action`.
 
-!!! note "Acknowledgements"
-    The option *acknowledged* can be selected, but acknowledging an alarm does not currently start a message.
+*acknowledged* starts a message when someone acknowledges an alarm (with the **Acknowledge** button or through the
+API).
 
 ## Device connection
 
@@ -210,8 +210,7 @@ Starts a message when you press its ▶ button in the editor, or through the API
 | Setting | Type | Default | Allowed | Notes |
 |---|---|:---:|:---:|---|
 | Value (expression) | expression | `0` | an [expression](flow-expressions.md) | used when the test message has no value |
-| Topic | text | — | up to 500 characters | see the note below |
+| Topic | text | — | up to 500 characters | the message's topic, unless the test dialog or the API gives one |
 
-!!! note "Topic of a manual inject"
-    A test message always carries a topic — the one you type, or else the node's name — so the *Topic* setting of
-    the node is not used at present. Set the topic in the test dialog, or with a *Change* node after the inject.
+The topic typed in the test dialog (or `topic` in the API request) wins; when it is empty, the node's *Topic* setting
+is used.

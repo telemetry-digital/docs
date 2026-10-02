@@ -120,7 +120,9 @@ The steps are taken from the policy when the alarm is raised; editing the policy
 ### Edit and revoke
 
 **Edit** saves the policy as a new version (*Save as new version*). **Revoke** asks for a reason; a policy that is
-used by an enabled current alarm rule cannot be revoked (*policy is used by N active alarm rule(s)*).
+used by an enabled current alarm rule cannot be revoked (*policy is used by N active alarm rule(s)*), nor one that
+an automation rule escalates through — even a disabled one, because it can be enabled again (*policy is used by N
+automation rule(s)*).
 
 ## The delivery log
 

@@ -19,13 +19,15 @@ What an administrator of a telemetry.digital server takes care of.
 5. [Apps for phones and tablets (PWA)](pwa-apps.md) — installable apps with their own start page and menu.
 6. [Front page](front-page.md) — the public page visitors see before signing in.
 7. [Remote management of PCs](remote-management.md) — remote desktop and terminal of the PCs at customers' sites.
+8. [VPN](../vpn/index.md) — the server's own WireGuard network for technicians, sites and devices, with access rules
+   (a section of its own).
 
 ## Reference
 
 - [Settings pages](settings-reference.md) — every field of Branding and theme, Report templates, Stored reports,
   Connectors, Languages, Translations, Apps, AI assistants, Organization export, Notifications, Approvals and Security
   policy.
-- [System pages](system-reference.md) — every field of Organizations, Server, Domain and TLS, WireGuard, Backups,
+- [System pages](system-reference.md) — every field of Organizations, Server, Domain and TLS, Backups,
   Redundant database, Updates and License, and the command-line administration.
 - [My account](my-account.md) — profile, password and two-factor sign-in, API tokens, browser notifications, AI
   assistants.

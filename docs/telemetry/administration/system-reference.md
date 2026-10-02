@@ -13,7 +13,7 @@ The **System** menu manages the server itself. All its pages need `system.admin`
 | Organizations | `/organizations` |
 | Server | `/server` |
 | Domain and TLS | `/server/domain` |
-| WireGuard | `/server/wireguard` |
+| VPN | `/server/vpn` (the earlier `/server/wireguard` leads there) |
 | Backups | `/server/backups` |
 | Redundant database | `/server/redundancy` |
 | Updates | `/server/updates` |
@@ -22,7 +22,7 @@ The **System** menu manages the server itself. All its pages need `system.admin`
 
 ## The server agent
 
-Restarts, the domain and TLS proxy, WireGuard, backups and updates are carried out by the **server agent**
+Restarts, the domain and TLS proxy, the VPN, backups and updates are carried out by the **server agent**
 `ctrl32-telemetry-agent`, a separate service with the privileges the web service lacks. It performs only a closed
 list of operations and never runs commands it receives. The installers set it up as a systemd unit (Linux) or a
 Windows service.
@@ -31,7 +31,7 @@ Windows service.
   *Server agent not configured*.
 - When it is configured but **not reachable**, the pages show the error; on Linux check
   `systemctl status ctrl32-telemetry-agent`.
-- On **Windows** the pages *Domain and TLS* and *WireGuard* are hidden: set `http.tls_cert` and `http.tls_key` in
+- On **Windows** the pages *Domain and TLS* and *VPN* are hidden: set `http.tls_cert` and `http.tls_key` in
   [config.toml](config-reference.md) instead.
 
 ## Organizations
@@ -114,41 +114,16 @@ The **Certificate** card shows the domain, additional domains, whether the proxy
 challenge, the certificate's names, issuer and expiry (red under 10 days), the current Caddyfile, and that MQTT over
 TLS on port 8883 uses the same certificate (copied every 10 minutes).
 
-## WireGuard
+## VPN
 
-Devices and gateways that cannot use TLS connect through a WireGuard tunnel and reach the MQTT broker on the VPN
-address, without MQTT being exposed publicly (Linux only).
-
-### Configuration
-
-| Field | Default | Limits |
-|---|:---:|---|
-| Enabled | off | — |
-| Listen port (UDP) | 51820 | 1–65535 |
-| Server address | `10.66.0.1/24` | an IPv4 address with a prefix between /8 and /30 |
-| Endpoint for devices | `<domain>:<port>` when a domain is set | `host:port` |
-| DNS for devices | — | an IP address, optional |
-| Reason (audit trail) | — | required |
-
-**Apply** installs `wireguard-tools` if needed, starts or stops the tunnel and sets `mqtt.vpn_listen` to
-`<server address>:1883` (plain MQTT inside the tunnel); the service restarts when that changes.
-
-The **Server** card shows whether WireGuard is installed, its state (running, enabled but not running, disabled), the
-port, address, endpoint, the server's public key, the MQTT address inside the VPN and the number of devices.
-
-### Devices (peers)
-
-**Add device** asks for a **Name** (up to 63 characters: letters, digits, space, dot, dash or underscore; unique) and
-a reason. WireGuard must be configured and enabled first. Each device gets its own key pair and the next free address.
-The configuration is shown **once** as text and as a QR code for the WireGuard app; the private key is not stored on
-the server.
-
-The list shows *Name* (with its public key), *VPN address*, *Status* (online or offline), *Last handshake*,
-*Endpoint*, *Traffic* and *Created* (with the creator). **Remove** (with a reason) revokes the peer at once.
+The VPN page — server settings, peers (technicians, devices, site routers), access rules with default deny and the
+generated firewall rules — has a section of its own: [VPN](../vpn/index.md). Every field of the server settings is in
+[Set up the VPN](../vpn/setup.md), the peer fields in [Peers](../vpn/peers.md) and the rule fields in
+[Access rules](../vpn/access-rules.md).
 
 ## Backups
 
-A backup bundles the database dump, `config.toml` with its secrets, and the proxy and WireGuard state, plus
+A backup bundles the database dump, `config.toml` with its secrets, and the proxy and VPN (WireGuard) state, plus
 `RESTORE.txt` with the steps of restoring it. Camera recordings are not included.
 
 | State row | Meaning |

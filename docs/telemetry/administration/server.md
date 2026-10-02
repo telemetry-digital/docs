@@ -14,19 +14,20 @@ action asks for a reason and is audited. Every field of these pages is listed in
 
 - **Server** — the state of the service, host, network, database and files; restart the service and its parts.
 - **Domain and TLS** — HTTPS with Caddy and automatic certificates (Linux).
-- **WireGuard** — connect devices, gateways or administrators to the server's own VPN (Linux).
+- **VPN** — the server's own WireGuard network for technicians, site routers and devices, with access rules
+  (Linux); see [VPN](../vpn/index.md).
 - **Backups** — manual and daily, optionally encrypted.
 - **Redundant database** — a one-time copy, a continuous replica or a hot standby on a second PC.
 - **Updates** — install a new version.
 - **License** — activate or install the licence.
 
 The agent is a systemd unit or a Windows service set up by the installers. Where it does not run, the pages show
-read-only information and say so. On Windows, Domain and TLS and WireGuard are not managed: set the certificate in
+read-only information and say so. On Windows, Domain and TLS and the VPN are not managed: set the certificate in
 `config.toml`.
 
 ![System → Domain and TLS: the certificate and the configuration with domain, additional domains, e-mail for certificate notices, certificate challenge and a reason](img/domain-and-tls.webp)
 
-![System → WireGuard: the configuration with listen port, server address, endpoint for devices, DNS and a reason, and the list of devices (peers)](img/wireguard.webp)
+![System → VPN: the server and licence cards, the peers and the access rules](../vpn/img/vpn-page.webp)
 
 ## Backups
 
@@ -34,7 +35,7 @@ A backup is one package with:
 
 - the database;
 - `config.toml` — including the secret keys without which password hashes and encrypted settings cannot be used;
-- the web server and WireGuard configuration;
+- the web server and VPN (WireGuard) configuration;
 - `RESTORE.txt` — the steps of restoring it.
 
 Backups can be **encrypted with a passphrase**, made by hand or **daily** at a set time (default 02:30, keeping the

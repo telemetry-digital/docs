@@ -193,21 +193,24 @@ Opens an incident, or resolves it. See [Incidents](incidents.md).
 | Action | choice | open | open, resolve | see below |
 | Severity | choice | major | minor, major, critical | used when opening |
 | Title | template | `{{ topic }}: {{ value }}` | up to 4 000 characters | required |
+| Incident key | template | — | up to 200 characters | open and resolve nodes with the same key belong together |
 
-- **open** creates an incident of the kind *Flow* with the flow, version, node, topic, value and trigger as detail.
-  While that node's incident is open or being investigated, further *open* messages do nothing — one incident per
-  node until it is resolved. Administrators are notified.
-- **resolve** resolves the open incident that *this same node* opened — an incident belongs to the flow and the
-  identifier of the node that opened it. It keeps a cause someone already wrote, or sets *Resolved by the flow:
-  title*. When nothing is open, nothing happens.
+- **open** creates an incident of the kind *Flow* with the flow, version, node, topic, value and trigger as detail
+  (and the incident key, when set). While an incident with the same key is open or being investigated, further
+  *open* messages do nothing — one incident per key until it is resolved. Without a key the incident belongs to the
+  opening node itself. Administrators are notified.
+- **resolve** with an incident key resolves the open incident of that key, whichever node opened it. **resolve
+  without a key** resolves **every** open incident of the flow. It keeps a cause someone already wrote, or sets
+  *Resolved by the flow: title*. When nothing is open, nothing happens.
+
+The key is a template, so one pair of nodes can keep one incident per machine or datastream — for example
+`{{ topic }}`, or `fridge-2`. Converting an automation rule into a flow gives its open and resolve nodes a shared key
+(`alarm-1`, `alarm-2`, …). In a test run the debug panel says which key a node would use, or *every open incident of
+the flow*.
+
+![The settings of an Incident node in the flow editor: name, action open, severity major, the title and the incident key fridge-2](img/incident-node.webp)
 
 No result fields.
-
-!!! warning "A separate resolve node does not find the incident"
-    Because the incident belongs to the node that opened it, a second *Incident* node set to *resolve* looks for its
-    own incident and finds none. This also applies to the resolve nodes of a converted automation rule. Resolve flow
-    incidents on the [Incidents](incidents.md) page, or change the *Action* of the opening node to *resolve* in a new
-    version.
 
 ## HTTP request
 

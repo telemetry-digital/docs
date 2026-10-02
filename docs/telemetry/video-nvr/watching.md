@@ -53,7 +53,7 @@ sub-stream, **Quality**: main stream (default) or sub-stream.
 | Sound | S | sound on or off; listening is audited | `video.audio` |
 | Mark | — | marks this moment with a label (records 60 s on cameras recording on events) | `video.view` |
 | Stream information | I | codec, size, fps and bit rate as an overlay on the picture | — |
-| Save picture | — | downloads the current picture as PNG | — |
+| Save picture | — | downloads the current picture as PNG, with the privacy masks burnt in | — |
 | Full screen | F | the player fills the screen | — |
 
 - **Digital zoom**: the mouse wheel or a two-finger pinch zooms at the pointer, dragging pans, a double click shows

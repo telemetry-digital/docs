@@ -265,7 +265,7 @@ Alarm rules without an escalation policy use the server's global e-mail recipien
 
 Step 0 is sent at once; later steps only while the alarm is still active and not acknowledged; clearing the alarm
 sends a notice to the channels of step 0. Saving a policy creates a new version. A policy used by an active alarm rule
-cannot be revoked. Assign a policy to an alarm rule on the datastream (see
+or by an automation rule (also a disabled one) cannot be revoked. Assign a policy to an alarm rule on the datastream (see
 [Alarms, notifications and incidents](../automation/alarms.md)).
 
 ### Delivery log

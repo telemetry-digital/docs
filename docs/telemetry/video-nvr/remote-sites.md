@@ -188,7 +188,8 @@ same options: `server`, `web`, `ca_file`, and a list `cameras` with `name`, `id`
 
 ## Alternatives
 
-- **WireGuard**: connect the site to the server's WireGuard network (*System → WireGuard*) and add the cameras
-  normally — useful when the site already has a router with WireGuard.
+- **VPN**: connect the site's router to the server's VPN as a site peer (*System → VPN*, see [VPN](../vpn/index.md)),
+  and add the cameras normally — the server may always reach site networks, no access rule is needed; useful
+  when the site already has a router with WireGuard.
 - **A whole server at the site** reachable through a [Cloudflare Tunnel](../getting-started/cloudflare-tunnel.md),
   when the recordings must stay at the site.

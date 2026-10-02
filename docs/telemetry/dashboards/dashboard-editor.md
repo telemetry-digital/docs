@@ -54,10 +54,8 @@ letters without diacritics, everything else becomes a dash, at most 63 character
 | Process picture — mixing plant (demo) | canvas 1600 × 900 px | a complete plant: silos, screw conveyor, reactor with agitator, steam valve, heat exchanger, pump, product tank, instruments, pipes with flow, a status panel, a trend and an alarm list, bound to your first three datastreams |
 | Process picture — widget symbols (legacy showcase) | canvas 1600 × 900 px | a tank, pump, valve, pipes and an instrument built from widgets |
 
-!!! warning "A screen needs content"
-    The server saves a dashboard or process picture only when it has at least one widget or drawing element; otherwise
-    it answers *at least one widget or drawing element is required*. This also applies to *Dashboard — empty* and to
-    saving after you removed every widget. Start from the overview instead and remove what you do not need.
+*Dashboard — empty* and *Process picture — empty drawing* start with nothing (or only a title) to fill in the
+editor; a dashboard or picture can also be saved after you removed every widget and drawing element.
 
 ![The New dashboard dialog with name, kind and start, the option Show on the home page (default) and a reason](img/new-dashboard.webp)
 
@@ -217,8 +215,8 @@ What a public link shows and allows:
 - **No cameras**: camera widgets show *Cameras are not shown on public dashboards*; camera pins are drawn without
   state and cannot be clicked.
 
-An *Alarm count* widget on a public link always shows 0, because public links serve alarms only to the *Alarms*
-list. A link that was regenerated or disabled, or whose dashboard was retired, shows *This link is no longer valid*.
+On a public link the *Alarms* list and the *Alarm count* widget show only the alarms of the datastreams bound by
+the dashboard's widgets, and only when the dashboard shows alarms at all; there is no *Acknowledge* button. A link that was regenerated or disabled, or whose dashboard was retired, shows *This link is no longer valid*.
 
 !!! danger "Anyone with the link sees the data"
     A public link needs no sign-in. Share it only where everyone who can read it may see the bound values, and

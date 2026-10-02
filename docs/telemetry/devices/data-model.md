@@ -124,15 +124,16 @@ closes the current version and creates the next one, so you always know which li
 
 You create them in two places:
 
-- **Assets → Alarm rules → New rule** — choose any datastream; this dialog also offers an **escalation policy**.
-- The datastream detail → **New rule version** — for the open datastream.
+- **Assets → Alarm rules → New rule** — choose any datastream.
+- The datastream detail → **New rule version** — for the open datastream; the form starts from the current version
+  of the chosen type (limits, delay, hysteresis and escalation policy).
 
 | Field | Default | Limits | Meaning |
 |---|:---:|:---:|---|
 | Datastream | — | required | the datastream the rule watches (only in **New rule**) |
 | Type | high | see the table below | what the rule detects |
 | Warning limit | — | a number | first, lower severity limit |
-| Action limit | — | a number | second, higher severity limit; types high and low need at least one of the two limits |
+| Action limit | — | a number | second, higher severity limit; types high, low and low_battery need at least one of the two limits |
 | Delay (s) | 0 | 0–604 800 (7 days) | how long the condition must last before the alarm is raised |
 | Hysteresis | 0 | ≥ 0 | how far back the value must return before the alarm clears, so a value hovering at the limit does not flap |
 | Escalation policy | none (global e-mail) | an active policy of the organization | who is notified and when (see [Alarms, notifications and incidents](../automation/alarms.md)) |
@@ -142,20 +143,17 @@ You create them in two places:
 |---|---|
 | high | the value is at or above the warning limit (severity *warning*) or the action limit (severity *action*) |
 | low | the value is at or below the warning limit (severity *warning*) or the action limit (severity *action*) |
-| comm_loss | data stopped arriving |
-| sensor_fault | the sensor reports a fault |
-| low_battery | the battery is low |
-| power_loss | the power supply failed |
-| door_open | a door is open |
+| low_battery | the battery level is at or below the limits (in the datastream's unit, % or V) |
+| power_loss | the value is 0 (false): the power supply failed; no limits |
+| door_open | the value is other than 0 (true): a door is open; the delay is how long it may stay open; no limits |
+| comm_loss | no new value for longer than the limits in seconds; without limits 1.5 × the expected interval |
 
 An alarm of type high clears when the value falls below the limit minus the hysteresis; an alarm of type low clears
 when it rises above the limit plus the hysteresis.
 
-!!! note "Which types are evaluated against values"
-    The server compares every incoming value with the limits of rules of the types **high** and **low**. The other
-    types can be recorded on a datastream, but in this version the server does not raise alarms from them on its
-    own; for "no data", "door open too long" and similar conditions use an automation rule (templates *No data for
-    10 minutes → notify* and *Door open for 5 minutes → alarm*).
+Every type is described with examples in [Alarms](../automation/alarms.md). A rule the server could not evaluate
+as given is refused when saved: *sensor_fault* (devices do not report sensor faults), limits or hysteresis on
+*power_loss* and *door_open*, and hysteresis on *comm_loss*.
 
 **Assets → Alarm rules** lists the current versions: asset, datastream, type, warning, action, delay, hysteresis,
 version (the reason as a tooltip) and since when. Clicking a row opens the datastream. In the datastream detail,

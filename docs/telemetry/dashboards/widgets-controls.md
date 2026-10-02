@@ -63,7 +63,7 @@ Sends a number.
 
 - With a bound datastream the widget shows *current value unit · time* and fills the field with the current value.
 - Minimum, maximum and step set the range and the arrows of the number field. A value typed outside the range is not
-  refused by the widget.
+  sent: the widget shows *outside the allowed range* with the minimum and maximum.
 - Text that is not a number is refused with *enter a number*.
 
 ## Switch
@@ -107,7 +107,7 @@ A rotary knob over 270 degrees that sends a number.
 | Minimum | number | 0 | any |
 | Maximum | number | 100 | any |
 | Step | number | 1 | above 0; otherwise 1 |
-| Unit (empty = datastream) | text | — | shown next to the value; when empty no unit is shown |
+| Unit (empty = datastream) | text | — | shown next to the value; when empty, the unit of the bound datastream is shown |
 | Ask for confirmation | checkbox | on | — |
 
 - Drag the knob, or turn the mouse wheel over it by one step. The value always stays between the minimum and the
@@ -128,7 +128,7 @@ A slider that sends a number.
 | Minimum | number | 0 | any |
 | Maximum | number | 100 | any |
 | Step | number | 1 | above 0; otherwise 1 |
-| Unit (empty = datastream) | text | — | shown next to the value; when empty no unit is shown |
+| Unit (empty = datastream) | text | — | shown next to the value; when empty, the unit of the bound datastream is shown |
 | Ask for confirmation | checkbox | on | — |
 
 The slider shows the minimum, the maximum and the chosen value, and under it the current value and its time. It

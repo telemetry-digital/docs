@@ -26,7 +26,10 @@ The editor shows the picture **without** masks so you can place them exactly —
 audited; without that permission you draw over the masked picture. Saving needs a reason.
 
 The masks travel with every live and recorded stream, and **every player covers them**: the camera page, video walls,
-camera widgets, floor plans, displays and phones. Snapshots made by the server are masked in black on the server.
+camera widgets, floor plans, displays and phones. Snapshots made by the server are masked in black on the server, and
+**Save picture** in the player burns the masks into the downloaded PNG exactly as the player covers them. Only a user
+who watches the camera unmasked (`video.unmask`) saves a picture without masks, and that save is written to the audit
+trail (*picture saved without privacy masks*).
 
 The recording itself stays complete. Therefore:
 

@@ -87,8 +87,11 @@ The recent alarms of the organization, active ones first.
 | State | the alarm state, with *· cleared* for cleared alarms |
 | Key | the datastream key |
 | Value | the value that raised the alarm, with 2 decimals |
+| (button) | **Acknowledge** on an active alarm, for users with `alarm.ack` |
 
 - The header line counts the active alarms (*3 active*).
+- **Acknowledge** asks for a reason, stops the alarm's escalation and is written to the alarm log and the audit
+  trail (see [Alarms](../automation/alarms.md)). The button is never shown on a public link.
 - The list updates when an alarm of the organization changes.
 - On a public link the list contains only alarms of the datastreams bound by the dashboard's widgets.
 - **Without data**: *no alarms*.

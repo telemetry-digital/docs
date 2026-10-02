@@ -89,7 +89,7 @@ Two flags of the built-in roles also matter:
 | `audit.read` | exporting the audit trail and the access log |
 | `audit.review` | reserved for recording audit trail reviews; no function of this version checks it |
 | `report.sign` | reserved for electronic signatures of reports; no function of this version checks it |
-| `system.admin` | the *System* menu: organizations of the whole server, Server, Domain and TLS, WireGuard, backups, redundant database, updates, licence, front page; the organization export; saving the video settings |
+| `system.admin` | the *System* menu: organizations of the whole server, Server, Domain and TLS, VPN, backups, redundant database, updates, licence, front page; the organization export; saving the video settings |
 
 !!! warning "system.admin is server-wide"
     *System → Organizations* lists and changes **every** organization on the server, and the System pages control the

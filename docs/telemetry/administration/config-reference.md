@@ -183,6 +183,7 @@ See [Recording and storage](../video-nvr/recording.md) and [Remote sites](../vid
 | `pg_dump` | path | the PostgreSQL bundled next to the program | Windows: path to `pg_dump.exe` for backups |
 | `pg_container` | string | `"ctrl32-telemetry-postgres"` | Linux: the Docker container of PostgreSQL used for backups |
 | `update_url` | URL | `"https://telemetry.digital/dl"` | where the agent downloads updates and their `SHA256SUMS` |
+| `vpn_simulate` | path | — | development and tests only: the agent renders the VPN configuration and firewall rules into this directory and applies nothing to the host; every other agent operation is refused |
 
 When the agent itself starts and `socket` is empty, it listens on `/run/ctrl32-telemetry/agent.sock` (Linux) or
 `%ProgramData%\ctrl32-telemetry\agent.sock` (Windows). The installers write the socket into the file so that the web
@@ -237,7 +238,7 @@ The server agent edits the file for you in two places; when a value changes, the
 | Page | Key | Value written |
 |---|---|---|
 | Domain and TLS → Apply | `http.base_url` | `https://<domain>` |
-| WireGuard → Apply | `mqtt.vpn_listen` | `<server VPN address>:1883` when enabled, empty when disabled |
+| VPN → Server settings → Apply | `mqtt.vpn_listen` | `<server VPN address>:1883` when enabled, empty when disabled |
 
 ## Example
 

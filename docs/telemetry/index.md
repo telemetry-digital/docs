@@ -10,8 +10,8 @@ shows it on dashboards and process screens, records IP cameras, counts energy, r
 reports — in one self-hosted system. Your data stays with you, and an AI assistant can work in it on your behalf.
 
 The server is one program for Linux or Windows plus a PostgreSQL database. You install it with one command, on a PC
-next to your machines and cameras or on a server in a data centre. A few features — more cameras, white labeling
-and changes through AI assistants — require a licence (see [Licence](licence/index.md)).
+next to your machines and cameras or on a server in a data centre. A few features — more cameras, white labeling,
+changes through AI assistants and the larger VPN — require a licence (see [Licence](licence/index.md)).
 
 ![A process screen of a hydraulic circuit with a tank at 34 %, a running pump, an open valve and live pressure and temperature values](img/process-screen.webp)
 
@@ -25,6 +25,7 @@ and changes through AI assistants — require a licence (see [Licence](licence/i
 | Dashboards and SCADA | Dashboards with more than 40 widget types, process screens drawn in a vector editor with industrial symbols, displays (kiosks) and video walls, daily and monthly period tables with export. |
 | Video NVR | RTSP/ONVIF cameras with continuous or event recording, live view and playback, PTZ, motion detection, privacy masks, locked evidence, a phone app, and remote sites through an encrypted relay. |
 | Energy and reports | Consumption per meter, hour, day and month with cost; PDF reports, Excel and CSV exports. |
+| VPN | Your server as a WireGuard hub: technicians reach PLCs and HMIs at your sites, routers connect whole site networks, devices send data through the tunnel — everything behind access rules that deny by default. |
 | Automation and AI | Visual flows, alarm rules with escalation by e-mail, webhook, SMS, voice and Web Push; AI assistants (MCP clients) working through the same permissions as you. |
 | Records you can prove | Append-only measurements, a hash-chained audit trail with a reason for every change, two-factor sign-in, roles, organizations as separate tenants. |
 
@@ -49,6 +50,8 @@ and changes through AI assistants — require a licence (see [Licence](licence/i
 - [Energy](energy/index.md) — meters, consumption, cost and reports.
 - [Automation and alarms](automation/index.md) — flows, alarm rules, notifications and incidents.
 - [AI assistants](ai-assistants/index.md) — let an AI assistant read and work in the system over MCP.
+- [VPN](vpn/index.md) — remote access for technicians to PLCs and HMIs, site-to-site networks and devices, with
+  access rules.
 - [Administration](administration/index.md) — users and permissions, audit, white labeling, backups, updates and apps.
 - [Licence](licence/index.md) — which features require a licence, how to activate it, and the licence terms.
 
@@ -67,6 +70,6 @@ and changes through AI assistants — require a licence (see [Licence](licence/i
     the law of your country. Whoever deploys the system takes responsibility for the deployment.
 
 !!! note "Safety first, by default"
-    Sensitive features — camera sound, unmasked video, evidence packages, changes through AI assistants — are **off
-    by default**, need their own permission and are written to the audit trail. Every configuration change asks for
+    Sensitive features — camera sound, unmasked video, evidence packages, changes through AI assistants, the VPN —
+    are **off by default**, need their own permission and are written to the audit trail. Every configuration change asks for
     a reason, and the reason is stored with it.

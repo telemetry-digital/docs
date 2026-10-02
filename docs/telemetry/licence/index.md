@@ -1,12 +1,13 @@
 ---
 title: Licence
 slug: licence
-sidebar_position: 9
+sidebar_position: 10
 tags: [licence]
 ---
 
-telemetry.digital runs without a licence. More cameras, [white labeling](../administration/white-labeling.md) and
-[changes through AI assistants](../ai-assistants/index.md) require one.
+telemetry.digital runs without a licence. More cameras, [white labeling](../administration/white-labeling.md),
+[changes through AI assistants](../ai-assistants/index.md) and, in the [VPN](../vpn/index.md), more than 5 peers, sites
+and time-limited technician access require one.
 
 ## Activate a licence
 

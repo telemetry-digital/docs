@@ -22,15 +22,15 @@ Reading rules needs `data.read`; **New rule**, new versions and disabling need `
 
 ### New alarm rule
 
-![The New alarm rule dialog with datastream, type, warning limit, action limit, delay, hysteresis, escalation policy and a reason](img/new-alarm-rule.webp)
+![The New alarm rule dialog with datastream, type, warning limit, action limit, delay, hysteresis, escalation policy, a hint for the chosen type and a reason](img/new-alarm-rule.webp)
 
 | Field | Type | Default | Allowed | Notes |
 |---|---|:---:|:---:|---|
 | Datastream | datastream | — | a datastream of your organization | required |
-| Type | choice | high | high, low, comm_loss, sensor_fault, low_battery, power_loss, door_open | see *Rule types* |
-| Warning limit | number | — | any number | *high* and *low* need a warning or an action limit, or both |
-| Action limit | number | — | any number | the stronger limit |
-| Delay (s) | number | 0 | 0–604800 | stored with the rule; see the warning below |
+| Type | choice | high | high, low, low battery, power loss, door open, communication loss | see *Rule types*; a hint under the form says what the type checks |
+| Warning limit | number | — | any number | *high*, *low* and *low battery* need a warning or an action limit, or both; off for power loss and door open |
+| Action limit | number | — | any number | the stronger limit; for communication loss both limits are seconds |
+| Delay (s) | number | 0 | 0–604800 | how long the condition must last before the alarm is raised |
 | Hysteresis | number | 0 | 0 or more | how far the value must come back before the alarm clears |
 | Escalation policy | choice | (none: global e-mail) | a policy of *Settings → Notifications* | who is told and when |
 | Reason (audit trail) | text | — | up to 200 characters | required |
@@ -39,13 +39,12 @@ A rule is **versioned**: saving a rule of the same type on the same datastream c
 starts the next one (*A rule of the same type on the same datastream is superseded by the new version*). Old
 versions stay in the database; alarms keep a link to the version that raised them.
 
-In the datastream's detail, **New rule version** offers type, warning and action limit, delay, hysteresis and a
-reason, and **Disable** closes the current version with a reason — the rule stops applying.
+In the datastream's detail, **New rule version** offers type, warning and action limit, delay, hysteresis,
+escalation policy and a reason. The form starts from the current version of the chosen type, so a new version keeps
+the limits and the policy unless you change them. **Disable** closes the current version with a reason — the rule
+stops applying.
 
-!!! warning "Keep the escalation policy"
-    The *New rule version* form in the datastream's detail has no escalation-policy field: a version saved there has
-    no policy and falls back to the global e-mail recipients. To keep or change the policy, save the new version with
-    **New rule** on the *Alarm rules* page.
+![The New rule version form in a datastream's detail, filled from the current version: type, limits, delay, hysteresis, escalation policy and a reason](img/rule-version.webp)
 
 ### Four eyes for alarm limits
 
@@ -60,13 +59,19 @@ original request under the approver's name, and both names go to the audit trail
 |---|---|---|
 | high | the value reaches the warning limit (≥) — severity *warning* — or the action limit (≥) — severity *action* | the value falls below the warning limit minus the hysteresis (the action limit when there is no warning limit) |
 | low | the value reaches the warning limit (≤) or the action limit (≤) | the value rises above the warning limit plus the hysteresis (the action limit when there is no warning limit) |
-| comm_loss, sensor_fault, low_battery, power_loss, door_open | — | — |
+| low battery (`low_battery`) | the battery level, in the datastream's unit (% or V), reaches the warning or action limit (≤) — like *low* | as *low* |
+| power loss (`power_loss`) | the value is 0 (false) — severity *action*; no limits | any other value |
+| door open (`door_open`) | the value is other than 0 (true) — severity *warning*; no limits; the delay is how long the door may stay open | the value is 0 |
+| communication loss (`comm_loss`) | no new value for longer than the warning or action limit in **seconds**; without limits 1.5 × the datastream's expected interval (severity *action*) | a new value arrives; the alarm's value is the number of seconds without data |
 
-!!! warning "What is evaluated today"
-    Only **high** and **low** rules raise alarms. The other types can be saved and are listed, but no alarm is raised
-    from them yet. The **delay** is stored but not yet applied: a high or low rule raises the alarm on the first value
-    that crosses the limit. For "above the limit for N minutes", use an [automation rule](automation-rules.md) with
-    a hold time or a flow with a *True for* node. For missing data, use an automation rule with a *stale* condition.
+What is refused when a rule is saved, because the server would ignore it:
+
+- the type *sensor_fault* — devices do not report sensor faults; use *high*/*low* limits on implausible values or
+  *communication loss*;
+- limits or hysteresis on *power loss* and *door open*, and hysteresis on *communication loss*;
+- *communication loss* without limits on a datastream without an expected interval, and limits of 0 or less.
+
+Communication loss is checked every 5 seconds. Older rules of the type *sensor_fault* stay listed but raise nothing.
 
 How a high rule with warning 8, action 10 and hysteresis 0.5 behaves:
 
@@ -84,6 +89,17 @@ How a high rule with warning 8, action 10 and hysteresis 0.5 behaves:
 - Rule changes take effect within 30 seconds.
 - An alarm found in data that a device sends late from its offline buffer is flagged **retrospective**, so you know
   it was not seen live.
+
+### Delay
+
+With a **delay**, the condition must last that long before the alarm is raised. The time is measured between the
+values' measurement times; when no newer value arrives, a clock raises the waiting alarm once the delay has passed.
+A value back in range during the delay cancels it. Waiting delays are kept in memory only: after a server restart
+the delay starts again with the next value. Without a delay an alarm is raised on the first value that crosses the
+limit.
+
+For conditions over several datastreams (for example "above the limit while the line runs"), use an
+[automation rule](automation-rules.md) or a flow with a *True for* node.
 
 ## Alarm states
 
@@ -126,8 +142,13 @@ Acknowledging confirms that a person knows about an active alarm. It:
 - stops the escalation: later steps of the escalation policy are cancelled,
 - is written to the alarm log with your name and reason and to the audit trail as `alarm.acknowledge`.
 
-In this version you acknowledge through the API: `POST /api/v1/alarms/{id}/ack` with `{"reason": "…"}`. The web
-interface shows the state but has no acknowledge button.
+Acknowledge an alarm with the **Acknowledge** button next to an active alarm — in the *Alarms* widget of a dashboard
+and in the alarm list of the home page (shown when no dashboard is the home page) — or through the API:
+`POST /api/v1/alarms/{id}/ack` with `{"reason": "…"}`. The button asks for the reason and is shown only to users with `alarm.ack`; a public link never
+shows it. The acknowledgement updates every open list at once and starts flows whose
+[Alarm trigger](flow-nodes-triggers.md) listens for *acknowledged*.
+
+![The Alarms widget of a dashboard with active alarms and an Acknowledge button in each active row](img/alarms-acknowledge.webp)
 
 There is no shelving or suppression of alarms in this version: to silence a rule, disable it (with a reason), and
 save it again when the cause is fixed.
@@ -143,5 +164,5 @@ When the global e-mail is not configured, the alarm log records that the notific
 e-mail is recorded as *delivery_failed*; only failed steps of an escalation policy open an
 [incident](incidents.md).
 
-Flows can react to alarms too: the [Alarm trigger](flow-nodes-triggers.md) starts a message when an alarm is raised
-or cleared.
+Flows can react to alarms too: the [Alarm trigger](flow-nodes-triggers.md) starts a message when an alarm is raised,
+cleared or acknowledged.

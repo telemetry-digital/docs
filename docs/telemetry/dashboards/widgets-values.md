@@ -275,4 +275,5 @@ The number of active alarms of the organization.
 | Icon | icon | bell | an icon of the built-in catalogue |
 
 The count is green at 0, red when an action alarm is active, otherwise amber; conditional formatting can override it.
-It updates when an alarm is raised or cleared. On a public link it always shows 0.
+It updates when an alarm is raised or cleared. On a public link it counts only the alarms of the datastreams bound
+by the dashboard's widgets, like the *Alarms* list.

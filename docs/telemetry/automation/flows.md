@@ -219,10 +219,8 @@ flow stops, and are loaded again. Everything else starts empty: pending delays, 
 aggregate windows, rate-limit windows, deadband and join memory, and the entity trigger's knowledge of the previous
 state.
 
-!!! warning "Deploy or restore your drafts"
-    After a server restart a flow starts only when its newest version is the deployed one. When you have saved a
-    draft after deploying, the flow keeps running until the restart but does not start again after it. Deploy the
-    draft, or restore the deployed version, before you leave a flow.
+The **deployed version** is the one that starts, even when you saved newer drafts after deploying it: saving a
+draft never stops a running flow, not even across a restart. The draft runs only when you deploy it.
 
 ## Audit trail
 
