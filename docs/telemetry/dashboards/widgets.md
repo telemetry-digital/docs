@@ -5,7 +5,7 @@ sidebar_position: 2
 tags: [dashboards, widgets, reference]
 ---
 
-A dashboard is built from **widgets**. There are 50 widget types in six groups. This page lists them all and describes
+A dashboard is built from **widgets**. There are 51 widget types in six groups. This page lists them all and describes
 the settings every widget shares; the settings of each type are on the group pages linked in the table.
 
 Start from the starter *Dashboard — showcase (all widget types)* to see every type with your own data.
@@ -47,6 +47,7 @@ widget becomes 300 × 200 px).
 | Radar | Charts | datastreams (at least 3) | 4 × 3 | [Chart widgets](widgets-charts.md) |
 | Values table | Lists | datastreams | 6 × 3 | [List widgets](widgets-lists.md) |
 | Entity table | Lists | datastreams | 6 × 4 | [List widgets](widgets-lists.md) |
+| Overview table | Lists | datastreams | 12 × 5 | [Filters and overviews](filters-and-overviews.md) |
 | Time-series table | Lists | datastreams | 6 × 3 | [List widgets](widgets-lists.md) |
 | Period table | Lists | datastreams | 6 × 5 | [Period tables](period-tables.md) |
 | Alarms | Lists | — | 6 × 3 | [List widgets](widgets-lists.md) |
@@ -76,6 +77,10 @@ Process symbols work on grid dashboards too. For drawings with many objects use 
 [process picture](scada-elements.md) instead — they have more symbols and dynamics.
 
 ## How widgets read data
+
+- A widget with datastreams reads either a **fixed list** or the result of a **query source** (sites, asset types,
+  quantities, devices, attributes, name), and can **follow the dashboard filters** — see
+  [Filters and overviews](filters-and-overviews.md).
 
 - **Latest value** widgets show the newest reading of each bound datastream (from the last 400 days).
 - **Time** widgets read the readings in their time window. Over long windows the server aggregates them into buckets

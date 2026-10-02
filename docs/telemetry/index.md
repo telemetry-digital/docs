@@ -46,7 +46,8 @@ white labeling, changes through AI assistants and the larger VPN require a licen
   from the internet without opening ports.
 - [Video NVR](video-nvr/index.md) — cameras, recording, playback, the phone app, privacy and evidence.
 - [Devices and data](devices/index.md) — connect devices over MQTT, HTTP, OPC UA, Modbus and LoRaWAN.
-- [Dashboards and SCADA](dashboards/index.md) — widgets, process screens, displays and period tables.
+- [Dashboards and SCADA](dashboards/index.md) — widgets, process screens, displays, period tables, and overviews
+  with filters for all sensors, energy meters and the cold chain.
 - [Energy](energy/index.md) — meters, consumption, cost and reports.
 - [Automation and alarms](automation/index.md) — flows, alarm rules, notifications and incidents.
 - [AI assistants](ai-assistants/index.md) — let an AI assistant read and work in the system over MCP.

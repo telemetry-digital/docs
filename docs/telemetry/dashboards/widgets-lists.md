@@ -6,8 +6,10 @@ tags: [dashboards, widgets, tables, alarms, reference]
 ---
 
 List widgets show values, alarms and devices as tables. The tables list the settings on the **Data** tab; the shared
-Appearance, Series and Actions settings are described in the [widget catalogue](widgets.md). Only the period table
-offers an export; tables that do not fit their widget scroll inside it.
+Appearance, Series and Actions settings are described in the [widget catalogue](widgets.md). The period table and
+the overview table offer an export; tables that do not fit their widget scroll inside it. The values table and the
+entity table can also select their datastreams by a query (up to 500) — see
+[Filters and overviews](filters-and-overviews.md).
 
 ## Values table
 
@@ -46,6 +48,13 @@ The latest values of many datastreams with a search box and sorting — an overv
   refreshes.
 - Values take the colour of a matching conditional-formatting rule or the *Value colour*.
 - **Without data**: `—`; when the search matches nothing, *nothing found*.
+
+## Overview table
+
+Many datastreams in one table — usually selected by a query and following the dashboard filters — with a search box,
+sorting, column filters (value range, quality, stale or fresh, alarm state), grouping by site, asset, asset type,
+quantity or device with totals, pages, highlighting of alarms and values outside the alarm-rule limits, and Excel and
+CSV export of the filtered rows. Described in [Filters and overviews](filters-and-overviews.md#the-overview-table).
 
 ## Time-series table
 

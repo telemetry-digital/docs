@@ -46,6 +46,9 @@ letters without diacritics, everything else becomes a dash, at most 63 character
 
 | Kind and start | Layout | What you get |
 |---|---|---|
+| Overview of all sensors | grid | a filter bar and an overview table of every datastream, the alarms and the devices — see [Filters and overviews](filters-and-overviews.md) |
+| Energy overview | grid | a filter bar, the meters grouped by site with their consumption, the monthly consumption of each meter |
+| Cold chain overview | grid | a filter bar, every temperature with its limits, minimum, maximum and alarm state, a trend, the alarms |
 | Dashboard — overview (devices, alarms, latest values) | grid | a values table of the first three datastreams of your organization, a devices list and an alarms list |
 | Dashboard — showcase (all widget types) | grid | one widget of every type, bound to your first datastreams, with examples of series settings, a right axis, legend values and conditional formatting |
 | Dashboard — empty | grid | no widgets |
@@ -65,7 +68,8 @@ Opening a dashboard shows its name, the version (for example *v3 · default*) an
 
 | Control | Effect |
 |---|---|
-| Range | the time range of the whole dashboard: `1h`, `6h`, `8h`, `12h`, `today`, `24h`, `7d`, `30d`, `90d`; starts at the dashboard's default range |
+| Range | the time range of the whole dashboard: `1h`, `6h`, `8h`, `12h`, `today`, `24h`, `7d`, `30d`, `90d`; starts at the dashboard's default range; replaced by the range filter when the dashboard has one |
+| Filter bar | on dashboards with filters: site, asset type, device, quantity, an attribute, search and range — see [Filters and overviews](filters-and-overviews.md) |
 | Refresh | reloads every widget now |
 | Edit | opens the editor (only with `content.write`) |
 | *live* badge | shown while the page receives values as they arrive |
@@ -76,7 +80,9 @@ Opening a dashboard shows its name, the version (for example *v3 · default*) an
 - Every widget reloads at the dashboard's refresh interval. In addition, a widget bound to a datastream redraws
   within about half a second of a new value; device lists and maps redraw when a device connects or disconnects;
   alarm widgets redraw when an alarm changes.
-- The range you pick here is not saved; the next visit starts at the default range again.
+- The range you pick is kept in the address (`?f.range=7d`), so a copied link opens the same range; it is not
+  saved with the dashboard. On a dashboard with filters the range and the other filter values are also remembered
+  for you in this browser.
 
 ### Full screen
 
@@ -139,6 +145,10 @@ The settings are grouped into tabs; a tab appears only when the widget has setti
   selected yet* and the widget itself *Select datastreams in the widget properties*.
 - **Devices** is the same kind of list. For lists and maps an empty selection means *all devices*; control widgets use
   the first selected device.
+- **Data source** (widgets with datastreams): *Fixed list of datastreams*, or *Query* — the datastreams are selected
+  by sites, asset types, quantities, devices, attributes and a name pattern, and new devices appear on their own.
+- **Follow the dashboard filters** narrows the widget by the values of the filter bar. Both are described in
+  [Filters and overviews](filters-and-overviews.md).
 - A change applies to the widget as soon as you leave the field; **Apply to widget** applies everything at once.
 - **Reset this tab to defaults** (on every tab except Data) returns the tab's settings to their defaults.
 - On a process picture the Data tab also shows the widget's position and size in pixels (x, y, w, h; step 10,
@@ -179,6 +189,7 @@ selected.
 | Canvas width (px) | number | 1600 | 600–4000; process pictures only |
 | Canvas height (px) | number | 900 | 300–3000; process pictures only |
 | Show on the home page (default) | checkbox | off | — |
+| Filters | list | none | up to 8 filters: kind, attribute, label, several, public — see [Filters and overviews](filters-and-overviews.md) |
 
 **Apply** puts the values into the edited dashboard; they take effect when you save it as a new version.
 
@@ -224,7 +235,8 @@ the dashboard's widgets, and only when the dashboard shows alarms at all; there 
 
 ## Copy a dashboard to another server
 
-The application has no import or export button for dashboards. A dashboard is a JSON document (*screen format v1*):
+The application has no import or export button for dashboards. A dashboard is a JSON document (*screen format v1*;
+minor version 1 adds the optional `filters` of a dashboard and `source` and `follow` of a widget):
 `GET /api/v1/dashboards/{slug}` returns it in the field `spec`, and `POST /api/v1/dashboards` with `name`, `spec` and
 `reason` creates it on another server (both need `content.write`; see `/api/docs`). Bindings are datastream and device
 ids, so rebind the widgets after copying between organizations.
@@ -235,6 +247,8 @@ ids, so rebind the widgets after copying between organizations.
 |---|:---:|
 | Widgets per dashboard or picture | 60 |
 | Datastreams or devices bound to one widget | 24 each |
+| Datastreams selected by a query source | 500 for tables, 24 for other widgets |
+| Filters per dashboard | 8 |
 | Per-series settings per widget | 24 |
 | Conditional formatting rules per widget | 8 |
 | Drawing elements per picture | 1500 |

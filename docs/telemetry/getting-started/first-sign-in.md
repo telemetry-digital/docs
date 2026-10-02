@@ -39,6 +39,22 @@ registration of the authenticator app.
 - Before anyone signs in, the address `/` shows the sign-in page with a short overview of the system, or your own
   front page once you publish one (see [Front page](../administration/front-page.md)).
 
+### Search everything
+
+The **Search…** field at the top of every page (the magnifier on a phone), or **Ctrl+K** (⌘K on a Mac), opens a
+search over the whole system: devices (by name or external id), datastreams, assets, sites, dashboards and process
+pictures, cameras, flows, incidents, users, and the pages of the menu.
+
+![The search window over a dashboard: the text fridge typed in, and results grouped as Datastreams, Assets, Flows and Incidents, the first one highlighted](img/global-search.webp)
+
+- Results are grouped by kind, at most six per kind; *more…* next to a group means there are further hits — type a
+  longer text.
+- ↑ and ↓ move through the results, **Enter** opens the highlighted one, **Esc** closes the window. A click works too.
+- A result opens its page: a device or a camera its page, a datastream its detail on the Assets page, an asset its
+  card, an incident or a user its detail, a dashboard the dashboard.
+- You find only what your permissions show elsewhere: cameras of your camera groups with `video.view`, users with
+  `user.admin`, everything else with `data.read` — and only in your organization.
+
 *Collapse menu* at the bottom of the menu shrinks it to a bar of icons:
 
 ![The application with the menu collapsed to a narrow bar of icons next to a production dashboard](img/menu-collapsed.webp)
