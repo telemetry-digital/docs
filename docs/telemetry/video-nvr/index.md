@@ -48,7 +48,7 @@ beyond the limit, for example after a licence was removed, keep recording and ca
 |---|---|:---:|
 | Cameras → Live view | all cameras as tiles | `video.view` |
 | Cameras → Video walls | open, create and edit walls | `video.view` / `video.manage` |
-| Cameras → Camera management | add, edit, remove cameras; storage | `video.manage` |
+| Cameras → Camera management | add, edit, remove cameras; storage; camera list export and import | `video.manage` |
 | Cameras → Evidence | held recordings, the server's signing key | `video.playback` |
 | Cameras → Settings | server-wide video settings | `video.manage` (change: `system.admin`) |
 | Camera page (`/video/cameras/<id>`) | player, timeline, export, evidence, PTZ | `video.view` |
@@ -67,7 +67,9 @@ beyond the limit, for example after a licence was removed, keep recording and ca
 9. [Evidence](evidence.md) — hold recordings, signed evidence packages and how to verify them.
 10. [Video settings](settings.md) — every server-wide value with its default and bounds, `[video]` in
     `config.toml`, monitoring incidents.
-11. [Video reference](reference.md) — permissions, audit entries and all limits on one page.
+11. [Camera list — export and import](export-and-import.md) — every camera with all its settings in Excel, CSV
+    or PDF (passwords only on request), import with a preview, restoring the cameras after a crash.
+12. [Video reference](reference.md) — permissions, audit entries and all limits on one page.
 
 ## Quick start
 

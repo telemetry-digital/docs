@@ -39,6 +39,7 @@ Built-in roles cannot be changed. ✓ = the role has the permission, — = it do
 | `video.evidence` | — | — | — | ✓ | ✓ | — |
 | `video.unmask` | — | — | — | — | ✓ | — |
 | `video.audio` | — | — | — | — | ✓ | — |
+| `video.credentials_export` | — | — | — | — | ✓ | — |
 | `display.control` | — | ✓ | — | ✓ | ✓ | — |
 | `display.manage` | — | — | — | ✓ | ✓ | — |
 | `vpn.manage` | — | — | — | — | ✓ | — |
@@ -120,6 +121,7 @@ Two flags of the built-in roles also matter:
 | `video.evidence` | placing and releasing evidence holds, exporting signed evidence packages |
 | `video.unmask` | seeing and exporting camera pictures without privacy masks |
 | `video.audio` | hearing camera sound, live and recorded, and exporting it |
+| `video.credentials_export` | exporting the camera list with the camera passwords and relay secrets (with `video.manage`, after confirming the own password, with a reason; never through API tokens or AI assistants) — see [Camera list](../video-nvr/export-and-import.md) |
 | `display.control` | the *Displays* menu: sending cameras, walls and commands to displays |
 | `display.manage` | pairing, changing and revoking displays |
 
@@ -127,7 +129,7 @@ Camera groups narrow `video.*` further: a user limited to some camera groups see
 view, recordings, walls, events, PTZ). See [Users and permissions](users-and-permissions.md).
 
 !!! note "Sensitive permissions"
-    `video.unmask` and `video.audio` belong only to `org_admin` by default, and `video.evidence` to `engineer` and
+    `video.unmask`, `video.audio` and `video.credentials_export` belong only to `org_admin` by default, and `video.evidence` to `engineer` and
     `org_admin`. Sound is off on every camera until it is switched on for that camera. Every playback, export,
     unmasked view and listening session is written to the audit trail. See [Privacy](../video-nvr/privacy.md).
 

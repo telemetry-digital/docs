@@ -71,6 +71,7 @@ and inform people with a sign.
 | `video.evidence` | hold and release recordings as evidence, signed evidence packages | no | yes | yes |
 | `video.unmask` | see and export pictures without privacy masks | no | no | yes |
 | `video.audio` | hear camera sound live and recorded, export it | no | no | yes |
+| `video.credentials_export` | export the camera list with passwords and relay secrets | no | no | yes |
 | `display.control` | send cameras and commands to displays | yes | yes | yes |
 | `display.manage` | pair, change and disconnect displays | no | yes | yes |
 | `system.admin` | change the server-wide video settings (role `server_admin`) | no | no | no |
@@ -109,6 +110,8 @@ their groups, and an administrator who is limited can hand out only their own gr
 | `camera.mark` | every mark, with the label |
 | `camera.create`, `camera.update`, `camera.delete` | camera changes, with the old and new values and the reason |
 | `camera.push_secret` | a new relay secret |
+| `video.credentials_export` | every export of the camera list with passwords: format, number of cameras, reason |
+| `video.import`, `camera.restore` | every import of a camera list with the counts; a removed camera restored by its id |
 | `video_wall.create`, `video_wall.update`, `video_wall.delete` | wall changes, with the reason |
 | `user.camera_groups` | changes of a user's camera access |
 | `video.settings` | changes of the server-wide video settings |
@@ -116,4 +119,4 @@ their groups, and an administrator who is limited can hand out only their own gr
 !!! warning "You are the data controller"
     telemetry.digital does not decide for you what is lawful. Set the retention to what the purpose needs, mark the
     recorded area, mask what must not be watched, keep sound off unless it is lawful, and give `video.playback`,
-    `video.unmask` and `video.audio` only to people who need them.
+    `video.unmask`, `video.audio` and `video.credentials_export` only to people who need them.
