@@ -33,6 +33,15 @@ play back is exactly the camera's own.
 - **Remote sites**: an encrypted relay (Linux, Raspberry Pi, Windows, Home Assistant add-on) sends the video of
   cameras at another site — no open ports and no VPN there.
 
+## Cameras without a licence
+
+A server runs **up to 4 cameras without a licence** — the enabled cameras of all organizations of the server count.
+More cameras require a [licence](../licence/index.md). Without one, adding a fifth enabled camera (or enabling a
+disabled one) is refused with a message; a disabled camera can still be added. Nothing is switched off: cameras
+beyond the limit, for example after a licence was removed, keep recording and can be changed.
+
+![Cameras → Camera management without a licence: the badge Cameras: 4 of 4 without a licence with the note that more cameras need a licence, four online cameras and further disabled ones](img/camera-limit.webp)
+
 ## Where things are
 
 | Place | What you do there | Needs |

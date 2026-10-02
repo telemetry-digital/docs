@@ -119,7 +119,9 @@ the answer is shown (the relay reads the streams itself).
 | Stored | the size of the camera's recordings |
 
 The list refreshes every 5 seconds. Below it, **Storage** shows the space recordings use, the limit and the
-percentage.
+percentage. On a server without a licence a badge above the list shows **Cameras: N of 4 without a licence** — the
+enabled cameras of all organizations; at 4 it adds that more cameras need a licence (see
+[Cameras without a licence](index.md#cameras-without-a-licence)).
 
 Badges in the *Recording* column:
 

@@ -12,6 +12,7 @@ each section.
 
 | Item | Default | Limits |
 |---|:---:|:---:|
+| Enabled cameras of the server | — | up to 4 without a licence |
 | Name | — | 1–80 characters |
 | Location | empty | ≤ 120 characters |
 | Camera group | empty | ≤ 60 characters |

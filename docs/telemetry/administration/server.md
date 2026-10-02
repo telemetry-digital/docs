@@ -19,7 +19,7 @@ action asks for a reason and is audited. Every field of these pages is listed in
 - **Backups** — manual and daily, optionally encrypted.
 - **Redundant database** — a one-time copy, a continuous replica or a hot standby on a second PC.
 - **Updates** — install a new version.
-- **License** — activate or install the licence.
+- **License** — activate or install the licence; see the included updates and the number of cameras.
 
 The agent is a systemd unit or a Windows service set up by the installers. Where it does not run, the pages show
 read-only information and say so. On Windows, Domain and TLS and the VPN are not managed: set the certificate in
@@ -58,6 +58,10 @@ Camera recordings are not in the backup — they live on their own disk (see
 The Updates page offers new versions from the distribution point (`https://telemetry.digital/dl/` by default).
 Downloads are **verified by SHA-256** before they are installed; the agent then runs the database migrations and
 restarts the service. Running the installer again also updates an installation and keeps the configuration.
+
+With a licence, the page shows until when the licence includes updates; a version released later is not installed,
+and the running system keeps working with everything it has (see [Licence](../licence/index.md#updates)). A server
+without a licence can install every version.
 
 ## A second database server
 
