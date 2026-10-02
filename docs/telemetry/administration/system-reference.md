@@ -220,9 +220,10 @@ verification, and the history of events.
 
 | Row | Meaning |
 |---|---|
-| Installed | the running version |
+| Installed | the running version and its release date |
+| Updates | *Updates included until* a date, *Updates ended on* a date (the system keeps running), or *all versions* |
 | Available | the newest version at the distribution point, with *update available* or *up to date* |
-| Distribution point | `[agent] update_url`, default `https://telemetry.digital/dl` |
+| Distribution point | `[agent] update_url`, default `https://portal.telemetry.digital/dl` |
 | Checked | when it was last checked |
 
 **Install update** asks for the **Version to install** (filled in with the available one) and a reason. The agent
@@ -230,9 +231,16 @@ downloads the release, verifies its SHA-256 against the published checksums (a m
 that the program reports that version, runs the database migrations and restarts the service. The page reloads after
 10 seconds. Make a backup first for major upgrades.
 
+With a licence, a version released after the updates included in the licence ended is refused before anything is
+replaced; the running system stays as it is. Without a licence every version can be installed. See
+[Licence](../licence/index.md#updates).
+
+![System → Updates: Installed 0.66.0 with its release date, and Updates included until a date](img/updates.webp)
+
 ## License
 
-The software is free; white labeling and changes through AI assistants require a licence issued for this server.
+The software is free to use with up to 4 cameras; more cameras, white labeling, changes through AI assistants and the
+VPN extras require a licence issued for this server. The licence includes updates for its validity period.
 
 | Row | Meaning |
 |---|---|
@@ -240,9 +248,11 @@ The software is free; white labeling and changes through AI assistants require a
 | Licensee | name and e-mail |
 | License | the licence id |
 | Features | for example `white_label` |
-| Valid until | a date, or perpetual |
+| Valid until | a date, or *no expiry date* |
+| Updates | *Updates included until* a date; after it *Updates ended on* that date — the system keeps running, only newer versions are not installed until the licence is renewed |
 | Server names | names the licence is issued for, and this server's name |
 | Installed | when and by whom |
+| Cameras | *N of 4 without a licence*, or the number of cameras with *no limit with the licence* |
 | Type | a 30-day licence from the online activation (refund period) |
 | Order number | the stored order, when and by whom it was activated |
 | Activation | renewed automatically, activated, last attempt failed (retried the next day), or refused (automatic renewal stopped) |
@@ -250,9 +260,10 @@ The software is free; white labeling and changes through AI assistants require a
 
 - **Activate with the order number**: enter the order number from the purchase confirmation (up to 128 characters)
   and a reason. The server sends it with its host name (from `http.base_url`) to the licence service and installs the
-  licence it gets. During the refund period the licence runs 30 days and renews itself; after it, the perpetual
-  licence arrives on its own. The server checks once a day while the installed licence expires within 20 days.
-- **Install a license key (offline)**: paste a key starting with `c32l1.` and a reason; it is verified offline.
+  licence it gets. During the refund period the licence runs 30 days and renews itself; after it, the licence
+  without an expiry date arrives on its own. The server checks once a day while the installed licence expires within 20 days.
+- **Install a license key (offline)**: paste a key starting with `c32l1.` and a reason; it is verified offline. A key
+  whose included updates ended before the installed version was released is refused.
 - **Renew now** asks the licence service at once (with a reason).
 - **Remove license** (with a reason) brings back the product name and footer; white-label settings stay.
 

@@ -182,7 +182,7 @@ See [Recording and storage](../video-nvr/recording.md) and [Remote sites](../vid
 | `socket` | path | — | socket of the server agent; empty = no agent, the System pages show read-only information |
 | `pg_dump` | path | the PostgreSQL bundled next to the program | Windows: path to `pg_dump.exe` for backups |
 | `pg_container` | string | `"ctrl32-telemetry-postgres"` | Linux: the Docker container of PostgreSQL used for backups |
-| `update_url` | URL | `"https://telemetry.digital/dl"` | where the agent downloads updates and their `SHA256SUMS` |
+| `update_url` | URL | `"https://portal.telemetry.digital/dl"` | where the agent downloads updates and their `SHA256SUMS` |
 | `vpn_simulate` | path | — | development and tests only: the agent renders the VPN configuration and firewall rules into this directory and applies nothing to the host; every other agent operation is refused |
 
 When the agent itself starts and `socket` is empty, it listens on `/run/ctrl32-telemetry/agent.sock` (Linux) or

@@ -13,7 +13,7 @@ run in Docker by default; the server itself runs natively as a systemd service.
 Point a DNS record of your domain at the server first, then run:
 
 ```bash
-curl -fsSL https://telemetry.digital/install.sh | sudo bash -s -- --domain telemetry.example.com
+curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --domain telemetry.example.com
 ```
 
 With `--domain` the installer runs Caddy for automatic HTTPS certificates, uses the same certificate for MQTT over
@@ -23,7 +23,7 @@ everyone).
 ## Without a domain (intranet)
 
 ```bash
-curl -fsSL https://telemetry.digital/install.sh | sudo bash
+curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash
 ```
 
 The server runs in the **intranet** profile and serves the web interface on port 8080. Use this only inside your own
@@ -61,7 +61,7 @@ When the installer finishes, the server's address shows the sign-in page:
 Example with demo data:
 
 ```bash
-curl -fsSL https://telemetry.digital/install.sh | sudo bash -s -- --domain telemetry.example.com --demo
+curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --domain telemetry.example.com --demo
 ```
 
 ## Configuration

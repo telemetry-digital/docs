@@ -10,8 +10,8 @@ shows it on dashboards and process screens, records IP cameras, counts energy, r
 reports — in one self-hosted system. Your data stays with you, and an AI assistant can work in it on your behalf.
 
 The server is one program for Linux or Windows plus a PostgreSQL database. You install it with one command, on a PC
-next to your machines and cameras or on a server in a data centre. A few features — more cameras, white labeling,
-changes through AI assistants and the larger VPN — require a licence (see [Licence](licence/index.md)).
+next to your machines and cameras or on a server in a data centre. It is free to use with up to 4 cameras; more cameras,
+white labeling, changes through AI assistants and the larger VPN require a licence (see [Licence](licence/index.md)).
 
 ![A process screen of a hydraulic circuit with a tank at 34 %, a running pump, an open valve and live pressure and temperature values](img/process-screen.webp)
 
@@ -53,7 +53,7 @@ changes through AI assistants and the larger VPN — require a licence (see [Lic
 - [VPN](vpn/index.md) — remote access for technicians to PLCs and HMIs, site-to-site networks and devices, with
   access rules.
 - [Administration](administration/index.md) — users and permissions, audit, white labeling, backups, updates and apps.
-- [Licence](licence/index.md) — which features require a licence, how to activate it, and the licence terms.
+- [Licence](licence/index.md) — which features require a licence, the included updates, and how to activate it.
 
 ## Addresses
 

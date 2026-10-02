@@ -31,14 +31,14 @@ Windows (elevated PowerShell):
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass -Force
-irm https://telemetry.digital/install.ps1 -OutFile install.ps1
+irm https://portal.telemetry.digital/install.ps1 -OutFile install.ps1
 .\install.ps1 -Domain cameras.example.com -CloudflareToken <token> -OrgName "Customer Ltd"
 ```
 
 Linux (Debian, Ubuntu, Raspberry Pi OS 64-bit):
 
 ```bash
-curl -fsSL https://telemetry.digital/install.sh | sudo bash -s -- --domain cameras.example.com --cloudflare-token <token>
+curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --domain cameras.example.com --cloudflare-token <token>
 ```
 
 The installer sets the **internet** profile (two-factor sign-in for every user), binds the web server to
