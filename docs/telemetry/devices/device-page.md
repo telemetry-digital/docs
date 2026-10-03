@@ -155,7 +155,7 @@ value, and how it changed.
 | Key | the key the device publishes; datastreams also show the asset and the quantity |
 | Source | see above |
 | Latest value | the newest value with its unit; texts and objects are shown as they came |
-| Quality | *ok*, or the quality of the value, for example *sensor fault* (see [Data model](data-model.md#quality-of-a-value)) |
+| Quality | *ok*, or the quality of the value, for example *sensor fault*, or *stale* when the last value is older than 1.5 × the expected interval (see [Data model](data-model.md#quality-of-a-value)) |
 | Last value | how long ago (for example "4 minutes ago") and the exact time below |
 | Last 24 h | a sparkline: averages per 30 minutes of the last 24 hours |
 | Min, Max, Average | over the range chosen in *Statistics over*; values marked *sensor fault* are counted (⚠ with their number) but left out |

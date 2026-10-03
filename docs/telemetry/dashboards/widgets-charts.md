@@ -27,6 +27,7 @@ One or more datastreams over time, as lines, areas, steps, bars or points, with 
 | Action limit (high) | number | — | any |
 | Show min–max band | checkbox | on | — |
 | Show legend | checkbox | on | — |
+| Show annotations | checkbox | on | — |
 
 The **Time** tab sets a fixed window, the aggregation, the interval and viewer filters; the **Series** tab sets per
 datastream the label, colour, unit, decimals, style, axis (left or right), points, fill and visibility, plus the
@@ -39,6 +40,11 @@ legend position and legend values — see [time window](widgets.md).
 - **Min–max band**: with automatic or average aggregation, a light band shows the minimum and maximum of each bucket.
 - **Doubtful readings** (quality other than *ok* and *backfilled*) are marked with orange dots; values replayed
   from a device's offline buffer count as good data, as in the period tables.
+- **Annotations** of the shown datastreams (comments on a value or a period, added on the
+  [device page](../devices/device-page.md#annotations)) are drawn on the chart: a period as an amber band, one moment
+  as a dashed amber line with a small flag. Moving the pointer over one shows its category and text, and with several
+  series the series it belongs to; the text also appears in the line under the chart. Annotations of a hidden series
+  are hidden with it. Only users who may read the datastreams see them; turn them off with *Show annotations*.
 - **Legend**: a click on a series hides or shows it until the widget reloads (at the next refresh or new value); to hide a
   series permanently use *Hidden* on the Series tab or the viewer filter *series*. With *Legend values* each entry shows
   min, max, avg, total or latest of the points shown.
@@ -46,6 +52,8 @@ legend position and legend values — see [time window](widgets.md).
   at that time (with the bucket's minimum and maximum).
 - The line under the legend names the window and the aggregation, for example *7 d · average/15 min*.
 - **Without data**: *no data in this range*.
+
+![A trend chart of two fridges over 7 days with an annotation marked by a dashed amber line and a flag; the line under the chart shows the values under the pointer and the annotation: maintenance, probe connector reseated after the fault alarm (Fridge 2)](img/chart-annotations.webp)
 
 ## Bars over time
 
