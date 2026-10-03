@@ -80,8 +80,15 @@ At most three replicas can be attached. A replica is not a backup: deleted data 
 - `/healthz` for load balancers and monitoring.
 - `/metrics` for Prometheus (needs `data.read`): data completeness, alarm latency, queues, flows, open incidents, the
   clock check.
-- `/.well-known/security.txt` publishes `security.contact`.
+- `/.well-known/security.txt` publishes `security.contact` and points to `/security-policy`, the security policy
+  of the product served as plain text by every server.
 - Logs can be forwarded to syslog (`log.syslog`); the server checks its clock against NTP (`[time]`).
+
+## Reporting a vulnerability
+
+If you find a security problem, write to **info@telemetry.digital** and do not publish it before it is fixed.
+The full policy is on the `/security-policy` page of every server, for example
+`https://portal.telemetry.digital/security-policy`.
 
 ## Configuration file
 
