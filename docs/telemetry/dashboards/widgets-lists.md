@@ -56,6 +56,12 @@ sorting, column filters (value range, quality, stale or fresh, alarm state), gro
 quantity or device with totals, pages, highlighting of alarms and values outside the alarm-rule limits, and Excel and
 CSV export of the filtered rows. Described in [Filters and overviews](filters-and-overviews.md#the-overview-table).
 
+## Entities table
+
+Devices, assets, datastreams or sites of an entity alias as rows, with their latest values (`t:<key>`) and attributes
+(`a:<name>`) as columns, search, sorting, pages, highlighting by a key filter and row actions. Described in
+[Entity aliases, key filters and drill-down](aliases-filters-states.md#entities-table).
+
 ## Time-series table
 
 One row per time stamp and one column per bound datastream — the readings themselves, newest first.

@@ -115,6 +115,12 @@ A card that opens another dashboard or process picture.
 
 On a public link the card does not navigate.
 
+## Entity selector
+
+A drop-down or a searchable list of the entities of an alias; the chosen entity becomes the current entity of the
+dashboard and the widgets bound to a *Current entity* alias switch to it. Described in
+[Entity aliases, key filters and drill-down](aliases-filters-states.md#entity-selector).
+
 ## Camera
 
 The live picture of a camera; a click opens the camera page with its recordings.

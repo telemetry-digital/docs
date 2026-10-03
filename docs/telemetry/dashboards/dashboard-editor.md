@@ -117,6 +117,10 @@ version**, **Retire** and **Cancel**.
 
 Unsaved changes add a dot to *Save as new version*, and the browser warns you before you leave the page.
 
+A dashboard with **states** shows a tab per state above the grid; the editor shows the widgets of one state and adds
+new widgets to it. **Preview with** chooses an entity for widgets that show the current entity. See
+[Entity aliases, key filters and drill-down](aliases-filters-states.md).
+
 ### Add widget
 
 **Add widget** lists every type with a small drawing and a description, in the groups *Process symbols*, *Charts*,
@@ -138,15 +142,17 @@ The settings are grouped into tabs; a tab appears only when the widget has setti
 | Appearance | title, fonts, colours, borders, frame, conditional formatting |
 | Series | per-datastream label, colour, unit, decimals and visibility; legend |
 | Time | time window, aggregation, viewer filters |
-| Actions | what a click on the widget does |
+| Actions | what clicks do: drill-down to a dashboard state, the device page, another dashboard; the older *On click* |
 
 - **Datastreams** is a multi-select list (*asset / key [unit]*) with a filter field above it; hold Ctrl (Cmd on a Mac)
   to select several. The list shows how many are selected. Until you select one, the panel shows *No datastream
   selected yet* and the widget itself *Select datastreams in the widget properties*.
 - **Devices** is the same kind of list. For lists and maps an empty selection means *all devices*; control widgets use
   the first selected device.
-- **Data source** (widgets with datastreams): *Fixed list of datastreams*, or *Query* — the datastreams are selected
-  by sites, asset types, quantities, devices, attributes and a name pattern, and new devices appear on their own.
+- **Data source** (widgets with datastreams): *Fixed list of datastreams*, *Query* — the datastreams are selected
+  by sites, asset types, quantities, devices, attributes and a name pattern, and new devices appear on their own — or
+  *Entity alias* — the entities of an alias shared by several widgets, optionally with a key filter (also for the
+  Devices, Map and Alarms widgets; see [Entity aliases, key filters and drill-down](aliases-filters-states.md)).
 - **Follow the dashboard filters** narrows the widget by the values of the filter bar. Both are described in
   [Filters and overviews](filters-and-overviews.md).
 - A change applies to the widget as soon as you leave the field; **Apply to widget** applies everything at once.
@@ -178,7 +184,9 @@ selected.
 
 ## Dashboard settings
 
-**Dashboard settings** in the editor:
+**Dashboard settings** in the editor has the tabs **General**, **Filters**, **Entity aliases**, **Key filters**,
+**States** and **Public link**. The tabs Entity aliases, Key filters and States are described in
+[Entity aliases, key filters and drill-down](aliases-filters-states.md); process pictures have no states.
 
 | Field | Type | Default | Allowed values |
 |---|---|:---:|---|
@@ -193,11 +201,11 @@ selected.
 
 **Apply** puts the values into the edited dashboard; they take effect when you save it as a new version.
 
-![The Dashboard settings dialog with name, default range, refresh, row height, Show on the home page and the Public link section with a reason and the button Create public link](img/dashboard-settings.webp)
+![The Dashboard settings dialog with the tabs General, Filters, Entity aliases, Key filters, States and Public link; the General tab shows the name, default range, refresh, row height and Show on the home page](img/dashboard-settings.webp)
 
 ## Public link
 
-The **Public link** section of *Dashboard settings* publishes the dashboard read-only at an address of the form
+The **Public link** tab of *Dashboard settings* publishes the dashboard read-only at an address of the form
 `https://<server>/p/<token>`, for anyone with the link, without signing in — for example for a screen in a
 reception. Each action asks for a reason in the field next to the buttons and takes effect immediately, without
 saving the dashboard.

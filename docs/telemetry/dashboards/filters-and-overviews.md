@@ -60,6 +60,7 @@ A dashboard with filters shows a bar between its title and the widgets. Each fil
 | Attribute | the values of one attribute of assets or datastreams, for example `storage_class` | datastreams whose asset or datastream has the chosen value |
 | Search | free text | datastreams whose key, quantity, asset, asset type, site, device or name contains the text |
 | Range | `1h`, `6h`, `8h`, `12h`, `today`, `24h`, `7d`, `30d`, `90d` | the time range of the whole dashboard; it replaces the Range selector in the title |
+| Value | a number or a text the viewer types, for example a temperature limit | nothing by itself: key filters compare with it (see [Entity aliases, key filters and drill-down](aliases-filters-states.md#value-filters)) |
 
 - Each choice shows how many datastreams have it. The choices follow the other filters: with a site chosen, *Asset
   type* lists only the types at that site. A filter never narrows its own list, so you can always add another site.
@@ -97,14 +98,14 @@ without a range of its own.
 
 In the editor, **Dashboard settings → Filters** lists the filters of the dashboard; **Add filter** adds one.
 
-![The Filters section of the Dashboard settings: rows for Site, Asset type, Attribute (tag) storage_class with the label Storage class, Search and Time range, each with the checkboxes several and public and a remove button](img/dashboard-filters.webp)
+![The Filters tab of the Dashboard settings: rows for Site, Asset type, Attribute (tag) storage_class with the label Storage class, Search and Time range, each with the checkboxes several and public and a remove button](img/dashboard-filters.webp)
 
 | Field | Content |
 |---|---|
-| Kind | Site, Asset type, Device, Quantity, Attribute (tag), Search, Time range |
-| Attribute | for *Attribute (tag)*: the attribute name, for example `storage_class`; the field offers the names used in your organization |
+| Kind | Site, Asset type, Device, Quantity, Attribute (tag), Search, Time range, Value (for key filters) |
+| Attribute | for *Attribute (tag)*: the attribute name, for example `storage_class`; the field offers the names used in your organization; for *Value*: the name key filters use, for example `limit` |
 | Label | the text on the button; empty = the name of the kind (or of the attribute) |
-| several | the viewer may choose several values (not for Search and Time range) |
+| several | the viewer may choose several values (not for Search, Time range and Value) |
 | public | viewers of the public link may change the filter |
 
 - A dashboard has at most 8 filters, each kind once (an attribute filter once per attribute).
@@ -114,12 +115,13 @@ In the editor, **Dashboard settings → Filters** lists the filters of the dashb
 
 ## Query data sources
 
-On the **Data** tab of a widget with datastreams, **Data source** has two choices:
+On the **Data** tab of a widget with datastreams, **Data source** has three choices:
 
 | Data source | Meaning |
 |---|---|
 | Fixed list of datastreams | the datastreams picked in the list below (as before 0.68) |
 | Query — matching datastreams, new devices appear automatically | the server selects the datastreams each time the widget refreshes |
+| Entity alias — shared with other widgets, follows drill-down | the datastreams of the entities of an alias, optionally only those matching a key filter; see [Entity aliases, key filters and drill-down](aliases-filters-states.md) |
 
 ![The Data tab of a trend widget: Data source set to Query with lists of sites, asset types and quantities, a quantity pattern, devices, attributes, a name pattern, the maximum number of datastreams and the number of matching datastreams, and the checkbox Follow the dashboard filters](img/data-source.webp)
 
@@ -162,6 +164,10 @@ the dashboard filters.
 | Range (empty = dashboard range) | list | (default) | 1h, 6h, 8h, 12h, today, 24h, 7d, 30d, 90d |
 | Decimals | number | 2 | any |
 | Export buttons | checkbox | on | — |
+| Highlight rows matching the key filter | list | (none) | a key filter of the dashboard ([key filters](aliases-filters-states.md#key-filters)) |
+
+A row click and buttons in each row can open a detail state of the dashboard with the row's datastream, its device or
+its asset — see [Actions](aliases-filters-states.md#actions).
 
 ### Columns
 
@@ -211,8 +217,8 @@ the viewer cannot change them — not even by editing the address.
 ![A public link of the overview of all sensors: the filter bar with Site, Asset type and Quantity set to temperature, and the table without export buttons](img/public-filters.webp)
 
 !!! warning "What a public link can read"
-    A public link reads only what the dashboard shows: the fixed datastreams of its widgets and everything their query
-    sources select. Filters only narrow that. Before you publish a dashboard with a broad query source (for example
+    A public link reads only what the dashboard shows: the fixed datastreams of its widgets, everything their query
+    sources select and what its [entity aliases](aliases-filters-states.md#public-links) select. Filters only narrow that. Before you publish a dashboard with a broad query source (for example
     *every datastream*), check that all of it may be public.
 
 ## On a phone
@@ -245,4 +251,4 @@ The same queries are available in the API (see `/api/docs`, with `data.read`):
 - `POST /api/v1/datastreams/export` — the export of an overview table (`data.export`).
 
 In the screen format (version 1, minor 1) a dashboard carries `filters` and a widget `source` and `follow`; dashboards
-without them are unchanged. See [Copy a dashboard to another server](dashboard-editor.md#copy-a-dashboard-to-another-server).
+without them are unchanged. Minor 2 adds entity aliases, key filters and states ([Entity aliases, key filters and drill-down](aliases-filters-states.md)). See [Copy a dashboard to another server](dashboard-editor.md#copy-a-dashboard-to-another-server).

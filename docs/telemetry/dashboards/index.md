@@ -39,6 +39,7 @@ Values update live while the page is open, without reloading.
 | [Displays (kiosks)](displays.md) | pairing a screen at a wall, what it shows, operator commands and messages, video wall screens |
 | [Period tables](period-tables.md) | daily, weekly and monthly tables with Excel, CSV and PDF export |
 | [Filters and overviews](filters-and-overviews.md) | the dashboard filter bar, widgets that select datastreams by query, the overview table with search, column filters, grouping and export, the ready-made overviews |
+| [Entity aliases, key filters and drill-down](aliases-filters-states.md) | entity aliases shared by widgets, key filters on latest values and attributes, dashboard states with drill-down, the entities table and the entity selector |
 
 ## Permissions
 

@@ -51,6 +51,7 @@ widget becomes 300 × 200 px).
 | Values table | Lists | datastreams | 6 × 3 | [List widgets](widgets-lists.md) |
 | Entity table | Lists | datastreams | 6 × 4 | [List widgets](widgets-lists.md) |
 | Overview table | Lists | datastreams | 12 × 5 | [Filters and overviews](filters-and-overviews.md) |
+| Entities table | Lists | an entity alias | 12 × 5 | [Aliases and drill-down](aliases-filters-states.md#entities-table) |
 | Time-series table | Lists | datastreams | 6 × 3 | [List widgets](widgets-lists.md) |
 | Period table | Lists | datastreams | 6 × 5 | [Period tables](period-tables.md) |
 | Alarms | Lists | — | 6 × 3 | [List widgets](widgets-lists.md) |
@@ -69,6 +70,7 @@ widget becomes 300 × 200 px).
 | Image | Other | — | 3 × 2 | [Other widgets](widgets-other.md) |
 | QR code | Other | — | 2 × 2 | [Other widgets](widgets-other.md) |
 | Navigation card | Other | — | 3 × 1 | [Other widgets](widgets-other.md) |
+| Entity selector | Other | an entity alias | 4 × 1 | [Aliases and drill-down](aliases-filters-states.md#entity-selector) |
 | Camera | Other | — | 4 × 3 | [Other widgets](widgets-other.md) |
 | Tank | Process symbols | datastreams | 2 × 3 | [Other widgets](widgets-other.md) |
 | Pump / motor | Process symbols | datastreams | 2 × 2 | [Other widgets](widgets-other.md) |
@@ -233,3 +235,7 @@ The **Actions** tab:
   operation part described in [faceplates](scada-elements.md).
 
 A click on buttons, fields, links, the legend or the map does not trigger the action.
+
+Above *On click*, the Actions tab lists the widget's **actions**: a row click, a marker click, a chart click, a widget
+click or a button can open a dashboard state with the clicked entity, the device page or another dashboard. See
+[Actions](aliases-filters-states.md#actions).
