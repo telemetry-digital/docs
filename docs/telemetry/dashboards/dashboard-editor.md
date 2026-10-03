@@ -225,6 +225,10 @@ What a public link shows and allows:
 - **No exports**: period tables show no Excel, CSV or PDF buttons.
 - **No cameras**: camera widgets show *Cameras are not shown on public dashboards*; camera pins are drawn without
   state and cannot be clicked.
+- **No annotations** unless you allow them: annotations are internal notes, so the charts of a public link and of
+  [displays](displays.md) show none. With *Show annotations in the charts of the public link and on displays* in
+  *Dashboard settings* (off by default) they show the time, category and text of the annotations of the bound
+  datastreams, never who wrote them.
 
 On a public link the *Alarms* list and the *Alarm count* widget show only the alarms of the datastreams bound by
 the dashboard's widgets, and only when the dashboard shows alarms at all; there is no *Acknowledge* button. A link that was regenerated or disabled, or whose dashboard was retired, shows *This link is no longer valid*.

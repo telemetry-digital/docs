@@ -171,12 +171,13 @@ the dashboard filters.
 | Device | the device that feeds the datastream, a link to its page |
 | Value | the latest value with its unit |
 | Measured, Age | when the latest value was measured; *Age* adds a *stale* badge when it is older than *Stale after* |
-| Quality | the quality of the latest value |
+| Quality | the quality of the latest value; *stale* when it is older than 1.5 × the datastream's expected interval (see [Data model](../devices/data-model.md#quality-of-a-value)) |
 | Alarm | the highest severity of the active alarms (✓ when acknowledged) |
 | Limits | the warning and action limits of the high and low alarm rules, for example `2 … 8` or `≤ 8` |
 | Minimum, Maximum, Change | over the range of the widget; the change of a meter is its consumption |
 
-- *Stale after: auto* is twice the expected interval of the datastream, at least 2 minutes, or 1 hour without one.
+- *Stale after: auto* follows the datastream's expected interval: the value is stale when it is older than 1.5 × the
+  interval, as on the device page; without an expected interval after 1 hour.
 - With **Group rows by** the rows are sorted into groups with a header line (name, number of rows and, with *Totals
   of change per group*, the sum of their change); the grouped column is not repeated.
 - **Highlight rows**: *alarms* tints the rows with an active alarm (red for action, amber for warning); *limits*

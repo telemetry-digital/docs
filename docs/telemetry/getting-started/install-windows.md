@@ -41,6 +41,15 @@ Reachable from anywhere through a Cloudflare Tunnel — no open ports, no certif
 .\install.ps1 -Domain cameras.example.com -CloudflareToken <token>
 ```
 
+Object counting on cameras: `-Analytics` also installs the detector — ffmpeg (LGPL build), ONNX Runtime and the YOLOX
+models, downloaded from their official releases and checked by SHA-256 (see
+[Install the detector](../object-counting/cameras.md#install-the-detector)). On a server that is already installed it
+adds only these parts and restarts the service:
+
+```powershell
+.\install.ps1 -Analytics
+```
+
 ## What the installer does
 
 1. Creates `C:\Program Files\ctrl32-telemetry` (program, Typst, PostgreSQL) and `C:\ProgramData\ctrl32-telemetry`
@@ -62,6 +71,7 @@ Then open `http://<server>:8080` in a browser — the sign-in page appears:
 |---|---|
 | `-DryRun` | print the plan only, change nothing |
 | `-NoStart` | install but do not start |
+| `-Analytics` | also install the detector for object counting on cameras (off by default) |
 | `-Uninstall` | remove the services and firewall rules; the data stays |
 | `-Uninstall -Purge` | also delete the data |
 

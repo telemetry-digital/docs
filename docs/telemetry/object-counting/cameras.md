@@ -9,7 +9,7 @@ The server finds people and vehicles in the picture of a camera and counts them 
 that you draw on the picture. It works with any camera the server receives — RTSP (H.264, H.265, MJPEG), HTTP MJPEG,
 and cameras at remote sites behind the [relay](../video-nvr/remote-sites.md). No analytics of the camera is used.
 
-![The camera list of Object counting with the counting state, the number of lines and speed sections, the state and the analysed pictures per second of each camera](img/cameras.webp)
+![Counting with cameras: the Detector installation card (ready, ffmpeg, ONNX Runtime and both models found) above the camera list with the counting state, the number of lines and speed sections, the state and the analysed pictures per second of each camera](img/cameras.webp)
 
 ## Before you start
 
@@ -88,13 +88,64 @@ and a longer section make it better.
 ## Install the detector
 
 The server runs the detector in a separate worker process per camera: an unmodified **ffmpeg** decodes the picture,
-the **YOLOX** model finds people and vehicles through **ONNX Runtime** on the CPU. Install them and name them in
-[config.toml](../administration/config-reference.md):
+the **YOLOX** model finds people and vehicles through **ONNX Runtime** on the CPU. The installers set it up when you
+ask for it; it is off by default.
+
+```bash
+curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --analytics
+```
+
+```powershell
+.\install.ps1 -Analytics
+```
+
+On a server that is already installed the option adds only the detector and restarts the service; your
+configuration, data and passwords stay. The installer downloads each part from its official release, checks its
+SHA-256 against the value written in the installer, stores its licence next to it, writes the `[analytics]` section
+of [config.toml](../administration/config-reference.md) and runs the self-check. None of these parts is shipped with
+the product.
+
+| Part | Version | Licence | Linux | Windows |
+|---|:---:|:---:|---|---|
+| ffmpeg, LGPL build | 8.1.2 | LGPL-3.0 | `/opt/ctrl32-telemetry/analytics` | `C:\Program Files\ctrl32-telemetry\analytics` |
+| ONNX Runtime, CPU | 1.30.0 | MIT | `/opt/ctrl32-telemetry/analytics` | `C:\Program Files\ctrl32-telemetry\analytics` |
+| YOLOX nano and tiny models | 0.1.1rc0 | Apache-2.0 | `/var/lib/ctrl32-telemetry/models` | `C:\ProgramData\ctrl32-telemetry\models` |
+
+It downloads about 90 MB on Linux and 180 MB on Windows and needs about 200 MB of disk. Linux on x86-64 and on ARM64
+(for example a Raspberry Pi 5) and Windows on x64 are supported; 32-bit ARM servers (an older Raspberry Pi OS)
+cannot run the detector.
+
+!!! note "Why not the ffmpeg package of the distribution"
+    The `ffmpeg` packages of Debian and Ubuntu are GPL builds. The detector uses an unmodified LGPL build as a separate
+    program, so the Linux installer downloads the same LGPL build as on Windows. With `--analytics --ffmpeg apt` it
+    uses the distribution's package anyway; the self-check then shows it as a GPL build.
+
+### Check the installation
+
+*Object counting → Cameras* and *System → Server* show **Detector installation**: ffmpeg with its version and whether
+it is an LGPL build, ONNX Runtime with its version, and each model — found, checked against its SHA-256 and run once
+on an empty picture. **Check again** repeats the check (the server keeps a result for 5 minutes). A missing or broken
+part says what to do; server administrators also see where the server looked for it.
+
+![The Detector installation card: ready, cameras can count on this server; ffmpeg found with its version and the LGPL badge, ONNX Runtime found with its version, the nano and tiny models found with the time of a test inference](img/detector-check.webp)
+
+The same check runs on the command line, for example after an update:
+
+```bash
+sudo ctrl32-telemetry analytics-worker -selfcheck -config /etc/ctrl32-telemetry/config.toml
+```
+
+It prints one line per part and ends with *Object counting on cameras: ready* (exit code 0) or *NOT ready* (exit
+code 1).
+
+### By hand
+
+Without the installer, install the three parts yourself and name them in `config.toml`:
 
 ```toml
 [analytics]
-ffmpeg = "/usr/bin/ffmpeg"
-onnxruntime = "/opt/onnxruntime/lib/libonnxruntime.so"
+ffmpeg = "/opt/ctrl32-telemetry/analytics/ffmpeg-n8.1.2-50-g1a748fe2cd-lgpl/bin/ffmpeg"
+onnxruntime = "/opt/ctrl32-telemetry/analytics/onnxruntime-1.30.0/lib/libonnxruntime.so"
 model_nano = "/var/lib/ctrl32-telemetry/models/yolox_nano.onnx"
 model_tiny = "/var/lib/ctrl32-telemetry/models/yolox_tiny.onnx"
 nano_sha256 = "c789161ed43c8269fcd4e67c67eeeb4e80c622da2eb296a20bc6007bd18a0b7d"
@@ -105,15 +156,15 @@ max_cameras = 4
 
 | Key | Meaning |
 |---|---|
-| `ffmpeg` | the ffmpeg program — an **LGPL build** (no GPL options), from your distribution or an "lgpl" build; it runs as a separate program |
+| `ffmpeg` | the ffmpeg program — an **LGPL build** (no GPL options); it runs as a separate program |
 | `onnxruntime` | the ONNX Runtime library, version 1.17 or newer, CPU package for 64-bit Linux, Windows or macOS (`onnxruntime.dll` on Windows) |
 | `model_nano`, `model_tiny` | the YOLOX nano and tiny models (`yolox_nano.onnx`, `yolox_tiny.onnx`, YOLOX release 0.1.1rc0, Apache-2.0) |
 | `nano_sha256`, `tiny_sha256` | optional: the worker refuses any other file |
 | `threads` | inference threads per camera (default 1) |
 | `max_cameras` | cameras analysed at the same time (default 4); more cameras show *over the camera limit* |
 
-Restart the server after changing the file. 32-bit ARM servers (for example an old Raspberry Pi) cannot run the
-detector.
+Restart the server after changing the file. Running the installer with the option again keeps `threads` and
+`max_cameras`.
 
 ## CPU and accuracy
 

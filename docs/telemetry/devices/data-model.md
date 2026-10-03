@@ -76,7 +76,7 @@ meter, the state of a door.
 | Kind | gauge | gauge, counter, state, event | how the value behaves (see below) |
 | Quantity | — | required, at most 64 characters, stored in lower case | what is measured; suggestions: temperature, humidity, energy_active_import, power_active, pressure, state, co2 |
 | Unit | — | at most 16 characters | shown after the value, for example `°C`, `kWh`, `%` |
-| Expected interval (gap detection) | — | at most 32 characters, a duration such as `5 minutes`, `30 seconds`, `1 hour` | how often a value should arrive; empty means no gap detection |
+| Expected interval (gap detection) | — | at most 32 characters, a duration such as `5 minutes`, `30 seconds`, `1 hour` | how often a value should arrive; empty means no gap detection and no *stale* marking |
 | Required accuracy | — | any number | the accuracy the measurement must have, recorded with the datastream |
 | Reason (audit trail) | — | required | why you made the change |
 
@@ -90,7 +90,8 @@ meter, the state of a door.
 !!! tip "The expected interval makes missing data visible"
     With an expected interval, data that does not arrive becomes a visible **gap** in charts and reports instead of a
     silent hole. A gap opens when no value has arrived for 1.5 × the expected interval, and closes when data resumes
-    or is backfilled. Set it to the device's reporting period.
+    or is backfilled, and the last value is shown as *stale* after the same time. Set it to the device's reporting
+    period.
 
 ### Datastream detail
 
@@ -117,9 +118,16 @@ not an alarm limit: a value outside it cannot be a real reading, so it is stored
 | backfilled | a value replayed from the device's offline buffer (`bf: 1`) |
 | clock_suspect | the device's time stamp was more than 5 minutes in the future |
 | sensor_fault | the device marked the value as faulty (`fault` in its telemetry), or the value is outside the datastream's physical range |
-| out_of_range | reserved; not set by this version |
-| stale | reserved; not set by this version |
+| out_of_range | set by [object counting](../object-counting/index.md): more departures than arrivals would make an occupancy negative, so the stored value is kept at zero and flagged |
+| stale | never stored: the **last value** is shown as *stale* when it is older than 1.5 × the datastream's expected interval |
 | simulated | a simulated value |
+
+**Stale values.** With an expected interval, the last value of a datastream that stopped sending is shown as *stale*
+on the device page (*Telemetry* tab), in dashboard widgets, in overview tables and on public links, so an old number
+is not taken for a current one. It uses the same tolerance as gap detection (1.5 × the expected interval) and is
+worked out when the value is shown: the stored measurement keeps its own quality, and a value marked *sensor_fault*
+keeps that mark. Without an expected interval a value never becomes stale. To be notified when data stops, use the
+alarm rule *comm_loss* (see [Alarm rules](#alarm-rules-limits)).
 
 A value has one quality. *sensor_fault* wins over the others, because the value is not a reading at all; a
 backfilled value from a faulty sensor still counts as backfilled for gaps and retrospective alarms. Values with

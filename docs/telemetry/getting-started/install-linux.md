@@ -57,12 +57,26 @@ When the installer finishes, the server's address shows the sign-in page:
 | `--db docker` or `--db apt` | how PostgreSQL is installed (default: Docker if available, otherwise packages) |
 | `--db-port N` | host port of the Docker PostgreSQL (default 5432, or 5433 when 5432 is taken) |
 | `--no-start` | install everything but do not start the service |
+| `--analytics` | also install the detector for [counting people and vehicles with cameras](../object-counting/cameras.md#install-the-detector): ffmpeg (LGPL build), ONNX Runtime and the YOLOX models, downloaded from their official releases and checked by SHA-256; off by default |
+| `--ffmpeg apt` | with `--analytics`: use the distribution's ffmpeg package (a GPL build) instead of the LGPL build |
 
 Example with demo data:
 
 ```bash
 curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --domain telemetry.example.com --demo
 ```
+
+## Add object counting later
+
+On a server that is already installed, `--analytics` adds only the detector for object counting on cameras and
+restarts the service; the configuration, data and passwords stay:
+
+```bash
+curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --analytics
+```
+
+It ends with the self-check of the detector (ffmpeg, ONNX Runtime and the models with their versions) and tells you
+how to switch counting on for a camera. See [Install the detector](../object-counting/cameras.md#install-the-detector).
 
 ## Configuration
 

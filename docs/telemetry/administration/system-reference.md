@@ -86,6 +86,7 @@ devices reconnect within seconds; requires the agent).
 | Database | server, PostgreSQL version, size, number of organizations, users, devices, sites, stored reports, pending commands |
 | Storage and files | report and firmware directories (with the firmware size limit), Typst, log file and level, gap check interval, links to `/metrics` and `/.well-known/security.txt` |
 | Components | versions of the parts installed on the host (with the agent) |
+| Object counting | the self-check of the detector for object counting on cameras: ffmpeg (version, LGPL or GPL build), ONNX Runtime (version) and the nano and tiny models (SHA-256, test inference), with **Check again**; see [Install the detector](../object-counting/cameras.md#check-the-installation) |
 
 **Services and containers** lists the systemd units and Docker containers with their state and whether they start at
 boot. The agent, WireGuard and the reverse proxy have a **Restart** button (each asks for a reason).
