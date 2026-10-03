@@ -237,5 +237,5 @@ The **Actions** tab:
 A click on buttons, fields, links, the legend or the map does not trigger the action.
 
 Above *On click*, the Actions tab lists the widget's **actions**: a row click, a marker click, a chart click, a widget
-click or a button can open a dashboard state with the clicked entity, the device page or another dashboard. See
-[Actions](aliases-filters-states.md#actions).
+click or a button can open a dashboard state with the clicked entity, the device page, the asset page or another
+dashboard. See [Actions](aliases-filters-states.md#actions).

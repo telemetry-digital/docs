@@ -35,6 +35,7 @@ The **Devices** page lists every device with its external id, name, transport, l
 | Page | What you find there |
 |---|---|
 | [Sites, assets and datastreams](data-model.md) | every field of sites, assets, datastreams and alarm limits |
+| [The asset and site pages](asset-page.md) | the assets and sites lists, and each asset's overview, telemetry, datastreams, alarm rules and history |
 | [The device page](device-page.md) | the device list, New device, and the tabs Overview, Datastreams, Commands, Attributes, Console and Messages |
 | [MQTT and HTTP devices](mqtt-http.md) | topics, payloads, HTTP endpoints and limits for your own devices |
 | [Automatic device discovery](automatic-discovery.md) | MQTT accounts, bridges, the inbox of discovered devices and entities |

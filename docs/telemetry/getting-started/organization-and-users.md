@@ -21,12 +21,13 @@ The data model is simple:
   event) — for example `temp` in °C. Devices send values for datastream keys; see
   [Devices and data](../devices/index.md).
 
-Sites are listed under *Assets → Sites*, each with its time zone and address; *Assets → Assets* shows the assets of
-one site with their datastreams.
+Sites are listed under *Assets → Sites*, each with its time zone and address; *Assets → Assets* is a table of every
+asset with its site, parent, datastreams, devices, alarm and last value. Each asset and site has its own page — see
+[The asset and site pages](../devices/asset-page.md).
 
-![The Sites page listing three sites with their time zone, address, number of assets and creation time](img/sites.webp)
+![The Sites list: name, time zone, address, assets, devices, alarm and creation time](img/sites.webp)
 
-![The Assets page for one site: cards for rooms and devices, each with its datastream keys and quantities](img/assets.webp)
+![The Assets list: a table with name, type, site, parent, number of datastreams and devices, the worst active alarm and the time of the last value](img/assets.webp)
 
 ## Add users
 

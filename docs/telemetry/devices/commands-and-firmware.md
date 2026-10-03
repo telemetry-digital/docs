@@ -1,7 +1,7 @@
 ---
 title: Commands, settings and firmware updates
 slug: devices-commands-firmware
-sidebar_position: 7
+sidebar_position: 8
 tags: [devices, commands, fota, firmware, console]
 ---
 

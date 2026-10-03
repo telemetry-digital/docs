@@ -1,7 +1,7 @@
 ---
 title: Connectors (OPC UA, Modbus, LoRaWAN)
 slug: devices-connectors
-sidebar_position: 5
+sidebar_position: 6
 tags: [devices, opc-ua, modbus, lorawan, plc]
 ---
 

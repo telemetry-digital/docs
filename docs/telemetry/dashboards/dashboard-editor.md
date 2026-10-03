@@ -142,7 +142,7 @@ The settings are grouped into tabs; a tab appears only when the widget has setti
 | Appearance | title, fonts, colours, borders, frame, conditional formatting |
 | Series | per-datastream label, colour, unit, decimals and visibility; legend |
 | Time | time window, aggregation, viewer filters |
-| Actions | what clicks do: drill-down to a dashboard state, the device page, another dashboard; the older *On click* |
+| Actions | what clicks do: drill-down to a dashboard state, the device page, the asset page, another dashboard; the older *On click* |
 
 - **Datastreams** is a multi-select list (*asset / key [unit]*) with a filter field above it; hold Ctrl (Cmd on a Mac)
   to select several. The list shows how many are selected. Until you select one, the panel shows *No datastream
