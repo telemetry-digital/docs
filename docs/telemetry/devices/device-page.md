@@ -125,7 +125,7 @@ widgets. The current position is shown with its source (*fixed* or *reported*) a
 |---|:---:|---|
 | Latitude | −90 to 90 | decimal degrees |
 | Longitude | −180 to 180 | decimal degrees |
-| Pick on map | — | opens a map; a click fills both fields (needs map tiles set under **Settings → Branding**) |
+| Pick on map | — | opens a map; a click fills both fields (needs map tiles set under **Settings → Branding and theme**) |
 | Reason (audit trail) | required | why you changed it |
 
 - **Save fixed position** stores the position as *fixed*.

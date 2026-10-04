@@ -207,7 +207,7 @@ field and option is described in [Apps for phones and tablets](pwa-apps.md).
 | Name on the home screen | up to 24 characters (about 12 fit under an icon) |
 | Address | `/app/<address>`: 1–40 lowercase letters, digits and dashes, starting with a letter or digit; unique |
 | Start page | a page of this application; *Path of the start page* for a custom path (up to 300 characters, no other site) |
-| Menu sections | at least one of Dashboards, Home, Energy, Cameras, Displays, Flows, Devices, Incidents, Assets, Firmware, Users, Settings, System |
+| Menu sections | at least one of Dashboards, Home, Energy, Object counting, Cameras, Displays, Incidents, Devices, Assets, Flows, Firmware, Users, Audit, Settings, System |
 | Own colour | `#rrggbb`, or off for the organization's colour |
 | Cameras in live view and on video walls | automatic, one camera per row, grid |
 

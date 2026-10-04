@@ -67,6 +67,10 @@ follow the camera's own rules, and the usual notice about the camera applies.
 
 ## Pages of this section
 
+Everything for counting is under **Object counting** in the menu: *Overview* (the numbers of the day), *Areas and
+entrances*, *Cameras*, *Sensors* and *Scheduled reports* — the last two need `config.write`. The counting cameras are
+also under *Cameras → Object counting*.
+
 - [Counting with cameras](cameras.md) — draw counting lines and speed sections on the camera picture, install the
   detector, accuracy and CPU.
 - [Counting with sensors](sensors.md) — light barriers, turnstiles, door counters and other systems through MQTT or

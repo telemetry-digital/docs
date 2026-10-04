@@ -32,10 +32,27 @@ registration of the authenticator app.
 
 ## Look around
 
-- The **menu** on the left (a drawer on phones) holds Dashboards, Home, Energy, Cameras, Displays, Flows, Devices,
-  Incidents, Assets, Firmware, Users, Audit, Settings and System — you see only what your permissions allow.
-- **My account** holds your password and two-factor settings, API tokens, connected AI assistants and the language.
-  The interface is available in 19 languages.
+The **menu** on the left (a drawer on phones) is grouped into sections. You see only what your permissions allow: a
+section without anything for you is left out.
+
+| Section | In the menu | Needs |
+|---|---|---|
+| — | **Dashboard** (the start dashboard of your organization), **Dashboards** (all of them) | signed in, `data.read` |
+| Monitoring | **Home**, **Energy**, **Object counting**, **Cameras**, **Displays**, **Incidents** | `data.read`; Cameras `video.view`; Displays `display.control` |
+| Devices and automation | **Devices**, **Assets** (sites, assets, alarm rules, automation), **Flows**, **Firmware** | `data.read`; Firmware `fota.read` |
+| Administration | **Users**, **Audit**, **Settings**, **System** | `user.admin`; `audit.read` or `report.sign`; `content.write`; `system.admin` |
+| My account | **Profile**, **Password and MFA**, **API tokens**, **Notifications**, **AI assistants**, **API documentation** | signed in |
+
+![The menu with the sections Monitoring, Devices and automation and Administration, and Object counting open with Overview, Areas and entrances, Cameras, Sensors and Scheduled reports](img/menu.webp)
+
+- A menu item with an arrow opens its pages underneath, e.g. *Object counting → Overview, Areas and entrances,
+  Cameras, Sensors* and its *Scheduled reports*, or *Cameras → Live view, Video walls, Camera management, Evidence,
+  Settings*. Every tab a page has is one of these entries, so *Cameras → Evidence* in this documentation means: open
+  *Cameras* in the menu, then *Evidence*.
+- A few pages appear in two places because they belong to both: *Object counting* under *Cameras* and *Scheduled
+  reports* under *Object counting* lead to the same pages as under *Object counting* and *Settings*.
+- **My account** holds your password and two-factor settings, API tokens, notifications on this device, connected AI
+  assistants and the language. The interface is available in 19 languages.
 - Before anyone signs in, the address `/` shows the sign-in page with a short overview of the system, or your own
   front page once you publish one (see [Front page](../administration/front-page.md)).
 
@@ -55,13 +72,16 @@ pictures, cameras, flows, incidents, users, and the pages of the menu.
 - You find only what your permissions show elsewhere: cameras of your camera groups with `video.view`, users with
   `user.admin`, everything else with `data.read` — and only in your organization.
 
-*Collapse menu* at the bottom of the menu shrinks it to a bar of icons:
+*Collapse menu* at the bottom of the menu shrinks it to a bar of icons (a second click hides it, a third brings it
+back); on a narrow screen the menu shows icons by itself. The sections are thin lines then, an icon with pages under it
+opens its first page, and the page shows its other pages as tabs at the top:
 
-![The application with the menu collapsed to a narrow bar of icons next to a production dashboard](img/menu-collapsed.webp)
+![The application with the menu collapsed to a narrow bar of icons, the sections divided by lines, next to a production dashboard](img/menu-collapsed.webp)
 
-On a phone the menu opens as a drawer from the button at the top left:
+On a phone the menu opens as a drawer from the button at the top left. Only the item of the page you are on shows its pages;
+tap another item with an arrow to see its pages (a second tap hides them):
 
-![The menu opened as a drawer on a phone, with Dashboard, Home, Energy, Cameras with Live view, Video walls and Camera management, Displays, Flows, Devices, Incidents and Assets](img/phone-menu.webp)
+![The menu opened as a drawer on a phone: Dashboard and Dashboards, then the section Monitoring with Home, Energy, Object counting, Cameras, Displays and Incidents, and the section Devices and automation](img/phone-menu.webp)
 
 ## Set up e-mail
 

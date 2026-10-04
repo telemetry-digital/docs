@@ -20,8 +20,8 @@ Devices with a position on a map, coloured by their connection state.
 | Devices (empty = all) | devices | all | up to 24 devices |
 | Initial zoom when empty | number | 7 | the zoom level when no device has a position |
 
-- The map tiles, the maximum zoom, the attribution and the initial centre come from *Settings → Branding*. Without a
-  tile address the widget explains where to set it.
+- The map tiles, the maximum zoom, the attribution and the initial centre come from *Settings → Branding and theme*.
+  Without a tile address the widget explains where to set it.
 - A device appears when it has a position — fixed on the device or reported by it. Revoked devices are not shown.
 - Marker colours: green online, amber seen within the last hour, red offline, grey never seen.
 - A click on a marker shows the name, the state and the last contact, whether the position is fixed or reported (with
