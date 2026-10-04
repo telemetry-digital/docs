@@ -191,6 +191,7 @@ The **Actions** tab of a widget lists what clicks do, up to 6 actions per widget
 |---|---|
 | Go to a state | opens the state with the entity as its current entity |
 | Open the device page | opens the page of the entity's device |
+| Open the asset page | opens the [page of the entity's asset](../devices/asset-page.md) (an asset itself, or the asset of a datastream) |
 | Open another dashboard | opens another dashboard (by its slug) with the entity as the current entity of its main view |
 
 - **with its device** and **with its asset** pass the device or the asset of the clicked entity instead, for example
@@ -216,8 +217,8 @@ The **Entities table** (group *Lists*) shows the entities of an alias as rows.
 
 | Column | Content |
 |---|---|
-| `name`, `type` | the entity's name and type |
-| `site`, `asset`, `asset_type` | where the entity belongs |
+| `name`, `type` | the entity's name (a link to its page: device, asset, site, or the asset page of a datastream) and type |
+| `site`, `asset`, `asset_type` | where the entity belongs; site and asset link their pages |
 | `device`, `profile` | its device (a link to the device page) and the device profile |
 | `alarm` | the highest severity of the active alarms |
 | `last_seen` | when a device was last seen |
@@ -278,7 +279,8 @@ uses the entity selector and the value filters marked public.
     and columns always come from the saved dashboard. Before you publish a dashboard with a broad alias (for example
     *All devices*), check that all of it may be public.
 
-- *Open the device page* and *Open another dashboard* are not offered on a public link.
+- *Open the device page*, *Open the asset page* and *Open another dashboard* are not offered on a public link, and
+  the names in tables are plain text there.
 
 ## Limits
 

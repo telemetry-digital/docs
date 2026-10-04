@@ -1,7 +1,7 @@
 ---
 title: MQTT and HTTP devices
 slug: devices-mqtt-http
-sidebar_position: 3
+sidebar_position: 4
 tags: [devices, mqtt, http, tls]
 ---
 
@@ -21,12 +21,13 @@ MQTT. The MQTT broker is built into the server; nothing else needs to be install
 
     ![The overview of a device: name, creation time, last message, messages in 24 hours, firmware and id; the credentials with issued and revoked tokens; the buttons Issue / rotate token and Revoke device](img/device-overview.webp)
 
-3. **Assets**: on your asset press **+ datastream** for each value the device sends (a key such as `temp`, a
-   quantity, a unit, a kind — gauge, counter, state or event — and the expected interval). Then, on the device's
-   *Datastreams* tab, **assign** them to the device. All fields are described in
-   [Sites, assets and datastreams](data-model.md).
+3. **Assets**: open your asset and, on its *Datastreams* tab, press **New datastream** for each value the device
+   sends (a key such as `temp`, a quantity, a unit, a kind — gauge, counter, state or event — and the expected
+   interval). Then, on the device's *Datastreams* tab, **assign** them to the device (or choose the device in the
+   datastream's detail). All fields are described in [Sites, assets and datastreams](data-model.md) and
+   [The asset and site pages](asset-page.md).
 
-    ![The New asset dialog with type, name and a reason](img/new-asset.webp)
+    ![The New asset dialog with site, parent asset, type, name and a reason](img/new-asset.webp)
 
     ![The Datastreams tab of a device: the keys temp and rh with their asset, quantity and since when, a Remove button each, and a selector to assign another datastream with a reason](img/device-datastreams.webp)
 

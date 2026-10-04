@@ -1,7 +1,7 @@
 ---
 title: The device page
 slug: devices-device-page
-sidebar_position: 2
+sidebar_position: 3
 tags: [devices, mqtt, commands, console, attributes, telemetry]
 ---
 
@@ -240,7 +240,8 @@ The datastreams this device feeds: **key**, **asset**, **quantity** with unit an
 - With the four-eyes policy for assignments the change is recorded as a request "waiting for approval by a second
   person".
 
-Datastreams themselves are created under **Assets** (see [Sites, assets and datastreams](data-model.md)).
+Datastreams themselves are created on the asset page (see [The asset and site pages](asset-page.md)); the asset of
+each datastream is a link to its page.
 
 ## Commands
 

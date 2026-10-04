@@ -173,7 +173,7 @@ its asset — see [Actions](aliases-filters-states.md#actions).
 
 | Column | Content |
 |---|---|
-| Site, Asset, Asset type, Datastream, Quantity | where the datastream belongs and what it measures |
+| Site, Asset, Asset type, Datastream, Quantity | where the datastream belongs and what it measures; the site and the asset link their [pages](../devices/asset-page.md) (not on a public link) |
 | Device | the device that feeds the datastream, a link to its page |
 | Value | the latest value with its unit |
 | Measured, Age | when the latest value was measured; *Age* adds a *stale* badge when it is older than *Stale after* |

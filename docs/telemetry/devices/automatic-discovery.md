@@ -1,7 +1,7 @@
 ---
 title: Automatic device discovery
 slug: devices-discovery
-sidebar_position: 4
+sidebar_position: 5
 tags: [devices, mqtt, smart-home, discovery]
 ---
 

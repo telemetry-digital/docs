@@ -14,7 +14,8 @@ written to the append-only alarm log.
 
 *Assets → Alarm rules* lists the current version of every alarm rule: asset, datastream, type, warning and action
 limit, delay, hysteresis, version (hover for the reason) and since when it applies. Click a row to open the
-datastream, where you can save a new version or disable the rule.
+datastream on the page of its asset, where you can save a new version or disable the rule; the asset page also has
+an *Alarm rules* tab with the rules of that asset only (see [The asset and site pages](../devices/asset-page.md)).
 
 ![Assets → Alarm rules: rules per asset and datastream with type, warning and action limits, delay, hysteresis, version and since when](img/alarm-rules.webp)
 
@@ -39,7 +40,7 @@ A rule is **versioned**: saving a rule of the same type on the same datastream c
 starts the next one (*A rule of the same type on the same datastream is superseded by the new version*). Old
 versions stay in the database; alarms keep a link to the version that raised them.
 
-In the datastream's detail, **New rule version** offers type, warning and action limit, delay, hysteresis,
+In the datastream's detail (the *Datastreams* tab of the asset page), **New rule version** offers type, warning and action limit, delay, hysteresis,
 escalation policy and a reason. The form starts from the current version of the chosen type, so a new version keeps
 the limits and the policy unless you change them. **Disable** closes the current version with a reason — the rule
 stops applying.

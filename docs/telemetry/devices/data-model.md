@@ -10,22 +10,27 @@ room, a meter, a machine), an asset belongs to a **site** (a building, a plant, 
 datastreams: when you replace a broken sensor, you assign the same datastreams to the new device and the history
 continues without a break.
 
+Assets can contain other assets — a store room holds fridges, a hall holds machines — so a site carries a tree of
+assets:
+
 ```text
-site ─┬─ asset ─┬─ datastream (key temp)  ◄── fed by device A since 2026-03-01
-      │         └─ datastream (key rh)    ◄── fed by device A since 2026-03-01
-      └─ asset ─── datastream (key energy) ◄── fed by connector "modbus-meter"
+site ─┬─ asset (room) ─┬─ datastream (key temp)   ◄── fed by device A since 2026-03-01
+      │                └─ asset (fridge) ─── datastream (key temp) ◄── fed by device B
+      └─ asset (meter) ─── datastream (key energy) ◄── fed by connector "modbus-meter"
 ```
 
-All three live under **Assets** in the main menu, with the sub-pages **Sites**, **Assets**, **Alarm rules** and
+All of it lives under **Assets** in the main menu, with the sub-pages **Sites**, **Assets**, **Alarm rules** and
 **Automation** (automation rules are described in [Alarms, notifications and incidents](../automation/alarms.md)).
+Every asset and every site has its own page — see [The asset and site pages](asset-page.md).
 
 ## Who can do what
 
 | Action | Permission |
 |---|:---:|
 | See sites, assets, datastreams, alarm rules and values | `data.read` |
-| Create and edit sites, assets, datastreams and alarm rules | `config.write` |
+| Create and edit sites, assets, datastreams and alarm rules; attributes and positions | `config.write` |
 | Assign a datastream to a device, remove an assignment | `device.manage` |
+| The history of an asset | `audit.read` |
 
 Every change asks for a **reason** (at most 200 characters) and is written to the audit trail with the old and new
 values. With the four-eyes policy (see [Approvals](#four-eyes-approval)) alarm limits and assignments wait for a second
@@ -33,8 +38,11 @@ person.
 
 ## Sites
 
-**Assets → Sites** lists every site with its name, time zone, address, the number of assets (a link to them) and the
-creation time. **New site** and **Edit** open the same dialog.
+**Assets → Sites** is a table of the sites with their name, time zone, address, the number of assets and of the
+devices feeding them, the worst active alarm and the creation time; click a row for the
+[site page](asset-page.md#the-site-page). **New site** and **Edit** open the same dialog.
+
+![The Sites list: name, time zone, address, assets, devices, alarm and creation time, with an Edit button per site](img/sites.webp)
 
 | Field | Default | Limits | Meaning |
 |---|:---:|:---:|---|
@@ -43,19 +51,24 @@ creation time. **New site** and **Edit** open the same dialog.
 | Address | — | at most 200 characters | free text, shown next to the site |
 | Reason (audit trail) | — | required, at most 200 characters | why you made the change |
 
-A site cannot be deleted from the interface.
+A site cannot be deleted from the interface. Its **position** for the map is set on the site page (*Change
+position*, with a reason); assets without a position of their own show the site's.
 
 ## Assets
 
-**Assets** shows the assets of one site; choose the site in the **Site** selector at the top (its time zone and
-address are shown next to it). Each asset is a card with its name, its type and a table of its datastreams (key,
-quantity with unit, kind, expected interval). **+ datastream** on a card adds a datastream; clicking a datastream
-opens its detail.
+**Assets → Assets** is a table of every asset: name, type, site, parent asset, the number of datastreams and of the
+devices feeding them, the worst active alarm and the time of the last value. Search, filter by site and type, show
+the hierarchy or sort by a column; click a row for the [asset page](asset-page.md), where the datastreams, alarm
+rules, attributes and position of the asset are managed.
 
-![The New asset dialog with type, name and a reason](img/new-asset.webp)
+![The Assets list: a table with name, type, site, parent, number of datastreams and devices, the worst active alarm and the time of the last value; a search field, Site and Type filters and the Hierarchy button](img/assets.webp)
+
+![The New asset dialog with site, parent asset, type, name and a reason](img/new-asset.webp)
 
 | Field | Default | Limits | Meaning |
 |---|:---:|:---:|---|
+| Site | the site chosen in the filter | required | where the asset is |
+| Parent asset | (top level) | an asset of the same site | the asset it belongs to, for example the room a fridge stands in |
 | Type | — | required, at most 32 characters, stored in lower case | what the asset is; suggestions: fridge, freezer, room, meter, machine, building, vehicle — any word is allowed |
 | Name | — | required, 1–128 characters, unique on the site | the name shown in dashboards, reports and alarms |
 | Reason (audit trail) | — | required | why you made the change |
@@ -63,12 +76,18 @@ opens its detail.
 !!! note "Create a site first"
     The **New asset** button appears only when a site exists and your role has `config.write`.
 
+On the asset page, **Edit** changes the name, the type and the parent asset (never the asset itself or an asset
+below it, so the tree cannot loop), **Edit attributes** the free key–value data of the asset, and **Change
+position** its place on the map; each with a reason.
+
 ## Datastreams
 
 A datastream is one measured or reported value of an asset — the temperature of a fridge, the active energy of a
 meter, the state of a door.
 
 ### New datastream
+
+**New datastream** is on the *Datastreams* tab of the asset page.
 
 | Field | Default | Limits | Meaning |
 |---|:---:|:---:|---|
@@ -78,6 +97,7 @@ meter, the state of a door.
 | Unit | — | at most 16 characters | shown after the value, for example `°C`, `kWh`, `%` |
 | Expected interval (gap detection) | — | at most 32 characters, a duration such as `5 minutes`, `30 seconds`, `1 hour` | how often a value should arrive; empty means no gap detection and no *stale* marking |
 | Required accuracy | — | any number | the accuracy the measurement must have, recorded with the datastream |
+| Physical range from, to | — | numbers, *from* below *to*; empty = no limit | what the sensor can measure at all (see below) |
 | Reason (audit trail) | — | required | why you made the change |
 
 | Kind | Use it for |
@@ -95,12 +115,12 @@ meter, the state of a door.
 
 ### Datastream detail
 
-Clicking a datastream opens its detail:
+Clicking a datastream on the *Datastreams* tab of the asset page opens its detail:
 
 - **Site**, **Quantity** with unit, **Expected interval** (or "no gap detection"), **Accuracy**, **Physical range**
   (or "not set").
 - **Source device** — the device that currently feeds the datastream and since when, with a link to the device, or
-  "none — assign one on the device page".
+  "none". With `device.manage` the form **Source device** assigns a device or ends the assignment, with a reason.
 - **Last value** — value, unit, measurement time and its **quality**.
 - **Rules** — automation rules that read the datastream or derive (write) it, with their state.
 - **Id** — the datastream's identifier, for the API.
@@ -173,14 +193,16 @@ Every type is described with examples in [Alarms](../automation/alarms.md). A ru
 as given is refused when saved: limits or hysteresis on *power_loss*, *door_open* and *sensor_fault*, and hysteresis
 on *comm_loss*.
 
-**Assets → Alarm rules** lists the current versions: asset, datastream, type, warning, action, delay, hysteresis,
-version (the reason as a tooltip) and since when. Clicking a row opens the datastream. In the datastream detail,
+**Assets → Alarm rules** lists the current versions: asset (a link to its page), datastream, type, warning, action,
+delay, hysteresis, version (the reason as a tooltip) and since when. Clicking a row opens the datastream on the page
+of its asset; the *Alarm rules* tab of an asset page lists the rules of that asset only. In the datastream detail,
 **Disable** closes the current version of a rule (with a reason); the rule stops applying, its history stays.
 
 ## Assigning datastreams to devices
 
 On the device page, tab **Datastreams**, you assign the datastreams a device feeds (see
-[The device page](device-page.md)):
+[The device page](device-page.md)); the other way round, the datastream detail on the asset page assigns a device to
+one datastream:
 
 - Each key the device publishes must match the key of an assigned datastream; other keys are kept as raw messages
   with the status *unknown key*.
