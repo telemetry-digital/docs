@@ -109,7 +109,7 @@ A template source may be at most 512 KiB.
 |---|:---:|---|
 | Paper | A4 | A4, A3, A5, US Letter, US Legal |
 | Landscape | off | — |
-| Font | Libertinus Serif | up to 64 characters |
+| Font | Liberation Sans | up to 64 characters |
 | Font size (pt) | 9.5 | 6–16 in steps of 0.5 |
 
 ### Blocks

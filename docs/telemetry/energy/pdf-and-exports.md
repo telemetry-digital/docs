@@ -13,6 +13,10 @@ Report templates are designed from **blocks**: title, summary, chart, text, tabl
 and page break, on A4, A3, A5, US Letter or US Legal paper, portrait or landscape. Templates are content like
 dashboards — versioned, with a reason for every change.
 
+Reports and PDF exports use **Liberation Sans**, a typeface with the same letter widths as Arial, bundled with the
+server so a PDF looks the same on every installation; Excel files use Arial. A template may choose another typeface
+in its page settings.
+
 Under *Settings → Report templates* a template is put together from blocks in the designer, or edited as Typst
 source; *Preview PDF* shows the result before it is saved as a new version.
 
