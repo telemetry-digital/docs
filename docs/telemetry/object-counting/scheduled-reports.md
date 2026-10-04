@@ -9,7 +9,7 @@ A **scheduled report** is made for the previous day, week or month and mailed wi
 schedule — for example yesterday's visitors every morning at 07:00. It works for object counting and for any period
 table or report template.
 
-*Settings → Scheduled reports* (`config.write`).
+*Settings → Scheduled reports*, also in the menu under *Object counting → Scheduled reports* (`config.write`).
 
 ![The Scheduled reports page with three reports: the daily visitors of the main building, the car park weekly and the monthly table of people per day, each with its content, period, schedule, recipients, next run and last run](img/scheduled-reports.webp)
 

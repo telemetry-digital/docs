@@ -69,5 +69,5 @@ default flag. Retiring a dashboard, creating or disabling a public link and chan
 ## Maps
 
 Devices with a position — fixed on the device or reported in its heartbeat — can be shown on a map widget. The map
-tiles come from *Settings → Branding*: your own tile server, a provider with a key, or a self-hosted map archive
-(PMTiles), so maps work without any external service. See [Other widgets](widgets-other.md).
+tiles come from *Settings → Branding and theme*: your own tile server, a provider with a key, or a self-hosted map
+archive (PMTiles), so maps work without any external service. See [Other widgets](widgets-other.md).
