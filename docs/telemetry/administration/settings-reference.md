@@ -6,7 +6,9 @@ tags: [administration, settings, branding, reports, notifications, reference]
 ---
 
 The **Settings** menu holds the settings of your organization. It appears for users with `content.write`; some pages
-need a further permission, named in each section. Every setting belongs to one organization only.
+need a further permission, named in each section. Every setting belongs to one organization only. The report pages
+(*Report templates*, *Stored reports*, *Scheduled reports*) are in the menu under **Reports** and are described here
+too.
 
 Every save on these pages asks for a **reason** (up to 200 characters). The reason is stored with the old and new
 values in the [audit trail](audit.md); a save without a reason is refused.
@@ -14,15 +16,16 @@ values in the [audit trail](audit.md); a save without a reason is refused.
 | Page | Address | Needed to change |
 |---|---|---|
 | Branding and theme | `/settings/branding` | `content.write` |
-| Report templates | `/settings/templates` | `content.write` |
-| Stored reports | `/settings/reports` | `data.export` (read only) |
+| Report templates (menu *Reports*) | `/reports/templates` | `content.write` |
+| Stored reports (menu *Reports*) | `/reports` | `data.export` (read only) |
+| Scheduled reports (menu *Reports*) | `/reports/scheduled` | `config.write` |
 | Connectors | `/settings/connectors` | `config.write` |
 | Languages | `/settings/languages` | `content.write` |
 | Translations | `/settings/translations` | `content.write` |
 | Apps | `/settings/apps` | `content.write` |
 | VPN | `/vpn` | `vpn.manage` (shown to organization administrators without `system.admin`) |
 | Organization export | `/settings/export` | `user.admin` |
-| Notifications | `/settings/notifications` | `config.write` |
+| Notification channels | `/settings/notifications` | `config.write` |
 | Approvals | `/settings/approvals` | the permission of each change |
 | Security policy | `/settings/policy` | `user.admin` (`config.write` to read) |
 | AI assistants | `/settings/ai` | `user.admin` |
@@ -252,7 +255,7 @@ The ZIP contains:
   audit trail, access log;
 - a manifest with the SHA-256 of every file and the head of the audit chain.
 
-## Notifications
+## Notification channels
 
 Where alarms are delivered and how they escalate.
 
@@ -271,7 +274,7 @@ A stored secret is kept when the field is left blank. The kind cannot be changed
 
 The channel list shows *Name*, *Kind*, *Target* and *State* (enabled, disabled, revoked) with **Test** (sends a test
 notification), **Edit** and **Revoke** (asks for a reason). E-mail channels need `[smtp]` in
-[config.toml](config-reference.md); Web Push reaches only users who enabled it under *My account → Notifications*.
+[config.toml](config-reference.md); Web Push reaches only users who enabled it under *My account → Browser notifications*.
 Alarm rules without an escalation policy use the server's global e-mail recipients (`smtp.to`).
 
 ### Escalation policies

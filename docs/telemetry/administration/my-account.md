@@ -5,7 +5,8 @@ sidebar_position: 10
 tags: [administration, account, password, mfa, api-tokens, notifications]
 ---
 
-**My account** is in the menu of every signed-in user. It needs no permission, except *API tokens*, which needs
+**My account** is at the bottom of the menu of every signed-in user, next to *Sign out* (on a phone at the end of the
+menu); a click opens its pages underneath. It needs no permission, except *API tokens*, which needs
 `token.manage`.
 
 | Page | Address |
@@ -13,7 +14,7 @@ tags: [administration, account, password, mfa, api-tokens, notifications]
 | Profile | `/account` |
 | Password and MFA | `/account/security` |
 | API tokens | `/account/tokens` |
-| Notifications | `/account/push` |
+| Browser notifications | `/account/push` |
 | AI assistants | `/account/ai` |
 
 In an [app](pwa-apps.md) that is locked to its sections, *My account* keeps only *Password and MFA* and *Sign out*.
@@ -73,10 +74,10 @@ The token is shown **once**, right after *Create token*; copy it then. The list 
 A token never has more than you: a request is allowed only for permissions that are both in its scopes and in your
 current permissions, so removing a role from you also narrows your tokens.
 
-## Notifications
+## Browser notifications
 
 Alarm and rule notifications can reach your browser as system notifications, even when the app is closed. Which
-users are notified is chosen by an administrator with a Web Push channel (*Settings → Notifications*).
+users are notified is chosen by an administrator with a Web Push channel (*Settings → Notification channels*).
 
 | Control | Meaning |
 |---|---|

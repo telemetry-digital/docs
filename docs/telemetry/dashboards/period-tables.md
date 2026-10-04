@@ -115,7 +115,7 @@ is on. They are hidden in the editor and on public links. Every export is writte
 |---|---|
 | Excel (XLSX) | a sheet named after the title: the title (bold), a line with the period, the interval and the time zone, a line with the organization, the time of the export and the user, an empty line, the header (bold) and the rows; the first five rows stay frozen when scrolling; numbers are real numbers with the chosen decimals |
 | CSV | UTF-8 with a byte-order mark (Excel opens it correctly), comma-separated, the header and the rows only; numbers with a decimal point |
-| PDF | a report with the organization's logo, the title, the period, the interval and the time zone, the table (numbers aligned right), the number of periods and datastreams, the server version and a reference to the audit trail; stored under *Settings → Stored reports* with its hashes |
+| PDF | a report with the organization's logo, the title, the period, the interval and the time zone, the table (numbers aligned right), the number of periods and datastreams, the server version and a reference to the audit trail; stored under *Reports → Stored reports* with its hashes |
 
 - Column headers are in the user's language (or English). With one datastream and one value the header also names
   the value; units are added in brackets, except for *samples* and *out of limits*.

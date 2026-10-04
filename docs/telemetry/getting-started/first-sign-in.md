@@ -37,22 +37,31 @@ section without anything for you is left out.
 
 | Section | In the menu | Needs |
 |---|---|---|
-| — | **Dashboard** (the start dashboard of your organization), **Dashboards** (all of them) | signed in, `data.read` |
-| Monitoring | **Home**, **Energy**, **Object counting**, **Cameras**, **Displays**, **Incidents** | `data.read`; Cameras `video.view`; Displays `display.control` |
-| Devices and automation | **Devices**, **Assets** (sites, assets, alarm rules, automation), **Flows**, **Firmware** | `data.read`; Firmware `fota.read` |
+| — | **Overview** (the start dashboard of your organization), **Dashboards** (all of them) | signed in, `data.read` |
+| Monitoring | **Home**, **Energy**, **Object counting**, **Cameras**, **Displays**, **Incidents**, **Reports** (report templates, stored reports, scheduled reports, report signatures) | `data.read`; Cameras `video.view`; Displays `display.control`; Reports `content.write`, `audit.read` or `report.sign` |
+| Devices and automation | **Devices**, **Assets** (sites, assets), **Automation** (flows, alarm rules, automation rules), **Firmware** | `data.read`; automation rules `config.write`; Firmware `fota.read` |
 | Administration | **Users**, **Audit**, **Settings**, **System** | `user.admin`; `audit.read` or `report.sign`; `content.write`; `system.admin` |
-| My account | **Profile**, **Password and MFA**, **API tokens**, **Notifications**, **AI assistants**, **API documentation** | signed in |
+| Bottom of the menu | **My account**: **Profile**, **Password and MFA**, **API tokens**, **Browser notifications**, **AI assistants**, **API documentation** | signed in |
 
-![The menu with the sections Monitoring, Devices and automation and Administration, and Object counting open with Overview, Areas and entrances, Cameras, Sensors and Scheduled reports](img/menu.webp)
+![The menu with Overview and Dashboards at the top, the sections Monitoring with Reports, Devices and automation with Automation, and Administration, Object counting open with Overview, Areas and entrances, Cameras, Sensors and Scheduled reports, and My account at the bottom next to Sign out](img/menu.webp)
 
 - A menu item with an arrow opens its pages underneath, e.g. *Object counting → Overview, Areas and entrances,
   Cameras, Sensors* and its *Scheduled reports*, or *Cameras → Live view, Video walls, Camera management, Evidence,
   Settings*. Every tab a page has is one of these entries, so *Cameras → Evidence* in this documentation means: open
   *Cameras* in the menu, then *Evidence*.
-- A few pages appear in two places because they belong to both: *Object counting* under *Cameras* and *Scheduled
-  reports* under *Object counting* lead to the same pages as under *Object counting* and *Settings*.
-- **My account** holds your password and two-factor settings, API tokens, notifications on this device, connected AI
-  assistants and the language. The interface is available in 19 languages.
+- A few pages appear in two places because they belong to both: *Object counting* under *Cameras*, *Scheduled
+  reports* under *Object counting* and *Report signatures* under *Audit* lead to the same pages as under *Object
+  counting* and *Reports*.
+- **Reports** holds every report page in one place: *Report templates*, *Stored reports*, *Scheduled reports* and
+  *Report signatures*. **Automation** holds *Flows*, *Alarm rules* and *Automation rules*.
+- **My account** is at the bottom of the menu, next to *Sign out* (on a phone at the end of the menu). It holds your
+  password and two-factor settings, API tokens, browser notifications on this device, connected AI assistants and
+  the language. The interface is available in 19 languages.
+- Two kinds of notifications have two names: *Settings → Notification channels* is where an administrator sets up
+  e-mail, SMS, voice, webhook and Web Push channels and escalation; *My account → Browser notifications* is where you
+  switch on Web Push in your own browser.
+- Links and bookmarks from earlier versions keep working: for example `/settings/templates` opens *Reports → Report
+  templates* and `/assets/rules` opens *Automation → Alarm rules*.
 - Before anyone signs in, the address `/` shows the sign-in page with a short overview of the system, or your own
   front page once you publish one (see [Front page](../administration/front-page.md)).
 
@@ -81,7 +90,7 @@ opens its first page, and the page shows its other pages as tabs at the top:
 On a phone the menu opens as a drawer from the button at the top left. Only the item of the page you are on shows its pages;
 tap another item with an arrow to see its pages (a second tap hides them):
 
-![The menu opened as a drawer on a phone: Dashboard and Dashboards, then the section Monitoring with Home, Energy, Object counting, Cameras, Displays and Incidents, and the section Devices and automation](img/phone-menu.webp)
+![The menu opened as a drawer on a phone: Overview and Dashboards, then the section Monitoring with Home, Energy, Object counting, Cameras, Displays, Incidents and Reports, and the section Devices and automation](img/phone-menu.webp)
 
 ## Set up e-mail
 

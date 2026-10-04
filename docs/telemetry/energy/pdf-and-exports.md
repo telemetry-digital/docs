@@ -17,23 +17,23 @@ Reports and PDF exports use **Liberation Sans**, a typeface with the same letter
 server so a PDF looks the same on every installation; Excel files use Arial. A template may choose another typeface
 in its page settings.
 
-Under *Settings → Report templates* a template is put together from blocks in the designer, or edited as Typst
+Under *Reports → Report templates* a template is put together from blocks in the designer, or edited as Typst
 source; *Preview PDF* shows the result before it is saved as a new version.
 
-![Settings → Report templates: kind and locale, the Blocks (designer) and Source (Typst) modes, paper, font and size, the blocks Title, Summary facts, Data table and End marker, and the buttons Preview PDF, Save as new version and Revert to built-in](img/report-templates.webp)
+![Reports → Report templates: kind and locale, the Blocks (designer) and Source (Typst) modes, paper, font and size, the blocks Title, Summary facts, Data table and End marker, and the buttons Preview PDF, Save as new version and Revert to built-in](img/report-templates.webp)
 
-Generated reports are stored under **Settings → Stored reports** together with their hashes, so a stored report can
+Generated reports are stored under **Reports → Stored reports** together with their hashes, so a stored report can
 be shown to be unchanged. The column *Signatures* shows the meanings the report was signed with.
 
-![Settings → Stored reports: generated PDF reports with time, kind, author, template, size, file hash, signatures and a download link](img/stored-reports.webp)
+![Reports → Stored reports: generated PDF reports with time, kind, author, template, size, file hash, signatures and a download link](img/stored-reports.webp)
 
 ## Electronic signatures
 
-A stored PDF report can be **signed electronically** under **Audit → Report signatures** by people with the
+A stored PDF report can be **signed electronically** under **Reports → Report signatures** (also under *Audit*) by people with the
 permission `report.sign` (the built-in *qa* role has it). The page lists the stored reports with their signatures;
 reading it needs `data.export`.
 
-![Audit → Report signatures: stored reports with their file hash and signatures, and the buttons Download, Signatures and Sign](img/report-signatures.webp)
+![Reports → Report signatures: stored reports with their file hash and signatures, and the buttons Download, Signatures and Sign](img/report-signatures.webp)
 
 **Sign** opens the signing dialog:
 

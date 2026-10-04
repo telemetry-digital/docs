@@ -13,7 +13,7 @@ again.
 
 ### Create a subflow
 
-1. **Flows → New flow**, name it, choose *Start with: Subflow (a reusable part used inside flows)* and give a reason.
+1. **Automation → Flows → New flow**, name it, choose *Start with: Subflow (a reusable part used inside flows)* and give a reason.
 2. The canvas starts with a **Subflow input** and a **Subflow output** 1. The palette shows the group *Subflow*
    instead of *Triggers*.
 3. Wire the logic and actions between them and **Save** with a reason. A subflow has no *Deploy* — it runs only

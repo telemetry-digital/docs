@@ -24,9 +24,9 @@ What an administrator of a telemetry.digital server takes care of.
 
 ## Reference
 
-- [Settings pages](settings-reference.md) — every field of Branding and theme, Report templates, Stored reports,
-  Connectors, Languages, Translations, Apps, AI assistants, Organization export, Notifications, Approvals and Security
-  policy.
+- [Settings pages](settings-reference.md) — every field of Branding and theme, Connectors, Languages, Translations,
+  Apps, AI assistants, Organization export, Notification channels, Approvals and Security policy, and of the pages
+  under Reports (Report templates, Stored reports, Scheduled reports).
 - [System pages](system-reference.md) — every field of Organizations, Server, Domain and TLS, Backups,
   Redundant database, Updates and License, and the command-line administration.
 - [My account](my-account.md) — profile, password and two-factor sign-in, API tokens, browser notifications, AI
@@ -41,8 +41,9 @@ What an administrator of a telemetry.digital server takes care of.
 |---|---|
 | Users | `user.admin` |
 | Settings | `content.write` |
+| Reports | `content.write` (templates, stored and scheduled reports), `audit.read` or `report.sign` (report signatures) |
 | System | `system.admin` (role `server_admin`) |
-| My account | none |
+| My account (bottom of the menu) | none |
 
 ## The rule behind all of it
 
