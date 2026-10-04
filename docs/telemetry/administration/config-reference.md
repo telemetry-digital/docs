@@ -172,7 +172,8 @@ See [Recording and storage](../video-nvr/recording.md) and [Remote sites](../vid
 
 The detector of [object counting](../object-counting/cameras.md) on camera pictures. Without `onnxruntime` and a model
 the cameras show *not installed*; counting with sensors works without it. The installers write this section with
-`--analytics` (Linux) or `-Analytics` (Windows); see [Install the detector](../object-counting/cameras.md#install-the-detector).
+`--analytics` (Linux) or `-Analytics` (Windows), or the button *Install the detector*, which has the server agent write
+the paths (the other keys of the section stay); see [Install the detector](../object-counting/cameras.md#install-the-detector).
 
 | Key | Type | Default | Meaning |
 |---|:---:|:---:|---|

@@ -12,12 +12,12 @@ written to the append-only alarm log.
 
 ## Alarm rules
 
-*Assets → Alarm rules* lists the current version of every alarm rule: asset, datastream, type, warning and action
+*Automation → Alarm rules* lists the current version of every alarm rule: asset, datastream, type, warning and action
 limit, delay, hysteresis, version (hover for the reason) and since when it applies. Click a row to open the
 datastream on the page of its asset, where you can save a new version or disable the rule; the asset page also has
 an *Alarm rules* tab with the rules of that asset only (see [The asset and site pages](../devices/asset-page.md)).
 
-![Assets → Alarm rules: rules per asset and datastream with type, warning and action limits, delay, hysteresis, version and since when](img/alarm-rules.webp)
+![Automation → Alarm rules: rules per asset and datastream with type, warning and action limits, delay, hysteresis, version and since when](img/alarm-rules.webp)
 
 Reading rules needs `data.read`; **New rule**, new versions and disabling need `config.write`.
 
@@ -33,7 +33,7 @@ Reading rules needs `data.read`; **New rule**, new versions and disabling need `
 | Action limit | number | — | any number | the stronger limit; for communication loss both limits are seconds |
 | Delay (s) | number | 0 | 0–604800 | how long the condition must last before the alarm is raised |
 | Hysteresis | number | 0 | 0 or more | how far the value must come back before the alarm clears |
-| Escalation policy | choice | (none: global e-mail) | a policy of *Settings → Notifications* | who is told and when |
+| Escalation policy | choice | (none: global e-mail) | a policy of *Settings → Notification channels* | who is told and when |
 | Reason (audit trail) | text | — | up to 200 characters | required |
 
 A rule is **versioned**: saving a rule of the same type on the same datastream closes the current version and

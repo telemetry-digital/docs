@@ -88,8 +88,41 @@ and a longer section make it better.
 ## Install the detector
 
 The server runs the detector in a separate worker process per camera: an unmodified **ffmpeg** decodes the picture,
-the **YOLOX** model finds people and vehicles through **ONNX Runtime** on the CPU. The installers set it up when you
-ask for it; it is off by default.
+the **YOLOX** model finds people and vehicles through **ONNX Runtime** on the CPU. It is off by default: a server
+administrator installs it with one button, or the installers set it up when you ask for it.
+
+### With the button
+
+On *Object counting → Cameras* and on *System → Server*, the **Detector installation** card has the button **Install
+the detector** for server administrators (`system.admin`):
+
+1. Click **Install the detector**.
+2. Give a reason (it goes to the audit trail), your password and, with two-factor sign-in, the code from your
+   authenticator app, and click **Install**.
+3. The card shows the progress: *Downloading 2 of 5* with the part and its megabytes, then unpacking and checking
+   each part.
+4. When it is done, the check runs again and the card shows *ready*. Nothing needs a restart.
+
+![The dialog Install the detector: what the server agent downloads and checks, the versions, the reason for the audit trail, your password and the authenticator code, and the buttons Install and Close](img/detector-install-dialog.webp)
+
+![The Detector installation card while the detector is installed: a progress bar and Downloading 2 of 5 with the ffmpeg build and its megabytes](img/detector-install-progress.webp)
+
+- The server agent downloads exactly the parts the installers do (the table below), over HTTPS from their official
+  releases, and keeps a file only when its SHA-256 matches the value built into this version of the product. An
+  ffmpeg that is not an LGPL build is refused.
+- Everything is prepared next to the installed parts and put in place only after every part has been downloaded and
+  checked. A failure — no network, a wrong checksum, a full disk — is shown with its reason and changes nothing
+  installed.
+- Pressed again, the button downloads only what is missing or damaged. **Repair or update** with *Download every
+  part again (repair)* replaces every part; after an update of the product to newer pinned parts it installs those.
+- **Remove** takes the parts and their paths in `config.toml` away; counting with sensors keeps working.
+- Counting with cameras pauses while the parts are being replaced.
+- The request and its result are recorded in the [audit trail](../administration/audit.md) (`analytics.install`,
+  `analytics.remove`). An API token or an AI assistant cannot install or remove the detector.
+- The button needs the server agent, which the installers set up as the service `ctrl32-telemetry-agent`. Linux on
+  x86-64 and ARM64 and Windows on x64 are supported.
+
+### With the installer
 
 ```bash
 curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --analytics

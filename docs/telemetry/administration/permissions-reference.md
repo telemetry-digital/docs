@@ -95,7 +95,7 @@ Two flags of the built-in roles also matter:
 | `user.admin` | the *Users* menu: accounts, roles and permissions, account requests, camera access of users, resetting passwords and MFA, unlocking, signing a user out everywhere; changing the security policy; switching AI assistants on or off and disconnecting any user's assistant; the organization export |
 | `audit.read` | *Audit → Audit trail* and *Reviews*: reading the audit trail and its reviews; exporting the audit trail and the access log |
 | `audit.review` | recording a signed review of the audit trail — a period or one entry (*Audit → Audit trail*); see [Audit trail](audit.md#reviews) |
-| `report.sign` | signing stored PDF reports electronically (*Audit → Report signatures*); see [PDF reports and exports](../energy/pdf-and-exports.md#electronic-signatures) |
+| `report.sign` | signing stored PDF reports electronically (*Reports → Report signatures*); see [PDF reports and exports](../energy/pdf-and-exports.md#electronic-signatures) |
 | `system.admin` | server administration: the *System* menu — organizations of the whole server, Server, Domain and TLS, VPN of the whole server, backups, redundant database, updates, licence, front page; saving the video settings; granting and removing `server_admin` and changing the accounts of server administrators |
 
 !!! warning "system.admin is server-wide"

@@ -168,7 +168,7 @@ No result fields. Errors: *invalid topic …*; the bridge is not connected; the 
 
 ## Notify
 
-Sends a notification through a channel of *Settings → Notifications* — e-mail, SMS, voice, Web Push or webhook. See
+Sends a notification through a channel of *Settings → Notification channels* — e-mail, SMS, voice, Web Push or webhook. See
 [Notifications and escalation](notifications.md).
 
 | Setting | Type | Default | Allowed | Notes |
@@ -214,7 +214,7 @@ No result fields.
 
 ## HTTP request
 
-Calls a URL on a host of the organization's allow-list (*Flows → Settings*).
+Calls a URL on a host of the organization's allow-list (*Automation → Flows → Settings*).
 
 | Setting | Type | Default | Allowed | Notes |
 |---|---|:---:|:---:|---|

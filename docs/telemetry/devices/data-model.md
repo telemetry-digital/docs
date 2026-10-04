@@ -161,7 +161,7 @@ closes the current version and creates the next one, so you always know which li
 
 You create them in two places:
 
-- **Assets → Alarm rules → New rule** — choose any datastream.
+- **Automation → Alarm rules → New rule** — choose any datastream.
 - The datastream detail → **New rule version** — for the open datastream; the form starts from the current version
   of the chosen type (limits, delay, hysteresis and escalation policy).
 
@@ -193,7 +193,7 @@ Every type is described with examples in [Alarms](../automation/alarms.md). A ru
 as given is refused when saved: limits or hysteresis on *power_loss*, *door_open* and *sensor_fault*, and hysteresis
 on *comm_loss*.
 
-**Assets → Alarm rules** lists the current versions: asset (a link to its page), datastream, type, warning, action,
+**Automation → Alarm rules** lists the current versions: asset (a link to its page), datastream, type, warning, action,
 delay, hysteresis, version (the reason as a tooltip) and since when. Clicking a row opens the datastream on the page
 of its asset; the *Alarm rules* tab of an asset page lists the rules of that asset only. In the datastream detail,
 **Disable** closes the current version of a rule (with a reason); the rule stops applying, its history stays.

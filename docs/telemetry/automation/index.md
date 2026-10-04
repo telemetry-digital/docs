@@ -14,9 +14,9 @@ automation rules, controls smart-home devices with scenes and keeps an incident 
 
 | You want to | Use | Where |
 |---|---|---|
-| Be told when a value crosses a limit | an alarm rule | *Assets → Alarm rules* |
-| Decide who is told, how, and what happens when nobody reacts | notification channels and escalation policies | *Settings → Notifications* |
-| React to a simple condition over a few datastreams | an automation rule | *Assets → Automation* |
+| Be told when a value crosses a limit | an alarm rule | *Automation → Alarm rules* |
+| Decide who is told, how, and what happens when nobody reacts | notification channels and escalation policies | *Settings → Notification channels* |
+| React to a simple condition over a few datastreams | an automation rule | *Automation → Automation rules* |
 | Build anything larger: timers, routing, memory, several triggers, HTTP, MQTT, smart home | a flow | *Flows* |
 | Set several smart-home devices at once | a scene | *Home* |
 | Record what went wrong, its cause and the corrective action | an incident | *Incidents* |
@@ -35,7 +35,7 @@ automation rules, controls smart-home devices with scenes and keeps an incident 
 8. [Alarms](alarms.md) — alarm rules, alarm states, acknowledgement and the alarm log.
 9. [Notifications and escalation](notifications.md) — channels, escalation policies, the delivery log and Web Push.
 10. [Incidents](incidents.md) — the incident log with impact, cause and CAPA.
-11. [Automation rules](automation-rules.md) — condition → action rules under *Assets → Automation*.
+11. [Automation rules](automation-rules.md) — condition → action rules under *Automation → Automation rules*.
 12. [Home page and scenes](home-and-scenes.md) — control discovered devices and run scenes.
 
 ## Rules of the house

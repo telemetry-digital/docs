@@ -7,10 +7,10 @@ tags: [alarms, notifications, escalation, web-push, webhooks]
 
 **Notification channels** say *how* people are told — e-mail, SMS, a voice call, a webhook, Web Push. **Escalation
 policies** say *who is told when*: a list of steps in minutes after the alarm. Both live under
-*Settings → Notifications* together with the **delivery log**. Every change needs `config.write` and a reason and is
+*Settings → Notification channels* together with the **delivery log**. Every change needs `config.write` and a reason and is
 audited.
 
-![Settings → Notifications: channels with kind, target and state; an escalation policy with steps 0 min → e-mail and 15 min → webhook; and the delivery log with the state of every delivery](img/notifications.webp)
+![Settings → Notification channels: channels with kind, target and state; an escalation policy with steps 0 min → e-mail and 15 min → webhook; and the delivery log with the state of every delivery](img/notifications.webp)
 
 Channels are used by escalation policies, by [automation rules](automation-rules.md) (*Notify a channel*) and by
 [flows](flow-nodes-actions.md) (*Notify*).
@@ -139,12 +139,12 @@ The bottom of the page lists the last 50 deliveries (the API returns up to 500):
 
 ## Web Push in your browser
 
-Each user switches Web Push on for their own browser under *My account → Notifications*: **Enable in this browser**,
+Each user switches Web Push on for their own browser under *My account → Browser notifications*: **Enable in this browser**,
 **Send a test notification**, **Disable in this browser**, and a list of registered browsers with the last
 notification and their state (*active*, *delivery failed*, *removed*). Web Push needs HTTPS and a browser that
 supports it; on phones install the app from the browser menu first.
 
-![My account → Notifications with the button Enable in this browser and the list of registered browsers](img/web-push.webp)
+![My account → Browser notifications with the button Enable in this browser and the list of registered browsers](img/web-push.webp)
 
 A Web Push channel reaches only users who enabled it in at least one browser. Administrators (users with
 `alarm.ack` or `system.admin`) also get Web Push for incidents the system opens.

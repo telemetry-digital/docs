@@ -12,7 +12,7 @@ user code**: every node comes from a closed library, and calculations use a smal
 
 ## Quick start
 
-1. **Flows → New flow**, name it, pick *Example: value above a limit for a while → notify* and give a reason.
+1. **Automation → Flows → New flow**, name it, pick *Example: value above a limit for a while → notify* and give a reason.
 
     ![The New flow dialog with name, Start with and a reason](img/new-flow.webp)
 
@@ -188,7 +188,7 @@ On save, the server also fills in the default of every setting you left empty.
 
 ## Allowed hosts
 
-The *HTTP request* node can only call hosts on the organization's allow-list. **Flows → Settings** (permission
+The *HTTP request* node can only call hosts on the organization's allow-list. **Automation → Flows → Settings** (permission
 `config.write`) edits it:
 
 - one host name per line, for example `api.example.com`;
@@ -237,7 +237,7 @@ draft never stops a running flow, not even across a restart. The draft runs only
 
 ## Converting automation rules
 
-[Automation rules](automation-rules.md) convert into an equivalent draft flow: *Flows → New flow → Start with:
+[Automation rules](automation-rules.md) convert into an equivalent draft flow: *Automation → Flows → New flow → Start with:
 Converted automation rule*. The converted flow has:
 
 - one *Datastream value* trigger per input, each followed by a *Change* node that sets the topic to the input name,

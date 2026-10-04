@@ -7,10 +7,10 @@ tags: [automation, rules, conditions, actions]
 
 Automation rules are simple **condition → action** rules over one or more datastreams: *when all (or any) of the
 conditions hold — optionally for a hold time — fire the actions; when the condition ends, run the exit actions*. They
-are under *Assets → Automation*, with a run log of what each rule did. For anything larger use [flows](flows.md); a
+are under *Automation → Automation rules*, with a run log of what each rule did. For anything larger use [flows](flows.md); a
 rule converts into an equivalent flow.
 
-![Assets → Automation: rules with their state, condition, actions and last run, and the run log below](img/automation-rules.webp)
+![Automation → Automation rules: rules with their state, condition, actions and last run, and the run log below](img/automation-rules.webp)
 
 ## Permissions
 
@@ -93,20 +93,20 @@ Conditions and expressions use these names, for example `t_in - t_out`.
 | Action | Fields | Notes |
 |---|---|---|
 | Notify a channel | Channel; Subject (up to 200 characters); Text (up to 4 000 characters) | placeholders `{rule}`, `{event}`, `{inputs}` and `{<input name>}` |
-| Call a webhook | URL (`http://` or `https://`, up to 1 024 characters); Secret (HMAC-SHA256, optional, up to 256 characters) | only hosts of the organization's allow-list (*Flows → Settings*) |
+| Call a webhook | URL (`http://` or `https://`, up to 1 024 characters); Secret (HMAC-SHA256, optional, up to 256 characters) | only hosts of the organization's allow-list (*Automation → Flows → Settings*) |
 | Send a device command | Device; Key (writable register / node: lower-case letters, digits and `_`, starting with a letter, up to 32 characters); Value or expression (`20`, `true`, `t_out + 2`) | commanding: needs `device.command` |
 | Raise an alarm | Severity (warning, action, critical; default warning); Escalation policy (default: none, global e-mail) | not allowed in the exit list |
 | Write a derived datastream | Derived datastream; Expression (up to 512 characters) | the datastream must not be an input of the same rule |
 
 Details of each action:
 
-- **Notify a channel** sends through a channel of *Settings → Notifications*. Without a subject it sends
+- **Notify a channel** sends through a channel of *Settings → Notification channels*. Without a subject it sends
   `[ctrl32] rule {rule}: {event}`, without a text `Rule {rule} — {event}` and the inputs. `{event}` is `enter` or
   `exit`; `{inputs}` lists every input as `name = value` (or *(no data)*); `{t_in}` is the value of the input
   `t_in`. Every delivery is in the delivery log with the event `rule`.
 - **Call a webhook** sends the same JSON message as a webhook channel (event `rule`, the rule's identifier, name,
   version, transition and input values), signed in `X-Ctrl32-Signature` when you give a secret. The host must be on the organization's allow-list
-  (*Flows → Settings*), like the flows' *HTTP request* node — checked when the rule is saved and again when the
+  (*Automation → Flows → Settings*), like the flows' *HTTP request* node — checked when the rule is saved and again when the
   webhook is sent; otherwise saving answers *webhook: host "…" is not on the organization's allow-list*. Add the
   hosts of existing rules to the list before you change them.
 - **Send a device command** sends the method `write` with `{"key": <key>, "value": <value>}`. The command is valid
@@ -192,5 +192,5 @@ Below the rules, the run log lists the last 50 transitions:
 
 ## Converting a rule into a flow
 
-*Flows → New flow → Start with: Converted automation rule* builds an equivalent draft flow from a rule — see
+*Automation → Flows → New flow → Start with: Converted automation rule* builds an equivalent draft flow from a rule — see
 [Flows](flows.md). Stop the rule once the flow runs, so the actions do not happen twice.

@@ -192,7 +192,7 @@ site, and **Change position** sets the site's position (assets without their own
 |---|---|
 | The global search (Ctrl+K) | an asset, a site, or the asset page with the datastream's detail |
 | The device page, tabs *Datastreams* and *Telemetry* | the asset of each datastream |
-| *Assets → Alarm rules* | the asset of a rule; a row opens the rule's datastream on the asset page |
+| *Automation → Alarm rules* | the asset of a rule; a row opens the rule's datastream on the asset page |
 | Dashboards: entity tables and overview tables | the name, asset and site cells (not on public links) |
 | Dashboards: the map widget | the assets a device feeds, in the device's pop-up |
 | Dashboards: widget actions | *Open the asset page* for the clicked row, marker or chart |
