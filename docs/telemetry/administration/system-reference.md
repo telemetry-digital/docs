@@ -18,6 +18,7 @@ The **System** menu manages the server itself. All its pages need `system.admin`
 | Backups | `/server/backups` |
 | Redundant database | `/server/redundancy` |
 | Updates | `/server/updates` |
+| E-mail (SMTP) | `/server/email` |
 | License | `/server/license` |
 | Front page | `/landing/edit` |
 
@@ -219,24 +220,112 @@ verification, and the history of events.
 
 ## Updates
 
+### Status
+
 | Row | Meaning |
 |---|---|
 | Installed | the running version and its release date |
 | Updates | *Updates included until* a date, *Updates ended on* a date (the system keeps running), or *all versions* |
 | Available | the newest version at the distribution point, with *update available* or *up to date* |
+| Signature | *signed* and the key that signed it, or *not signed* (a release before 0.76.0 or a mirror without the manifest — not installed) |
+| Step | patch, minor or major, and whether the licence includes the version |
 | Distribution point | `[agent] update_url`, default `https://portal.telemetry.digital/dl` |
-| Checked | when it was last checked |
+| Checked, Next check | the last and the next check |
+| Next maintenance window | automatic mode: when the next window opens, or why the available version is not installed automatically |
+| Trusted release keys | the keys this version accepts signatures of |
+| Staged package | the last verified offline package on the server |
 
-**Install update** asks for the **Version to install** (filled in with the available one) and a reason. The agent
-downloads the release, verifies its SHA-256 against the published checksums (a mismatch refuses the update), checks
-that the program reports that version, runs the database migrations and restarts the service. The page reloads after
-10 seconds. Make a backup first for major upgrades.
+**Check now** asks the distribution point at once (otherwise once a day).
 
-With a licence, a version released after the updates included in the licence ended is refused before anything is
-replaced; the running system stays as it is. Without a licence every version can be installed. See
-[Licence](../licence/index.md#updates).
+![The status card of System → Updates with the available signed release](img/updates.webp)
 
-![System → Updates: Installed 0.66.0 with its release date, and Updates included until a date](img/updates.webp)
+### Update mode
+
+| Field | Values | Default |
+|---|---|:---:|
+| Mode | Manual, Notify, Automatic | Notify |
+| Day | a day of the week | Sunday |
+| Start of the one-hour window | a time | 03:00 |
+| Time zone | a time zone name such as `Europe/Bratislava`; empty for the server's | empty |
+| Also install minor versions automatically | patch versions are always installed, major versions never | off |
+| Roll back when the new version is not healthy within | 2–60 minutes | 10 |
+| Reason | up to 200 characters | — |
+
+Day, time, time zone and minor versions apply only to the automatic mode; the rollback time applies to every
+installation.
+
+![The update mode card with the automatic mode, Sunday 03:00 in Europe/Bratislava](img/update-mode.webp)
+
+### Install from the distribution point
+
+**Install update** asks for the **Version to install** (filled in with the available one), whether to **back up the
+database and the configuration first** (on by default) and a reason. The agent verifies the signed manifest and the
+program, takes the backup, runs the database migrations and restarts the service; the page reloads after 15 seconds.
+Refusals:
+
+| Message | Meaning |
+|---|---|
+| offers no signed release manifest | the distribution point publishes no signature; nothing installed |
+| does not match the release manifest / signed by keys this server does not trust | the signature is wrong or of an unknown key |
+| offers version X, not Y | the distribution point has another version than requested |
+| does not match the signed manifest | a file was changed or is incomplete |
+| updates included in the licence ended | the release is newer than the licence's updates; the running system stays |
+| migration failed … restored | the previous program (and the database from the backup) came back |
+
+![The card Install from the distribution point: the version, the backup option and the reason](img/update-install.webp)
+
+### Upload package
+
+| Field | Rule |
+|---|---|
+| Package (.zip) | an offline package of a release, at most `[agent] max_package_mb` (2048 MB) |
+| Back up the database and the configuration first | on by default |
+| Reason | required |
+| Your password | required; and the authenticator code with two-factor sign-in |
+
+The upload shows its progress, then *Verifying the signature and the files, then installing*. A package is refused
+when its signature does not verify, a file is missing from the manifest, differs from it or lies outside the package.
+A package without the program for this server's platform is verified and kept for the detector installation; nothing
+is installed. Uploads, refusals included, are audited.
+
+![The card Upload package: the file, the backup option, the reason, your password and the authenticator code](img/update-package.webp)
+
+### History
+
+The last 20 installations: start, from → to version, mode (manual, automatic, command line) with who started it,
+source (online or package) with the signing key, result (installed, waiting for the new version, rolled back,
+failed — with the reason) and the backup taken before.
+
+![The history: an offline package installed by a person, with the signing key and the backup](img/update-history.webp)
+
+### Command line
+
+| Command | Purpose |
+|---|---|
+| `ctrl32-telemetry update --file PACKAGE.zip` | verify and install an offline package (asks first; `--yes`, `--no-backup`, `--reason`) |
+| `ctrl32-telemetry update verify --file PACKAGE.zip` | only verify a package and show its content |
+| `ctrl32-telemetry update mirror --to DIR` | copy the latest release with verification into a directory for a web server in your network (`--from URL`, `--no-detector`) |
+
+## E-mail (SMTP)
+
+| Field | Rule | Default |
+|---|---|:---:|
+| SMTP server | a host name or an IP address | — |
+| Port | 1–65535 | 587, 465 with SSL/TLS |
+| Security | STARTTLS, SSL/TLS, or None — only to the server itself or the local network (a private address or a local name) | STARTTLS |
+| User name, Password | the password is stored encrypted and never shown; empty keeps the stored one | — |
+| Remove the stored password | clears it | off |
+| Sender address, Sender name | the address and the display name of the sender | — |
+| Reply-to address | optional | — |
+| Alarm recipients | comma separated, at most 50 | — |
+| Reason | required | — |
+
+The note at the top says where the settings in use come from: saved on this page, `[smtp]` of `config.toml`, or not
+configured. **Use config.toml** removes the saved settings. **Send test e-mail** sends a message to a recipient with
+the values of the form and shows the conversation with the mail server (the login is hidden); the attempt is in the
+delivery log and the audit trail. Changes are audited without the password.
+
+![System → Server → E-mail (SMTP): the settings and the test e-mail](img/email-smtp.webp)
 
 ## License
 
@@ -287,3 +376,4 @@ Some operations are deliberately not on any page; run them on the server.
 | `ctrl32-telemetry replica attach`, `status`, `promote` | the second database server |
 | `ctrl32-telemetry service install`, `uninstall`, `start`, `stop`, `restart` | the system service; append `-agent` or `-relay` (for example `install-agent`) for the server agent or the camera relay |
 | `ctrl32-telemetry verify-evidence` | verify a signed evidence package of camera recordings |
+| `ctrl32-telemetry update --file`, `update verify`, `update mirror` | offline updates and a mirror of the distribution point (see [Updates](#updates)) |

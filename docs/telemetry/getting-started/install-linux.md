@@ -78,6 +78,22 @@ curl -fsSL https://portal.telemetry.digital/install.sh | sudo bash -s -- --analy
 It ends with the self-check of the detector (ffmpeg, ONNX Runtime and the models with their versions) and tells you
 how to switch counting on for a camera. See [Install the detector](../object-counting/cameras.md#install-the-detector).
 
+## Installation without the Internet
+
+On a server without Internet access, use the **offline package** of the release,
+`ctrl32-telemetry-<version>-offline.zip`, from the download page (on a machine with access):
+
+1. Copy the package to the server and unpack the program for its processor, for example
+   `unzip ctrl32-telemetry-0.76.0-offline.zip ctrl32-telemetry-linux-amd64 SHA256SUMS install.sh`.
+2. Check it: `sha256sum -c --ignore-missing SHA256SUMS`. A machine that already runs ctrl32 telemetry can check the
+   signature of the whole package as well: `ctrl32-telemetry update verify --file ctrl32-telemetry-0.76.0-offline.zip`.
+3. Install PostgreSQL 18 from your local package source, then run
+   `sudo bash install.sh --binary ./ctrl32-telemetry-linux-amd64 --db apt`.
+
+Later updates come from the same kind of package — uploaded in *System → Updates* or with
+`ctrl32-telemetry update --file …` — or from a mirror in your network. The detector of object counting takes its parts
+from the package too. See [Updates without the Internet](../administration/server.md#updates-without-the-internet).
+
 ## Configuration
 
 All settings are in one file, `/etc/ctrl32-telemetry/config.toml`. Every key can also be set with an environment

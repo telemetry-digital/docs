@@ -122,6 +122,16 @@ the detector** for server administrators (`system.admin`):
 - The button needs the server agent, which the installers set up as the service `ctrl32-telemetry-agent`. Linux on
   x86-64 and ARM64 and Windows on x64 are supported.
 
+### Without the Internet
+
+The offline package of a release (`ctrl32-telemetry-<version>-offline.zip`) carries the same pinned parts for every
+supported platform, unmodified, with their licences and a list of their sources. Upload the package in
+*System → Updates* (see [Updates without the Internet](../administration/server.md#updates-without-the-internet)) —
+a package without the program for this server is only verified and kept — and then press **Install the detector**:
+the server agent takes the parts from the package first, then from a mirror of the distribution point when
+`[agent] update_url` points at one, and only then from the official releases. The checksum built into the product
+decides in every case, so a part from the package or the mirror is installed only when it is exactly the pinned one.
+
 ### With the installer
 
 ```bash

@@ -100,6 +100,14 @@ The application role can only read and append records; deleting records needs `a
 | `password` | string | — | SMTP password |
 | `from` | string | — | sender address |
 | `to` | list of strings | — | the server's global alarm recipients: used by alarm rules that have no escalation policy |
+| `security` | string | — | `starttls`, `tls` (port 465) or `none` (only a relay on the server or in the local network); empty = SSL/TLS on port 465, STARTTLS when the server offers it otherwise |
+| `from_name` | string | — | display name of the sender |
+| `reply_to` | string | — | Reply-To address |
+| `override` | bool | `false` | `true`: this section always applies and *System → Server → E-mail (SMTP)* is read-only |
+
+Settings saved in *System → Server → E-mail (SMTP)* take precedence over this section (the password there is stored
+encrypted with `security.secret_key`); without them, or with `override = true`, this section applies. See
+[E-mail (SMTP)](server.md#e-mail-smtp).
 
 ## [log]
 
@@ -199,7 +207,9 @@ the paths (the other keys of the section stay); see [Install the detector](../ob
 | `socket` | path | — | socket of the server agent; empty = no agent, the System pages show read-only information |
 | `pg_dump` | path | the PostgreSQL bundled next to the program | Windows: path to `pg_dump.exe` for backups |
 | `pg_container` | string | `"ctrl32-telemetry-postgres"` | Linux: the Docker container of PostgreSQL used for backups |
-| `update_url` | URL | `"https://portal.telemetry.digital/dl"` | where the agent downloads updates and their `SHA256SUMS` |
+| `update_url` | URL | `"https://portal.telemetry.digital/dl"` | the distribution point of updates, or a mirror in your network (`ctrl32-telemetry update mirror`); only releases with a valid signature are installed |
+| `max_package_mb` | int | `2048` | largest offline update package that can be uploaded or installed |
+| `allow_unsigned_updates` | bool | `false` | development builds only: install releases without a signature; released versions ignore it |
 | `vpn_simulate` | path | — | development and tests only: the agent renders the VPN configuration and firewall rules into this directory and applies nothing to the host; every other agent operation is refused |
 
 When the agent itself starts and `socket` is empty, it listens on `/run/ctrl32-telemetry/agent.sock` (Linux) or
