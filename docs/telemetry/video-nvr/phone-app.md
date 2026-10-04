@@ -11,9 +11,9 @@ shows only the cameras** — the person opens it and sees the live view, nothing
 ## Create a camera app
 
 1. *Settings → Apps → New app*, preset **Cameras** or **Video wall**.
-2. Give it an address, for example `cameras`, and a reason. The app lives at `https://<your server>/app/cameras`.
+2. Give it an address, for example `cam`, and a reason. The app lives at `https://<your server>/app/cam`.
 
-![The New app dialog with the Cameras preset: name Cameras, address /app/cameras, start page Cameras — live view, only the Cameras menu section, locked to its sections, page zoom off and one camera per row](img/new-camera-app.webp)
+![The New app dialog with the Cameras preset: name Cameras, address /app/cam, start page Cameras — live view, only the Cameras menu section, locked to its sections, page zoom off and one camera per row](img/new-camera-app.webp)
 
 | Preset | Start page | Sections | Locked | Page zoom | Cameras |
 |---|---|---|:---:|:---:|:---:|
@@ -34,12 +34,18 @@ options.
 
 ## Install it on the phone
 
-Open `https://<your server>/app/cameras` on the phone — on a computer the install page shows a QR code to scan.
+Open `https://<your server>/app/cam` on the phone — on a computer the install page shows a QR code to scan.
 
 - **Android** (Chrome, Edge, Samsung Internet): tap *Install*, or browser menu → *Install app* / *Add to Home screen*.
 - **iPhone and iPad** (Safari): *Share* (the square with the arrow) → *Add to Home Screen* → *Add*.
 
 ## What it does
+
+- The app window has no search field and no bug button in its header; a bug is reported with the bug icon in the
+  footer.
+- Pages of the app carry `?app=cam` in their address, so the phone stays in the app even when the browser opens the
+  last page again in a new session (Firefox on iPhone, a bookmark on the home screen). *My account → Open the full
+  application* leaves the app (not in a locked app).
 
 - Live video, recordings with the same controls as in the browser (pinch to zoom) and video walls.
 - On narrow screens the PTZ controls are hidden until you press the PTZ button.

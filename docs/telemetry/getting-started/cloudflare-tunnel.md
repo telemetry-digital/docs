@@ -49,7 +49,7 @@ The installer sets the **internet** profile (two-factor sign-in for every user),
 
 1. Sign in at `https://cameras.example.com`, set up two-factor sign-in and add the cameras
    (*Cameras → Camera management*; *Find cameras* scans the local network).
-2. *Settings → Apps → New app → Cameras* creates a phone app at `https://cameras.example.com/app/cameras`. Open it on
+2. *Settings → Apps → New app → Cameras* creates a phone app at `https://cameras.example.com/app/cam`. Open it on
    the phone and install it, or scan the QR code on its install page. See [Phone app](../video-nvr/phone-app.md).
 3. Give each person of the customer their own account under *Users*, with camera groups if needed.
 
