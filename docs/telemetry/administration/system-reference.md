@@ -126,17 +126,24 @@ generated firewall rules — has a section of its own: [VPN](../vpn/index.md). E
 
 ## Backups
 
-A backup bundles the database dump, `config.toml` with its secrets, and the proxy and VPN (WireGuard) state, plus
-`RESTORE.txt` with the steps of restoring it. Camera recordings are not included.
+A backup bundles the database dump, `config.toml` with its secrets, the proxy and VPN (WireGuard) state and the backup
+settings, plus `RESTORE.txt` with the steps of restoring it and `manifest.json` (application version, the applied
+database migrations, the number of tables, organizations, users and audit entries, and the size and SHA-256 of every
+file in the bundle). A checksum file `<bundle>.sha256` lies next to every bundle. Camera recordings are not included.
+
+![System → Backups: the state with the offsite copy and the last restore test, the daily schedule with the daily, weekly and monthly retention](img/backups.webp)
 
 | State row | Meaning |
 |---|---|
 | Database | PostgreSQL in Docker, native PostgreSQL, or not found |
 | Directory | Linux `/var/lib/ctrl32-telemetry/backups`, Windows `%ProgramData%\ctrl32-telemetry\backups` |
-| Running now | whether a backup is in progress (only one runs at a time) |
-| Schedule | daily time, number kept, encrypted or not |
+| Running now | a backup or a restore test in progress (one at a time) |
+| Schedule | daily time, kept daily / weekly / monthly, encrypted or not |
+| Last completed | the last backup that finished, including its offsite copy |
 | Last run | time and the file, or the error |
-| Stored | number of backup files |
+| Offsite copy | the target, on or off, and the error of its last listing; *none* when backups are only on this server |
+| Last restore test | time and result |
+| Stored | number of backups on this server |
 
 ### Daily schedule
 
@@ -144,26 +151,82 @@ A backup bundles the database dump, `config.toml` with its secrets, and the prox
 |---|:---:|---|
 | Enabled | off | — |
 | Time (server time) | 02:30 | 00:00–23:59 |
-| Keep last | 14 | 1–365 |
-| Passphrase for encryption | — | optional; blank keeps the stored one |
-| Remove the stored passphrase | off | scheduled backups become unencrypted |
+| Keep daily | 14 | 1–365 — the newest N backups |
+| Weekly | 4 | 0–104 — plus the newest backup of each of the last N weeks |
+| Monthly | 12 | 0–120 — plus the newest backup of each of the last N months |
+| Passphrase for encryption | — | blank keeps the stored one; required for an offsite target |
+| Remove the stored passphrase | off | refused while an offsite target is on |
 | Reason (audit trail) | — | required |
 
-After each scheduled backup, the oldest backup files beyond *Keep last* are deleted — this counts every file in the
-directory, including backups made by hand.
+After each scheduled backup the retention rule (grandfather–father–son) deletes the other backups on this server; the
+newest backup is always kept. The same rule applies at the offsite target, but only to the files this server uploaded
+there — several servers may share a folder or a bucket.
 
-### Back up now and stored backups
+### Offsite copy
 
-**Back up now** asks for an optional passphrase and a reason. With a passphrase the bundle is encrypted (AES-256,
-`.enc` file; the host needs OpenSSL). The list shows *File*, *Size*, *Created* and *Encrypted*, with **Download** and
-**Delete** (with a reason; only the file is removed).
+After every backup the **encrypted** bundle and its checksum go to the target and are read back; the copy counts only
+when its SHA-256 matches. Unencrypted backups never leave the server. When the target was unreachable, the next backup
+copies the missing ones; **Send missing backups now** does it at once (with a reason).
 
-A failed scheduled backup opens an incident. **Restoring** is done on the command line following `RESTORE.txt`, never
-from the page.
+![The Offsite copy card with an S3-compatible storage](img/backups-offsite.webp)
 
-!!! warning "Keep backups somewhere else"
-    A backup on the server's own disk does not survive that disk. Download backups or copy them to another machine,
-    keep the passphrase apart from them, and try a restore before you need one.
+| Target | Fields |
+|---|---|
+| Folder (disk, mounted SMB/NFS share, UNC path) | *Path* — absolute; the operating system mounts the share (`/mnt/backup`, `\\nas\backup`) |
+| SFTP server | *Host*, *Port* (22), *User*, *Directory*, *Password* or *Private key* (unencrypted OpenSSH or PEM), *Host key fingerprint* (`SHA256:…`, required) |
+| S3-compatible storage | *Endpoint* (`https://…`; `http://` only to this host or the local network), *Bucket*, *Region*, *Access key*, *Secret key*, *Prefix (folder in the bucket)*, *Path-style addresses* (MinIO and some providers) |
+
+**Test** writes a small file to the target, reads it back and deletes it. For SFTP it also shows the fingerprint of the
+server's key: compare it with the server (`ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub` there), then
+**Pin this host key** and test again. Without a pinned key, or with another one, nothing is sent.
+
+![SFTP fields: the test reports the server's key and offers to pin it](img/backups-offsite-sftp.webp)
+
+**Save target…** asks for a reason and your password (and the authenticator code); an enabled target is tested first.
+Only a person signed in the browser can set or remove a target — not an API token and not an AI assistant. Passwords
+and keys are never shown again; leaving them blank keeps the stored ones for the same host and user (SFTP) or the same
+endpoint and access key (S3).
+
+### Restore test
+
+The newest backup — from the offsite target when one is on, otherwise from this server — is checked against its
+checksum, decrypted, checked against its manifest, restored into the temporary database `ctrl32_restoretest` and
+compared with the figures the manifest recorded (the migrations and the number of tables must be equal; a table that had
+rows must not be empty); the temporary database is then dropped. The live database is never touched. The PostgreSQL
+server needs free space for one more copy of the database while the test runs.
+
+![The Restore test card: schedule, last result, day of the month, time and source](img/backups-restore-test.webp)
+
+| Field | Default | Limits |
+|---|:---:|---|
+| Monthly restore test | on | — |
+| Day of the month | 1 | 1–28 |
+| Time | 04:30 | server time |
+| Source | automatic | *offsite copy*, *this server* |
+| Reason (audit trail) | — | required |
+
+**Run a restore test** at the top of the page starts one now (with a reason).
+
+### Stored backups and the protocol
+
+**Back up now** encrypts with the stored passphrase (or another one you enter; without a passphrase the backup is not
+encrypted and stays on this server) and asks for a reason. The list shows *File*, *Size*, *Created*, *Encrypted*,
+*Checksum* (the start of the SHA-256) and *Offsite* (whether the target has it), with **Download** and **Delete** (with a
+reason; only the file on this server is removed).
+
+**Protocol** lists every backup, offsite copy and restore test; a row opens its steps with the result, a detail and the
+time of each.
+
+![The protocol: backups, restore tests from the offsite copy and from this server, and a restore test that found a damaged copy](img/backups-protocol.webp)
+
+![A restore test's steps: newest backup, download, checksum, decryption and manifest, restore into a temporary database, comparison, temporary database dropped](img/backups-run.webp)
+
+Every finished run is in the audit trail (`server.backup_result`, `server.backup_offsite_sync_result`,
+`server.restore_test_result`). A failed backup, offsite copy or restore test opens an incident (*Backup failed*,
+*Offsite copy of the backup failed*, *Restore test failed*) for the server administrators; the next successful run of
+the same kind resolves it. No completed backup for more than 26 hours while the schedule is on opens *No completed
+backup since …*. **Restoring** the live database is done on the command line following `RESTORE.txt`, never from the
+page.
 
 ## Redundant database
 
