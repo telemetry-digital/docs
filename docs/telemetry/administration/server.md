@@ -38,19 +38,26 @@ A backup is one package with:
 - the database;
 - `config.toml` — including the secret keys without which password hashes and encrypted settings cannot be used;
 - the web server and VPN (WireGuard) configuration;
+- `manifest.json` — the version, the database figures and a checksum of every file, so a restore can be checked;
 - `RESTORE.txt` — the steps of restoring it.
 
-Backups can be **encrypted with a passphrase**, made by hand or **daily** at a set time (default 02:30, keeping the
-last 14), downloaded and deleted (with a reason). A failed scheduled backup opens an incident.
+Backups are made **daily** at a set time (default 02:30) or by hand, **encrypted with a passphrase** and kept by a
+grandfather–father–son rule: by default the last 14 days, one a week for 4 weeks and one a month for 12 months.
 
-![System → Backups: the state, the daily schedule with time, number of backups kept, an optional passphrase and a reason, and the list of stored backups](img/backups.webp)
+![System → Backups: the state, the offsite copy and the last restore test, the daily schedule with the retention](img/backups.webp)
 
-**Restoring** is deliberately not a button: it is destructive and is done on the command line following
-`RESTORE.txt` in the package.
+**Offsite copy.** A backup on the server's own disk does not survive that disk. Set a target away from the server — a
+folder on another disk or a mounted network share, an **SFTP** server or **S3-compatible storage** — and every backup is
+copied there encrypted and read back to check it. Only encrypted backups leave the server.
 
-!!! warning "Keep backups somewhere else"
-    A backup on the same disk as the server does not survive the disk. Download backups or copy them to another
-    machine, keep the passphrase apart from them, and try a restore before you need one.
+**Restore test.** Once a month the newest offsite copy is restored into a temporary database and compared with what
+the backup recorded, so you know the backups can be restored before you need one. The protocol on the page shows every
+step; a failed backup, copy or restore test opens an incident.
+
+**Restoring** the live database is deliberately not a button: it is destructive and is done on the command line
+following `RESTORE.txt` in the package. Keep the passphrase apart from the backups — without it they cannot be opened.
+
+Every field is in the [System reference](system-reference.md#backups).
 
 Camera recordings are not in the backup — they live on their own disk (see
 [Recording and storage](../video-nvr/recording.md)).
