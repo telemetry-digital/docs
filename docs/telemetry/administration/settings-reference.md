@@ -323,14 +323,15 @@ Commands held by *Four eyes for commands* are approved on the device page (tab *
 | Four eyes for alarm limits | off | new alarm rule versions and disabling a rule become change requests approved by a different user with `config.write` |
 | Four eyes for datastream assignments | off | assigning or removing a datastream on a device becomes a change request approved by a different user with `device.manage` |
 | Four eyes for VPN access | off | a technician's VPN access becomes active only after a different user with `vpn.manage` or `system.admin` approves a time-limited access grant here under *Approvals*; new technicians are added disabled, and enabling one or changing its expiry directly is refused; grants require a licence |
+| Stay signed in on a device (days, 0 = not allowed) | 0 | 1–90: the sign-in page offers *Stay signed in on this device*; such a sign-in lasts this many days, also after the browser or the installed app (PWA) is closed (persistent cookie). Two-factor authentication is still required at the sign-in itself. Signing out, *Sign out everywhere*, disabling the user or lowering the value end it — a lower value applies to sessions already open. Use only for personal devices with a screen lock |
 | Reason (audit trail) | — | required |
 
 The other rules of the organization's policy have fixed values in this version and are not shown on the page:
 
 | Rule | Value |
 |---|:---:|
-| Sign-out after inactivity | 30 min |
-| Longest session | 8 h |
+| Sign-out after inactivity | 30 min (not for *Stay signed in on this device*) |
+| Longest session | 8 h (not for *Stay signed in on this device*) |
 | Failed sign-ins before the account locks | 5 |
 | Lock duration | 15 min |
 | Shortest password | 12 characters |

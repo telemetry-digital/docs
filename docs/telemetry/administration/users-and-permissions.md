@@ -148,6 +148,7 @@ product name in the authenticator app when white labeling is active.
 | Lock duration | 15 min |
 | Sign-out after inactivity | 30 min |
 | Longest session | 8 h |
+| *Stay signed in on this device* | off; up to 90 days when allowed under *Settings → Security policy* |
 | Time to enter the authenticator code after the password | 5 min |
 | Sign-in attempts per address | 10 per minute |
 
@@ -159,6 +160,19 @@ commands, for alarm limits, for datastream assignments and for technicians' VPN 
 who asked cannot approve their own request, approving replays it under the approver's name, both names go to the
 audit trail, and requests expire after 7 days. Every option is described in
 [Settings pages](settings-reference.md).
+
+### Stay signed in on a phone
+
+An installed app (PWA) on a phone otherwise asks for the password and the code whenever it is opened after 30 minutes
+without use or after it was closed. *Settings → Security policy → Stay signed in on a device* (days, 0 = not allowed)
+lets the sign-in page offer **Stay signed in on this device**: the user ticks it once, signs in with the password and
+the code, and stays signed in on that device for the set number of days. Signing out, *Sign out everywhere*, disabling
+the user or lowering the value end such sign-ins; the policy change is audited with its reason and every sign-in
+records in the access log whether it was remembered.
+
+![The sign-in page with Stay signed in on this device ticked](img/sign-in-remember.webp)
+
+![Settings → Security policy with Stay signed in on a device set to 30 days and its explanation](img/security-policy-remember.webp)
 
 ![Settings → Security policy with the options Four eyes for commands, Four eyes for alarm limits, Four eyes for datastream assignments and Four eyes for VPN access (on), and a reason](img/security-policy.webp)
 
