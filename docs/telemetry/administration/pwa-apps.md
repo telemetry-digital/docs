@@ -42,10 +42,14 @@ and is audited. Managing apps needs `content.write`.
 | Option | Default | Effect |
 |---|:---:|---|
 | Locked to its sections | off | no way into the full application; a page outside the chosen sections opens the start page instead |
+| View only — no pages for configuring | off | for watching, controlling and playing back: the app leaves out *Camera management*, the camera *Settings* and the setup of object counting (areas, counting cameras, sensors), also the editing of video walls; such a page opens the start page instead |
 | Zoom the page with two fingers | on | off: the page does not zoom, but the camera picture still zooms inside the player |
 | Cameras in live view and on video walls | automatic | one camera per row on narrow screens and a grid elsewhere, or always one of them |
 
-The **Cameras** preset turns all three into a camera-only phone app.
+The **Cameras** preset turns all of them into a camera-only phone app for watching. On a phone the app shows no page
+tabs (*Live view*, *Video walls* …) above the page: its menu lists the same pages.
+
+![The menu of a view-only Cameras app on a phone: Live view, Video walls and Evidence, no camera management or settings](img/app-view-only-menu.webp)
 
 ## Installing an app
 
