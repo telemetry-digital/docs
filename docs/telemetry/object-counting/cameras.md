@@ -23,7 +23,9 @@ and cameras at remote sites behind the [relay](../video-nvr/remote-sites.md). No
 
 *Object counting → Cameras → Configure* on the camera.
 
-1. The editor takes a picture from the live view (with the camera's privacy masks). *Refresh picture* takes a new one.
+1. The editor shows the **live video** of the camera's sub-stream (with the camera's privacy masks) and the lines on
+   top of it; every crossing flashes its line (green in, red out). Switch off *Live video* to draw on a still picture
+   instead; *Refresh picture* then takes a new one. The choice is remembered in the browser.
 2. **Add line**, then click the start (A) and the end (B) of the line on the picture. Drag the white end points to
    move them.
 3. The **arrow** points into the area: crossing the line in the direction of the arrow counts **in**, against it
@@ -31,6 +33,8 @@ and cameras at remote sites behind the [relay](../video-nvr/remote-sites.md). No
 4. In the table choose the **entrance** the line counts for and the **classes** it counts (person, bicycle, car,
    motorcycle, bus, truck).
 5. Switch on **Count on this camera**, enter a reason and **Save**.
+
+![The editor over the live video: the simulated entrance camera with the counting line flashing red and the label −1 out, the arrow pointing in, and the Live video, Add line, Add speed section and Show detected objects controls below](img/camera-editor-live.webp)
 
 ![The editor of the main entrance camera: the picture of a street with the yellow door line, its arrow pointing to the in side, the boxes of detected people, the state with pictures per second, inference time and CPU, and the line settings with the entrance and the person class](img/camera-editor.webp)
 
