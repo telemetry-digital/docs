@@ -17,6 +17,7 @@ reaches alarm rules and flows like any other datastream.
 - **By hour**: arrivals and departures as bars and the occupancy at the end of each hour as a line.
 - **Entrances**: arrivals and departures of each entrance and its share of all arrivals and departures.
 - **Comparison of days**: the last seven days with the peak occupancy of each day.
+- **Live check of the counting**: the live picture of the counting cameras with their lines (see below).
 - **Vehicle speed** for every speed section of the area (see below).
 - **Resets and corrections**: the daily resets, corrections by hand with their reason, and departures counted while
   the area seemed empty (*clamped at zero*).
@@ -25,6 +26,22 @@ reaches alarm rules and flows like any other datastream.
 ![The hourly chart of one day with two shift arrivals at 05:00 and 13:00, the office arrivals in the morning, the departures in the afternoon and the occupancy line reaching 223 people](img/by-hour.webp)
 
 ![The entrances table with arrivals, departures and their shares for the main entrance, the staff entrance and the loading dock, and the comparison of seven days with the weekend lower](img/entrances.webp)
+
+### Live check of the counting
+
+Below the entrances, for today and with the permission to view cameras (`video.view`), the card **Live check of the
+counting** shows every camera that counts for the area. Switch on **Show the cameras** (remembered in the browser):
+
+- the **live picture** (sub-stream) of each camera with its counting lines and the arrow pointing in,
+- every crossing **flashes the line**: green with *+1 in*, red with *−1 out*,
+- below the picture the counts **since the page was opened** per line and the **last crossings** with their time,
+  line, direction and class.
+
+Watch people walk through and compare: each one should flash the line once, in the right colour. The picture usually
+arrives a second or two after the count. If people are missed or counted in the wrong direction, move the line or swap
+its sides in the camera editor (see *Counting with cameras*). Switching the card off closes the video.
+
+![The Live check of the counting card: the live picture of the entrance camera with the counting line flashing red and the label −1 out, the arrow pointing in, the counts since the page was opened and the list of the last crossings](img/live-check.webp)
 
 ### A car park and the plant road
 
