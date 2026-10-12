@@ -25,7 +25,8 @@ and cameras at remote sites behind the [relay](../video-nvr/remote-sites.md). No
 
 1. The editor shows the **live video** of the camera's sub-stream (with the camera's privacy masks) and the lines on
    top of it; every crossing flashes its line (green in, red out). Switch off *Live video* to draw on a still picture
-   instead; *Refresh picture* then takes a new one. The choice is remembered in the browser.
+   instead; *Refresh picture* then takes a new one. *Size* makes the picture *small*, *fit to the screen* (the
+   default: the whole picture is visible without scrolling) or *full width*. Both choices are remembered in the browser.
 2. **Add line**, then click the start (A) and the end (B) of the line on the picture. Drag the white end points to
    move them.
 3. The **arrow** points into the area: crossing the line in the direction of the arrow counts **in**, against it
