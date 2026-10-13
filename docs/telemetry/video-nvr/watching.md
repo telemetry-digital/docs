@@ -23,7 +23,8 @@ the camera page.
 | Tile size | small, medium, large | in this browser |
 
 - A tile with an event going on is outlined, with the event kinds as a label; the state is refreshed every 5 seconds.
-- The status dot: recording, online, offline, or none while connecting.
+- The status dot: **green** when the camera works (with a light ring when it also records), **red** only when the
+  camera is down, none while connecting.
 - **Layout**: without your own choice, the layout follows the app (see [Phone app](phone-app.md)) and otherwise the
   screen width — one camera per row below 700 px.
 
@@ -54,7 +55,7 @@ sub-stream, **Quality**: main stream (default) or sub-stream.
 | Mark | — | marks this moment with a label (records 60 s on cameras recording on events) | `video.view` |
 | Stream information | I | codec, size, fps and bit rate as an overlay on the picture | — |
 | Save picture | — | downloads the current picture as PNG, with the privacy masks burnt in | — |
-| Full screen | F | the player fills the screen | — |
+| Full screen | F | the player fills the screen; on a phone it turns to landscape where the browser allows it, on an iPhone (no full screen for a page element) the player fills the app window — the privacy masks stay over the picture | — |
 
 - **Digital zoom**: the mouse wheel or a two-finger pinch zooms at the pointer, dragging pans, a double click shows
   the whole picture. The zoom factor is shown on the picture.
