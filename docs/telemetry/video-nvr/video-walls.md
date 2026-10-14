@@ -25,6 +25,7 @@ with a preview of each screen (click a preview to open that screen) and the numb
 | Layout | 3 × 3 | see below | columns × rows of the screen |
 | Stream | automatic | automatic, sub-stream, main stream | which stream the tiles play |
 | Tiles | empty | one camera or — per tile | the camera of each tile, in reading order |
+| A click on a camera opens playback | off | on, off | a click on a tile opens the camera with its recordings over the wall — see [Playback from the wall](#playback-from-the-wall) |
 | Reason | — | ≤ 200 characters, required | written to the audit trail |
 
 Layouts offered (columns × rows, tiles): 1 × 1 (1), 2 × 1 (2), 2 × 2 (4), 3 × 2 (6), 3 × 3 (9), 4 × 3 (12),
@@ -55,7 +56,8 @@ plays its main stream. The threshold is set in [Video settings](settings.md).
 On the wall:
 
 - a click (or double click) on a tile enlarges that camera to the whole monitor with the **main stream**; Esc or
-  another click returns;
+  another click returns. On a wall with **A click on a camera opens playback**, a click opens the camera's playback
+  instead (below);
 - tiles with an event going on are outlined with the event kinds, refreshed every 3 seconds;
 - the toolbar — wall name, **screen selector**, **layout** (grid or one camera per row), **Full screen**, **Open on
   all monitors** (the other screens), **Close** — hides together with the pointer after 3 seconds without movement.
@@ -69,6 +71,30 @@ On the wall:
 *A small 2 × 2 wall for a gatehouse.*
 
 Walls never play sound and always show privacy masks. Wall changes need a reason and are audited.
+
+### Playback from the wall
+
+With **A click on a camera opens playback** switched on in the wall's settings, a click on a tile opens that camera
+over the wall: live picture, the timeline of its recordings, going back 10 or 60 seconds, speeds 0.5×–16×,
+zoom, snapshots and marks — the same player and controls as on the camera page, without the menu.
+**Back to the wall** (top right) or **Esc** closes it and the tiles play again. While the playback is open, the wall's
+tiles pause, so the wall computer decodes one picture instead of all tiles.
+
+![The wall setting "A click on a camera opens playback" in the video wall editor, below the screens](img/wall-editor-playback.webp)
+
+![A camera opened from the wall: the player in playback with the timeline below and the button Back to the wall at the top right](img/wall-playback.webp)
+
+- The option is **off by default**. Leave it off for a wall on a monitor that other people can operate, such as a
+  shared screen in a reception.
+- It works only for a user with `video.playback`. For others a click enlarges the tile as before, even when the option
+  is on.
+- Playing back is written to the audit trail (`video.playback`), exactly as on the camera page. Switching the option
+  on or off is a wall change with a reason (`video_wall.update`).
+- Sound plays only when a user with `video.audio` switches it on in the player. A wall itself never plays sound.
+- Displays (paired kiosk computers) do not offer playback. They show live pictures only.
+- AI assistants (MCP) can switch the option with the tool `cameras_change` (operation `putVideoWallsId`, field
+  `playback_on_click`, with a reason). This needs the same permission and licence as any other change through an
+  assistant — see [AI assistants](../ai-assistants/index.md).
 
 !!! tip "Walls that run day and night"
     For a wall without anyone signed in, pair the wall computer as a **display**: it shows wall screens and dashboards

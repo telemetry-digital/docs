@@ -97,6 +97,8 @@ the database and win over `max_disk_gb`.
   [Adding cameras](cameras.md).
 - **Per video wall screen**: layout, cameras and stream (automatic, sub-stream or main stream) — see
   [Video walls](video-walls.md).
+- **Per video wall**: *A click on a camera opens playback* (off by default) — see
+  [Playback from the wall](video-walls.md#playback-from-the-wall).
 - **Per viewer** (remembered in the browser): tile size, layout, stream information, PTZ speed and whether the PTZ
   controls are shown.
 
