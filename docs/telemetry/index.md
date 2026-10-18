@@ -21,7 +21,7 @@ white labeling, changes through AI assistants and the larger VPN require a licen
 
 | Area | In short |
 |---|---|
-| Devices and data | MQTT (TLS), HTTP, LoRaWAN through ChirpStack, OPC UA and Modbus TCP — reading and writing. Automatic device discovery for devices that announce themselves over MQTT. Firmware updates, remote console, commands with acknowledgement. |
+| Devices and data | MQTT (TLS), HTTP, LoRaWAN through ChirpStack, OPC UA, Siemens S7 and Modbus TCP — reading and writing. Automatic device discovery for devices that announce themselves over MQTT. Firmware updates, remote console, commands with acknowledgement. |
 | Dashboards and SCADA | Dashboards with more than 40 widget types, process screens drawn in a vector editor with industrial symbols, displays (kiosks) and video walls, daily and monthly period tables with export. |
 | Video NVR | RTSP/ONVIF cameras with continuous or event recording, live view and playback, PTZ, motion detection, privacy masks, locked evidence, a phone app, and remote sites through an encrypted relay. |
 | Energy and reports | Consumption per meter, hour, day and month with cost; PDF reports, Excel and CSV exports, reports mailed on a schedule. |
@@ -46,7 +46,7 @@ white labeling, changes through AI assistants and the larger VPN require a licen
 - [Getting started](getting-started/index.md) — install on Linux or Windows, sign in, set up users, reach the server
   from the internet without opening ports.
 - [Video NVR](video-nvr/index.md) — cameras, recording, playback, the phone app, privacy and evidence.
-- [Devices and data](devices/index.md) — connect devices over MQTT, HTTP, OPC UA, Modbus and LoRaWAN.
+- [Devices and data](devices/index.md) — connect devices over MQTT, HTTP, OPC UA, Siemens S7, Modbus and LoRaWAN.
 - [Dashboards and SCADA](dashboards/index.md) — widgets, process screens, displays, period tables, and overviews
   with filters for all sensors, energy meters and the cold chain.
 - [Energy](energy/index.md) — meters, consumption, cost and reports.

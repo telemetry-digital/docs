@@ -166,7 +166,7 @@ recipients, attachments (name, size, SHA-256) and error. Every change and every 
 ## Connectors
 
 Connectors bring data from systems that do not send it on their own: a ChirpStack network server (LoRaWAN), an OPC UA
-server or a Modbus TCP device. The page lists the connectors with *Name*, *Kind*, *Messages*, *Last seen* and *State*,
+server, a Siemens S7 PLC or a Modbus TCP device. The page lists the connectors with *Name*, *Kind*, *Messages*, *Last seen* and *State*,
 and the versioned **register profiles** of Modbus connectors. Every field is described in
 [Connectors](../devices/connectors.md).
 
