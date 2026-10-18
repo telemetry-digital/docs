@@ -21,8 +21,8 @@ in [Process picture editor](scada.md).
 | Polygon | Polygon tool | 3–200 points, fill, line, flow |
 | Pipe | Pipe tool | 2–200 points, medium colour, outline, diameter, 3D highlight, flow |
 | Text | Text tool | text with placeholders, font, alignment, background, border |
-| Symbol | symbol library | one of 68 industrial symbols, state colours, level, rotation, label and value |
-| Image | organization library | an imported SVG graphic (static) |
+| Symbol | symbol library | one of 69 industrial symbols, state colours, level, rotation, label and value |
+| Image | organization library | an imported SVG graphic; parts marked with an effect class move (see *Animated graphics*) |
 
 ## Element properties
 
@@ -106,7 +106,7 @@ a quality other than *ok* gets ` ?` after the value and its quality in the toolt
 
 ## Symbol library
 
-The library has 68 symbols in eight categories. Search filters by name. A symbol's body takes the fill colour, the
+The library has 69 symbols in eight categories. Search filters by name. A symbol's body takes the fill colour, the
 state colour or a colour dynamic; behaviours driven by dynamics are listed in the last column.
 
 | Category | Symbols | Driven by dynamics |
@@ -115,7 +115,7 @@ state colour or a colour dynamic; behaviours driven by dynamics are listed in th
 | Pumps and drives | centrifugal pump, positive displacement pump, vacuum pump, motor, fan, blower, compressor, agitator, belt conveyor, screw conveyor, static mixer | Rotate when turns the fan, blower and agitator and moves the belt of the conveyor |
 | Valves | gate, ball, butterfly, control, solenoid, three-way, check, safety and hand valve, damper | State colours the body; the damper blade follows Level (1 = open) or the state *open*, *running* (open) and *in transit* (half) |
 | Heat transfer | heat exchanger, shell and tube exchanger, plate exchanger, electric heater, air cooler, boiler, cooling tower, furnace | State *running* turns the heater's element red and lights the flame of the boiler and furnace; Level fills the boiler; Rotate when turns the air cooler's fan |
-| Process equipment | filter, cyclone, separator, flow meter, orifice plate, weighing scale, spray nozzle, rotary dryer | Level fills the cyclone and separator; Rotate when turns the dryer |
+| Process equipment | filter, cyclone, separator, flow meter, orifice plate, weighing scale, spray nozzle, rotary dryer, aeration (bubbles) | Level fills the cyclone and separator; Rotate when turns the dryer; aeration: bubbles rise from the diffuser while the state is *running* (or Rotate / Animate when holds), none when stopped |
 | Instruments | instrument (field, panel, DCS, PLC), dial gauge, indicator lamp, push button, selector switch, bar graph, analyzer, alarm horn | bubbles show the label and the value, red in *fault*, amber in *warning*; Level moves the dial needle and fills the bar graph; the selector turns right in *running*, *open* or *manual*; the horn sounds waves in *fault*, *warning* or *running* |
 | Electrical | circuit breaker, transformer, generator, battery, solar panel, wind turbine, load / consumer | the breaker closes in *closed* or *running*; Level fills the battery (red below 20 %, amber below 40 %); Rotate when turns the turbine |
 | Other | flow arrow, pipe junction, flange, building | — |
@@ -159,6 +159,7 @@ rest.
 | Blink when | condition | operator, value, frame colour | blinks while the condition holds; with a frame colour a blinking frame is drawn around the element instead |
 | Flow when | condition | operator, value, speed 0.05–20 | moving dashes along lines, polylines, polygons and pipes |
 | Rotate when | condition | operator, value, speed 0.05–20 | turns the moving parts of symbols; other elements turn as a whole |
+| Animate when | condition | operator, value, speed 0.05–20 | runs the built-in motion of a symbol, or the effects of a library graphic, only while the condition holds |
 | Level (fill 0–1) | linear | value from, value to → result from, result to | the fill height of vessels, rectangles and level symbols |
 | Opacity (0–1) | linear | value from, value to → result from, result to | the opacity |
 | Angle (°) | linear | value from, value to → result from, result to | added to the rotation |
@@ -171,6 +172,28 @@ rest.
 - **Speed** 1 means one animation cycle per second; 2 is twice as fast.
 - **Without a value** a dynamic does nothing: no state is set, nothing is hidden, nothing blinks, and texts show `—`.
   No object pretends to know a state it does not know.
+
+## Animated graphics
+
+An imported SVG graphic can move: mark a part of it (an element or a group) with one of the **effect classes** below,
+for example `<g class="c32-spin">` around the blades of a fan. The animations themselves are supplied by the server —
+animations, style sheets and scripts inside the file are always removed on import.
+
+| Class | Effect |
+|---|---|
+| `c32-spin`, `c32-spin-ccw` | turns around its own centre, clockwise or counter-clockwise |
+| `c32-sway` | swings from side to side (agitator blade) |
+| `c32-pulse` | grows and shrinks a little (indicator, heart beat) |
+| `c32-rise`, `c32-fall` | moves up or down by its own height and fades — use it on a group of bubbles or drops |
+| `c32-flow`, `c32-flow-rev` | dashes moving along a line or path, forwards or backwards |
+| `c32-blink` | blinks |
+| `c32-d1` … `c32-d4` | added to another effect: starts later, so that several groups do not move in step |
+
+- **When it moves**: without an *Animate when* dynamic the effects run all the time; with one they run only while its
+  condition holds (e.g. a blower's running signal) and stand still otherwise or without a value. The speed of the
+  dynamic (0.05–20) sets how fast all effects of the graphic run.
+- After an import the editor lists the effect classes it found in the file.
+- Viewers who asked their system to reduce motion see the graphic without movement.
 
 ## Click actions
 

@@ -157,8 +157,9 @@ organization. Adding to it needs `content.write` and asks for a name and a reaso
 
 - **Imported graphics** are sanitised on the server: scripts, event handlers, embedded images, links and references
   outside the file are removed, and the editor tells you what was removed. A graphic may have at most 20 000 elements
-  and a nesting depth of 64. On the picture it is a static image element; it is at most 240 px large when placed and
-  can be resized.
+  and a nesting depth of 64. On the picture it is an image element; it is at most 240 px large when placed and
+  can be resized. Parts marked with an effect class (`c32-spin`, `c32-rise`, …) move, always or while an *Animate
+  when* dynamic holds — see [Animated graphics](scada-elements.md#animated-graphics).
 - **Composites** (at most 500 elements) keep their drawing, dynamics and click actions. Placing one asks for a
   datastream for each tag placeholder (*— none —* leaves it unbound); the placed elements form a group.
 - A click on a library item places it in the centre of the view.
