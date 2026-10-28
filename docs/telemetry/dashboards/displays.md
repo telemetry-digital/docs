@@ -84,7 +84,7 @@ Operators with `display.control` send commands from the Displays page or from a 
 | Send camera | camera (enabled cameras the operator may see; needs `video.view`), for 5–3600 s (default 120), stream: main or sub (default main) | the camera fills the display for the chosen time, labelled *sent by* and the operator's name |
 | Identify | — | the display shows its name in large letters for 10 seconds |
 | Back to content | — | closes the cameras sent or enlarged, and ends the current message |
-| Reload | — | the display reloads its page |
+| Reload | — | the display reloads its page (a command sent before the page loaded is ignored, so a reload never repeats itself) |
 | Message to displays | To, Text, Kind, For (min) | see below |
 
 ### Messages
@@ -137,6 +137,9 @@ speeds and temperatures, and the line's process picture. The range *today* runs 
 - Start the browser in kiosk mode when the computer starts, for example
   `chrome --kiosk --autoplay-policy=no-user-gesture-required https://<server>/display` (Windows: a shortcut in the
   Startup folder; Linux or Raspberry Pi: an autostart entry). The display stays paired over restarts.
+- After a server update every display reloads its page by itself — within 30 seconds, at a random moment so that
+  many displays do not load at once, and at most once in 10 minutes. Signed-in video wall pages do the same within a
+  minute and a half, but not while somebody looks at an enlarged camera or a recording.
 - Each display decodes its own video; the server only forwards the streams. For 20 camera tiles on the sub-stream a
   mini-PC with Intel graphics is enough.
 - Several monitors on one computer: pair one display per monitor (a browser window on each), or open a video wall
