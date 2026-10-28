@@ -95,9 +95,10 @@ the database and win over `max_disk_gb`.
 - **Per camera** (*Camera management → Edit*): addresses, transport, ONVIF, recording mode, pre- and post-roll, the
   event kinds that record, retention, sound, privacy masks, motion detection, camera group, order — see
   [Adding cameras](cameras.md).
-- **Per video wall screen**: layout, cameras and stream (automatic, sub-stream or main stream) — see
+- **Per video wall screen**: layout, tiles (camera, place and size of each) and stream (automatic, sub-stream or main
+  stream) — see
   [Video walls](video-walls.md).
-- **Per video wall**: *A click on a camera opens playback* (off by default) — see
+- **Per video wall**: *The enlarged camera offers its recordings* (off by default) — see
   [Playback from the wall](video-walls.md#playback-from-the-wall).
 - **Per viewer** (remembered in the browser): tile size, layout, stream information, PTZ speed and whether the PTZ
   controls are shown.

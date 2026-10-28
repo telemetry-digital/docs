@@ -49,7 +49,7 @@ send cameras and messages to it.
 | Item setting | Allowed values |
 |---|---|
 | Dashboard or process screen | any current dashboard or process picture of the organization |
-| Video wall screen | any screen of a video wall (shown with its layout, for example *5×4*); needs `video.view` to list walls |
+| Video wall screen | any screen of a video wall (shown with its layout, for example *5×4*), with its tiles in their places and sizes; needs `video.view` to list walls |
 | for … s | 10–3600 seconds, default 60 |
 | ↑ / ✕ | move the item up / remove it |
 

@@ -75,7 +75,8 @@ See [Live view and playback](watching.md) and [Evidence](evidence.md).
 | Screen name | ≤ 40 characters |
 | Columns and rows | 1–8 each; the editor offers 12 layouts from 1 × 1 to 8 × 6 |
 | Stream per screen | automatic, sub-stream, main stream |
-| A click on a camera opens playback (`playback_on_click`) | per wall, off by default; needs `video.playback` to work |
+| Tiles per screen | at most columns × rows; with `rects` each tile `{x, y, w, h}` in cells (`x`, `y` from 0, `w` × `h` from 1 × 1 up to the whole grid), on the grid, no overlaps, one rect per tile |
+| The enlarged camera offers its recordings (`playback_on_click`) | per wall, off by default; needs `video.playback` to work |
 
 See [Video walls](video-walls.md).
 
