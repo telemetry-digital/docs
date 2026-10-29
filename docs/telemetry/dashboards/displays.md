@@ -64,16 +64,21 @@ whose cameras lie outside their groups.
 
 | Column | Content |
 |---|---|
-| Display | the name, the location and an *alarms* badge when it enlarges cameras with events |
+| Display | the name, the location, an *alarms* badge when it enlarges cameras with events, the kiosk PC and monitor it runs on |
 | Shows | the items in turn, for example *Line 1 → Line 2 (in turn)* |
-| State | *waiting for the device* (paired but the credential not collected yet), *showing*, *not showing*; the current message and command |
+| State | *waiting for the device* (paired but the credential not collected yet), *showing*, *not showing*; how many camera tiles play (for example *39/39 playing*) and the cameras that do not, the screen size and the page version; the current message and command |
 | Last seen | the last contact and the device's address |
 | — | the command buttons, and **Edit** and **Disconnect** for `display.manage` |
 
-The page refreshes every 10 seconds while no dialog is open. **Disconnect** asks for a reason; the display returns to
-the pairing screen and must be paired again.
+Every 30 seconds a display reports each camera tile: *playing* (the picture moved on in the last 10 seconds), *picture
+stands*, *connecting*, *camera offline* or *cannot play* (the browser does not support the camera's codec). Only
+cameras the display may show are reported, and a camera is named only to users who may see it.
 
-![The Displays page: a paired display with what it shows and its state, the buttons Send camera, Identify, Back to content, Reload and Edit, the location filter, Message to displays and Pair display, and the steps for setting up a display computer](img/displays.webp)
+The page refreshes every 10 seconds while no dialog is open. **Disconnect** asks for a reason; the display returns to
+the pairing screen and must be paired again. Below the list, **Kiosk PCs** (for `display.manage`) shows the Windows PCs
+behind the displays with their state and operations — see [Remote management](../administration/remote-management.md#kiosk-pcs).
+
+![The Displays page: a display with 2/3 camera tiles playing and the camera whose picture stands, the kiosk PC it runs on, and the Kiosk PCs section](img/displays.webp)
 
 ## Operator commands
 

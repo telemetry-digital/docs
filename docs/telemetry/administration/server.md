@@ -134,6 +134,36 @@ the object counting detector with their licences. Three ways to use it:
 The detector installation (see [Counting with cameras](../object-counting/cameras.md#install-the-detector)) uses the
 parts of an uploaded package or of the mirror when they are there.
 
+## Operating system
+
+**System → Operating system** (Linux servers with apt) shows how many updates of the operating system are available
+and how many of them are security updates, when the package lists were downloaded, whether a reboot is required and
+for which packages, and the health of the machine: software RAID (degraded, rebuilding), the network links and the
+disks' own health (when smartmontools is installed).
+
+- **Check for updates** downloads the package lists and lists what can be upgraded; nothing is installed.
+- **Install updates** installs every upgrade without questions — configuration files you changed are kept — in its own
+  system unit, so it finishes even when services, the agent included, restart. The page shows its log. Services that
+  use upgraded libraries may restart for a moment; a new kernel needs a reboot.
+- **Reboot server** asks for a reason and a confirmation and reboots in one minute; until then the reboot can be
+  cancelled. It is refused while an installation, an update of telemetry.digital, a backup or a restore test runs.
+  The page waits and reloads when the server is back.
+
+Every request and every result is in the [audit trail](audit.md); a failed installation is mailed to the server
+administrators. The history lists the last jobs.
+
+![System → Operating system: the updates available with the security ones, the package lists, reboot required and the health with RAID, network and disks](img/os-updates.webp)
+
+![System → Operating system after the installation: its log, reboot required for libssl3t64 and the history](img/os-after-upgrade.webp)
+
+**System → Logs** shows the last lines of the logs of the service, the server agent, the reverse proxy, the database,
+the VPN, the Cloudflare tunnel and the kernel, with a filter and *Follow* for new lines.
+
+![System → Logs: the log of the service with the lines count, Follow and a filter](img/logs.webp)
+
+For an emergency the **Server** page has a *Remote management* card with the MeshCentral address and the node of this
+server, and the *Emergency remote desktop* button; see [Remote management](remote-management.md).
+
 ## E-mail (SMTP)
 
 *System → Server → E-mail (SMTP)* sets the outgoing e-mail used for alarm notifications, scheduled reports, password
