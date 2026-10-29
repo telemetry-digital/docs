@@ -139,7 +139,8 @@ parts of an uploaded package or of the mirror when they are there.
 **System → Operating system** (Linux servers with apt) shows how many updates of the operating system are available
 and how many of them are security updates, when the package lists were downloaded, whether a reboot is required and
 for which packages, and the health of the machine: software RAID (degraded, rebuilding), the network links and the
-disks' own health (when smartmontools is installed).
+disks' own health (when smartmontools is installed; a disk that smartctl cannot read, for example behind some RAID
+controllers, is shown as *unknown*).
 
 - **Check for updates** downloads the package lists and lists what can be upgraded; nothing is installed.
 - **Install updates** installs every upgrade without questions — configuration files you changed are kept — in its own

@@ -67,8 +67,10 @@ The PC connects to the server; nothing connects to the PC.
 |:---|:---|
 | PC | the name, the computer name, Windows, model and address, the signed-in user |
 | Monitors | the display on each monitor and whether it shows |
-| State | online or since when offline, running time, the browser and its kiosk windows, pending Windows updates, a pending restart, whether the scripts are current, the operation in progress and the last result |
-| PC load | processor, video decoding, memory and disk |
+| State | online or since when offline, running time, the browser and its kiosk windows, pending Windows updates, a pending restart, whether the scripts are current, the operation in progress and the last result; the PC load: processor, video decoding, memory and disk |
+
+The buttons of a PC — Restart browsers, Reboot, Screenshot (when allowed), Update scripts, Emergency remote desktop,
+Edit, Remove — are in a row under it; on the list of displays the command buttons are under each display as well.
 
 **Edit** sets the name, the monitors, the server address, the displays on the monitors (a display started by the
 launcher suggests its PC and monitor), the MeshCentral node and whether screenshots are allowed. **Replace credential**
