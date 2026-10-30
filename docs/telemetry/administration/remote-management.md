@@ -26,7 +26,7 @@ MeshCentral asks for its own sign-in with two factors.
 | Logs of the service, the agent, the proxy, the database, the VPN, the tunnel, the kernel | System → Logs | `system.admin` |
 | Camera tiles playing on each display | Displays | `display.control` |
 | Kiosk PCs: setup, state, restart the browsers, reboot, update the scripts | Displays → Kiosk PCs | `display.manage` |
-| Screenshot of a kiosk PC (off until allowed for the PC) | Displays → Kiosk PCs | `display.screenshot` |
+| Screenshot of a kiosk PC, one picture per monitor (off until allowed for the PC) | Displays → Kiosk PCs | `display.screenshot` |
 | Emergency remote desktop of the server or a kiosk PC | System → Server, Displays | `system.admin`, `display.manage` |
 
 The operating system pages need a Linux server with apt (Debian, Ubuntu); on Windows they say so — install the Windows
@@ -81,10 +81,19 @@ the agent out; the displays stay paired.
 
 ### Screenshots
 
-A screenshot shows the whole screen, also camera pictures without privacy masks. It is therefore off for every PC
-until an administrator with `display.screenshot` allows it for that PC with a reason. Each screenshot needs
-`display.screenshot` and a reason and is in the audit trail; the picture goes from the PC to the server's memory and
-is handed once to the person who asked for it — it is never stored.
+A screenshot shows the page of each monitor as its kiosk browser draws it — one picture per monitor, named by the
+display on it — also camera pictures without privacy masks. It is therefore off for every PC until an administrator
+with `display.screenshot` allows it for that PC with a reason. Each screenshot needs `display.screenshot` and a reason
+and is in the audit trail; the pictures go from the PC to the server's memory and are handed once to the person who
+asked for them — they are never stored. When a monitor's browser cannot be reached, the dialog names it with the
+PC's message.
+
+The picture comes from the browser itself, not from a capture of the Windows desktop (Microsoft Defender blocks such
+captures as a hacking tool), so other windows on the screen are not in it. For this the launcher gives each kiosk
+browser a debugging port (9222 for monitor 1, 9223 for monitor 2, …) that Chrome opens on the PC's own loopback
+address only: nothing in the network reaches it, but a program running on the PC itself could control the kiosk
+browser through it — fine for a PC that only shows the displays. A kiosk started by scripts before 0.86.5 restarts
+once to get its port after **Update scripts**.
 
 ## Emergency remote desktop (MeshCentral)
 
