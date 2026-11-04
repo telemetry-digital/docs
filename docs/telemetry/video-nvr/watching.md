@@ -98,8 +98,10 @@ Pausing the live picture and pressing play continues from the paused moment out 
 
 Drag in the hour detail to select a part, or enter the exact **From** and **To** in your local time, to the second and
 also across an hour or midnight (an empty field starts one hour from the other). Dragging fills the fields, so you can
-fine-tune a selection in them. Then choose **Download selection (MP4)**. The selection may be **at most one
-hour** — longer selections show *(at most one hour)* and the button stays off. The file is named
+fine-tune a selection in them. Then choose **Download selection (MP4)**. The selection may be **at most 24
+hours** — longer selections show *(download: at most 24 hours)* and the button stays off. A camera records about
+30 GB a day at 3 Mbit/s, so a long download takes as long as your connection needs; on the site's network it is faster
+than over the Internet. The file is named
 `<camera>-<start time, UTC>.mp4` and plays in VLC or any player; the video is remuxed, never re-encoded. A change of
 the camera's picture size or codec inside the range ends the file early.
 

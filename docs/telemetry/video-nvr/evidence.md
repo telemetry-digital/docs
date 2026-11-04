@@ -19,8 +19,8 @@ On the camera's page drag over the hour detail to select a part and choose **Hol
 | Case or report number | ≤ 80 characters, optional | the police or insurance reference |
 | Reason | required | written to the hold and to the audit trail |
 
-The server accepts holds of up to 31 days and ending at most one day ahead (through the API); in the hour detail the
-selection is at most one hour.
+The server accepts holds of up to 31 days and ending at most one day ahead (through the API); dragging in the hour detail
+selects within one hour, the **From** and **To** fields select more.
 
 - Held recordings are **never deleted** — not after the camera's retention days and not to free disk space. Events
   inside a held range are kept too. When only held recordings remain on a full disk, the disk incident tells

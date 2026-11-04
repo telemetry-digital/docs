@@ -52,7 +52,7 @@ See [Camera list — export and import](export-and-import.md).
 |---|---|
 | Playback speed (camera page) | 0.5×, 1×, 2×, 4×, 8×, 16× (the server accepts 0.25–16) |
 | Digital zoom | 1× to 8× |
-| MP4 export | at most 1 hour per file |
+| MP4 export | at most 24 hours per file |
 | Evidence package | at most 1 hour; reason ≤ 500 characters; case number ≤ 80 characters |
 | Evidence hold | title 1–120 characters; case number ≤ 80; up to 31 days; ending at most 1 day ahead |
 | Timeline query | at most 32 days per request |
