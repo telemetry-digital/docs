@@ -50,6 +50,9 @@ selection is at most one hour.
 Every recorded file gets its **SHA-256** computed while it is written, without extra disk reads. An evidence package
 therefore shows that the files on disk are unchanged since they were recorded.
 
+A file above 4 GiB (written by a version before 0.86.6) is not read again at export: the manifest marks it with
+`sha256_not_checked` and `verify-evidence` reports it. The hash of `video.mp4` and the signature are not affected.
+
 ## Evidence package
 
 Select at most one hour in the hour detail and choose **Evidence package (ZIP)**. You are asked for a reason (up to
