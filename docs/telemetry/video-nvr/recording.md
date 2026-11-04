@@ -44,6 +44,9 @@ long from now on a camera that records on events and has *marks* ticked.
 - Files are stored as `<storage_dir>/<camera id>/<date, UTC>/<time, UTC>.mp4`.
 - The index of the open file (its end and size) is updated every 10 seconds, so what was just recorded can already be
   played back.
+- A camera can stay connected for any length of time. Before 0.86.6 a connection older than 28.5 hours stopped
+  starting new files, so one file kept growing and could not be found in playback. Update to 0.86.6 or newer: the
+  files already written that way get a correct end at the start of the server and play back from any time.
 - Every file gets its **SHA-256** computed while it is written, for evidence (see [Evidence](evidence.md)).
 - Sound is recorded with the picture when the camera's sound is on and *Sound recording* is *record it with the
   picture*; with *live only* the file has no sound track.
