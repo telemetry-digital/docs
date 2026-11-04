@@ -45,7 +45,7 @@ directory.
 
 | Setting | Key | Default | Bounds | Meaning |
 |---|---|:---:|:---:|---|
-| Camera offline or not recording for (min) | `camera_offline_minutes` | 5 | 0–1440 | incident for a recording camera that is offline, or a continuously recording camera that sends video but writes nothing |
+| Camera offline or not recording for (min) | `camera_offline_minutes` | 5 | 0–1440 | incident for a recording camera that is offline, a continuously recording camera that sends video but writes nothing, or a camera that keeps writing one file |
 | Display not showing for (min) | `display_offline_minutes` | 5 | 0–1440 | incident for a paired display (with offline alerts on) that stopped reporting |
 | Free space of the video disk below (%) | `disk_free_percent` | 5 | 0–50 | incident when the disk of the recordings is nearly full |
 
@@ -70,6 +70,7 @@ time. Administrators are notified by e-mail and Web Push, and the incident resol
 |---|:---:|---|
 | Camera … is offline | major | a camera that records (continuously or on events) is not online |
 | Camera … is not recording | critical | a continuously recording camera is online but no file was written for 2 minutes (storage full or not writable?) |
+| Camera … keeps writing one recording file | major | one file stays open longer than three times *Length of one recorded file* plus 2 minutes (5 minutes at the default length); recording goes on, but the file is deleted as a whole when retention or the disk limit reaches it |
 | Display … is not showing | major | a paired display has not reported for over a minute, for the configured time |
 | Video storage almost full | critical | free space of the recordings' disk is below the percentage; recording stops when the disk is full |
 
