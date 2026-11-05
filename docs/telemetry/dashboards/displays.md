@@ -42,6 +42,7 @@ send cameras and messages to it.
 | … for (s) | number | 30 | 5–600 seconds |
 | Language of the display | list | your language | *as the browser*, or one of the languages enabled on the server |
 | Incident when the display stops showing | checkbox | on | — |
+| Recordings can be played on this display | checkbox | off | only when editing a paired display; switching it on needs `video.playback` |
 | Reason (audit trail) | text | — | required, at most 200 characters |
 
 **Items** are added with *Add dashboard or process screen* and *Add video wall screen*:
@@ -123,6 +124,13 @@ on the chosen displays. One command can address at most 500 displays by selectio
   by itself.
 - The page keeps the screen awake, hides the pointer after 3 seconds without movement and switches to full screen on
   the first click.
+- A click on a camera of a wall enlarges it with the main stream; another click, **Esc** or **Back to the wall** returns,
+  and it returns by itself after 5 minutes.
+- With **Recordings can be played on this display** on, the enlarged camera has a **Recordings** button: day, timeline,
+  skip, pause and speed. **Anyone at the display can watch them without signing in**, so switch it on only where that is
+  acceptable. It covers the cameras of the display's content, privacy masks stay on, there is no sound and nothing can
+  be downloaded. Every playback is in the audit trail under the display's name, which does not say who stood there. It
+  returns to the wall after 15 minutes without a touch.
 - With **Incident when the display stops showing** on, an incident is opened when the display stops reporting, after
   the time set under *Cameras → Settings → Monitoring*.
 

@@ -96,7 +96,8 @@ On the wall:
 - a click on a tile enlarges that camera to the whole monitor with the **main stream** — on every wall; **Esc**,
   another click or **Back to the wall** returns. On a wall with **The enlarged camera offers its recordings**, the
   enlarged camera also has a **Recordings** button (below). A paired display (a kiosk) enlarges a tile the same way and
-  returns to the wall by itself after 5 minutes; it has no user, so it never offers recordings;
+  returns to the wall by itself after 5 minutes. It has no user, so recordings need its own option — see
+  [Displays](../dashboards/displays.md);
 - tiles with an event going on are outlined with the event kinds, refreshed every 3 seconds;
 - the toolbar — wall name, **screen selector**, **layout** (grid or one camera per row), **Full screen**, **Open on
   all monitors** (the other screens), **Close** — hides together with the pointer after 3 seconds without movement.
