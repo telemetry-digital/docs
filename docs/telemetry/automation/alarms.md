@@ -165,6 +165,11 @@ shows it. The acknowledgement updates every open list at once and starts flows w
 
 ![The Alarms widget of a dashboard with active alarms and an Acknowledge button in each active row](img/alarms-acknowledge.webp)
 
+The alarm events (raised, escalated, acknowledged with who and why, cleared) and the commands sent to devices are
+listed together in the [Logbook widget](../dashboards/widgets-lists.md) (0.87.0), also through the API:
+`GET /api/v1/logbook` with the optional filters `devices`, `keys` (a trailing `*` matches a prefix), `kinds`
+(`commands`, `alarms`), `limit` (up to 500) and `before` (paging), permission `data.read`.
+
 There is no shelving or suppression of alarms in this version: to silence a rule, disable it (with a reason), and
 save it again when the cause is fixed.
 

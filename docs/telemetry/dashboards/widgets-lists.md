@@ -111,6 +111,37 @@ The recent alarms of the organization, active ones first.
 - On a public link the list contains only alarms of the datastreams bound by the dashboard's widgets.
 - **Without data**: *no alarms*.
 
+## Logbook
+
+The operations log of a control room: what people did and what the plant reported, newest first. Available from
+0.87.0.
+
+| Setting | Type | Default | Allowed values |
+|---|---|:---:|---|
+| Title | text | Logbook | — |
+| Devices (empty = all) | devices | all | up to 24 devices |
+| Rows | number | 30 | 1 to 500 |
+| Show | choice | all | all, commands, alarms |
+| Keys | text | all | comma-separated keys; a trailing `*` matches a prefix (`agi_*,sp_rpm`) |
+| Labels | text | — | one `key=label` per line, at most 4000 characters |
+
+| Column | Content |
+|---|---|
+| Time | when it happened; the time only for today's entries |
+| User | who sent the command or acknowledged the alarm |
+| Where | the device, or the asset of the datastream; hidden when one device is bound |
+| What | the label of the key, or *Alarm raised*, *Alarm escalated*, *Alarm acknowledged*, *Alarm cleared* with the severity |
+| Value | the value written, or the value that raised the alarm; *(read back …)* when the device reported another value |
+| Reason | the reason given with the command or the acknowledgement |
+
+- Commands are every write, start, stop or mode change sent to a device — from setpoint, switch and button widgets,
+  faceplates, click actions, automation rules and the API. A command that has not been confirmed by the device shows
+  its state (*queued*, *sent*, *failed*, *expired*).
+- The entries come from the command and alarm logs, which cannot be changed or deleted.
+- The list updates when an alarm of the organization changes.
+- The logbook is not available on public links.
+- **Without data**: *no entries*.
+
 ## Devices
 
 The connection state of the devices of the organization, or of the selected ones.

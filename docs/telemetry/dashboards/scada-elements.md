@@ -206,10 +206,19 @@ without an action do nothing.
 | Open faceplate | — | the faceplate of the element's tag, with operation when a device and a command key are bound |
 | Open trend | — | the faceplate without the operation part |
 | Go to screen | Screen: another dashboard or picture of the organization | opens it (not on public links) |
+| Open screen as popup | Screen: another dashboard or picture of the organization | opens it in a window over the current picture (not on public links) |
 | Send command | Key, Value, Method (default `write`), Ask for confirmation (default on) | opens a command dialog |
 
 The **Send command** action needs the *Device for operation* of the Binding section. Its value is `true`, `false`, a
 number, or a text of at most 64 characters; the method is a lower-case name of at most 32 characters.
+
+## Screens as popups
+
+*Open screen as popup* (0.87.0) shows another screen in a window: a small picture made as the faceplate of a machine,
+for example a motor with its speed, current, power, energy, running hours, a mode switch AUTOMATIC/MANUAL, a manual
+start and stop, a speed setpoint, a trend and its [logbook](widgets-lists.md). The window is as wide as the screen
+(at most the browser window) and refreshes every 3 seconds; ✕ or a click outside closes it. Widgets, click actions
+and commands in the window work as on the screen itself.
 
 ## Faceplates
 
