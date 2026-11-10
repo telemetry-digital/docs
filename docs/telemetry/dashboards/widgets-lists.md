@@ -139,7 +139,8 @@ The operations log of a control room: what people did and what the plant reporte
   its state (*queued*, *sent*, *failed*, *expired*).
 - The entries come from the command and alarm logs, which cannot be changed or deleted.
 - The list updates when an alarm of the organization changes.
-- The logbook is not available on public links.
+- On a paired [display](displays.md) (0.87.1) the logbook shows the entries of the devices of its widget (all of the
+  organization for a logbook without devices); public links never show it.
 - **Without data**: *no entries*.
 
 ## Devices
