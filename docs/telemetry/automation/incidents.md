@@ -21,9 +21,9 @@ them. Everything is kept as history and audited.
 | See the list and open an incident's detail | `data.read` |
 | Open a new incident, change fields, add notes, change the status | `alarm.ack` (or `system.admin`) |
 
-Without `alarm.ack` the detail opens read-only. Users of an organization see that organization's incidents; system
-administrators see every organization and the incidents of the server itself (for example a broken audit chain or a
-database replica), with the organization in the last column.
+Without `alarm.ack` the detail opens read-only. Users of an organization see that organization's incidents; server
+administrators (`system.admin`) also see the incidents of the server itself (for example a disk running low, a
+failed backup, a broken audit chain or a database replica), with the organization column empty.
 
 ## The list
 
@@ -47,7 +47,8 @@ Open incidents come first, newest first; the list shows up to 200.
 | Audit chain broken | automatically, when the audit trail's hash chain does not verify | critical |
 | Database replica | automatically, for a replica that is disconnected, lagging, lost or failed | major; critical when lost or failed |
 | MQTT connection | automatically, for an MQTT bridge or account disconnected longer than its limit | major |
-| Camera, Display, Video storage | automatically, for a camera that stops recording, a display that stops showing, a nearly full video disk — see [Video settings](../video-nvr/settings.md) | set by the source |
+| Camera, Display | automatically, for a camera that stops recording or a display that stops showing — see [Video settings](../video-nvr/settings.md) | set by the source |
+| Storage | automatically, for a nearly full disk of the recordings ([Video settings](../video-nvr/settings.md)) or of the server, and a video limit too large for the server's disk ([Disk space](../administration/server.md#disk-space)) | major; critical when almost full |
 | Flow | by a flow's [Incident](flow-nodes-actions.md) node | chosen in the node |
 | Manual | by a person with **New incident** | chosen in the dialog |
 
@@ -57,8 +58,8 @@ connection that recovers sets the status *resolved* with the cause *The connecti
 *The replica recovered by itself*, unless someone already wrote a cause.
 
 When the system opens an incident, administrators are told: an e-mail to the server's global recipients and Web Push
-to users with `alarm.ack` or `system.admin` (of the incident's organization, or of every organization for server
-incidents). The history records whom it reached. Manual incidents do not notify.
+to users with `alarm.ack` or `system.admin` of the incident's organization; incidents of the server go only to
+server administrators (`system.admin`), not to the operators of every organization. The history records whom it reached. Manual incidents do not notify.
 
 ## New incident
 

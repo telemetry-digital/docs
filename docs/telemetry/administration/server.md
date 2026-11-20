@@ -43,6 +43,7 @@ A backup is one package with:
 
 Backups are made **daily** at a set time (default 02:30) or by hand, **encrypted with a passphrase** and kept by a
 grandfather–father–son rule: by default the last 14 days, one a week for 4 weeks and one a month for 12 months.
+Each kept backup takes room on the server's disk: on a small disk keep fewer (for example 3 days, 2 weeks, 1 month).
 
 ![System → Backups: the state, the offsite copy and the last restore test, the daily schedule with the retention](img/backups.webp)
 
@@ -205,6 +206,22 @@ At most three replicas can be attached. A replica is not a backup: deleted data 
 - `/.well-known/security.txt` publishes `security.contact` and points to `/security-policy`, the security policy
   of the product served as plain text by every server.
 - Logs can be forwarded to syslog (`log.syslog`); the server checks its clock against NTP (`[time]`).
+
+### Disk space
+
+A full disk stops the database and with it the whole server. Every minute the server checks the disks holding the
+system, its data directory and the backups, and opens an incident (e-mail and Web Push to administrators):
+
+| Incident | Severity | Raised when |
+|---|:---:|---|
+| Server disk is running low | major | less than 15 % of the disk is free |
+| Server disk almost full | critical | less than 5 % (or less than 1 GB) is free |
+| Video limit too large for the server disk | major | the recordings share the disk with the server and *Disk space for recordings*, once reached, would leave less than 15 % free |
+
+A condition has to last two checks in a row; the incident resolves itself once the disk has 2 % more free than the
+limit. Space is usually freed by keeping fewer [backups](#backups), lowering *Disk space for recordings* or giving the
+recordings their own disk. A disk used only by the recordings is watched by the video incident *Video storage almost
+full* ([Video settings](../video-nvr/settings.md#monitoring-incidents)).
 
 ## Reporting a vulnerability
 

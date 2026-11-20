@@ -73,6 +73,7 @@ time. Administrators are notified by e-mail and Web Push, and the incident resol
 | Camera … keeps writing one recording file | major | one file stays open longer than three times *Length of one recorded file* plus 2 minutes (5 minutes at the default length); recording goes on, but the file is deleted as a whole when retention or the disk limit reaches it |
 | Display … is not showing | major | a paired display has not reported for over a minute, for the configured time |
 | Video storage almost full | critical | free space of the recordings' disk is below the percentage; recording stops when the disk is full |
+| Video limit too large for the server disk | major | the recordings share the disk with the server and their disk space, once reached, would leave less than 15 % free (see [Disk space](../administration/server.md#disk-space)) |
 
 An incident closed by someone while the problem goes on is opened again after the configured time. Incidents of
 removed or disabled cameras end. See [Alarms, notifications and incidents](../automation/alarms.md).
