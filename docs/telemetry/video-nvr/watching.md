@@ -8,6 +8,10 @@ tags: [video, playback, export, live-view, timeline]
 Live and recorded video play in the browser without plug-ins. H.264 and H.265 arrive as fragmented MP4 over a
 WebSocket, MJPEG as single JPEG pictures.
 
+A live picture that stands for 20 seconds while its connection stays open (for example after the browser lost the
+decoder state) opens its stream again by itself, on tiles, camera pages, video walls and displays alike. A camera
+that is offline is reported as offline and reconnects on its own.
+
 ## Live view
 
 *Cameras → Live view* (`video.view`) shows every enabled camera you may see as a tile playing the **sub-stream** (the

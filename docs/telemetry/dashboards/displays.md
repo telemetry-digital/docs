@@ -73,7 +73,9 @@ whose cameras lie outside their groups.
 
 Every 30 seconds a display reports each camera tile: *playing* (the picture moved on in the last 10 seconds), *picture
 stands*, *connecting*, *camera offline* or *cannot play* (the browser does not support the camera's codec). Only
-cameras the display may show are reported, and a camera is named only to users who may see it.
+cameras the display may show are reported, and a camera is named only to users who may see it. A tile whose
+picture stands for 20 seconds opens its stream again by itself, so *picture stands* normally lasts less than a minute;
+a tile that keeps standing points to the camera or the network.
 
 The page refreshes every 10 seconds while no dialog is open. **Disconnect** asks for a reason; the display returns to
 the pairing screen and must be paired again. Below the list, **Kiosk PCs** (for `display.manage`) shows the Windows PCs
