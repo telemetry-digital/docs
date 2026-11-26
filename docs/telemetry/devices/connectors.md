@@ -90,7 +90,7 @@ one server; add a connector for every further server.
 | Security mode | None | None, Sign, SignAndEncrypt | policy None requires mode None and vice versa |
 | Authentication | anonymous | anonymous, username and password | how the server signs in |
 | Username | — | required for username authentication | — |
-| Password | — | blank keeps the stored one | stored with the connector |
+| Password | — | blank keeps the stored one | stored encrypted (AES-256-GCM with the server's secret key, 0.90.2); never returned by the API |
 | Server certificate thumbprint | — | empty or 40 hex digits (SHA-1; colons and spaces are removed) | pins the server certificate: the connector refuses a server that presents another one |
 | Reading | polling | polling, subscription (server reports changes) | how values are read |
 | Polling interval (s) | 10 | 1–3600 | polling: how often the nodes are read |
