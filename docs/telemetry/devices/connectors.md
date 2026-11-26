@@ -172,7 +172,7 @@ Values are read by absolute address, so no project file is needed.
 | Polling interval (s) | 10 | 1–3600 | how often the tags are read |
 | Timeout (ms) | 3000 | 100–30 000 | per request and for the connection |
 | Virtual device id | `s7-<name>` | letters, digits and `. _ : -`, at most 128 | external id of the device that receives the values (created automatically with transport `s7` and the name `<connector> (S7)`) |
-| Tags | — | 1–2000 lines | what to read, see below |
+| Tags | — | 1–2000 lines | what to read, see below; or [import them](#importing-tags-from-tia-portal-or-step-7) from the PLC project |
 
 Each tag is one line `key | address | type | scale | offset | rw | min | max | device`:
 
@@ -212,6 +212,63 @@ negotiated PDU size and reads all tags once; tags that cannot be read (a data bl
 of range) are listed with the reason and do not stop the others. Requests are split to fit the PDU of the CPU, so long
 tag lists and strings work on small CPUs too. A lost connection is retried after 5 seconds, then 10, 20, … up to about
 a minute.
+
+### Importing tags from TIA Portal or STEP 7
+
+The tags do not have to be typed: **Import tags from TIA Portal / STEP 7** (0.91.0) reads an export of the PLC project
+and proposes a tag for every variable — the key, the address and the data type. You choose which ones go into the tag
+list. Nothing is read from the PLC, and nothing is stored until you save the connector.
+
+![The import dialog with a data block source: block number 1, key prefix p1_, nine proposed tags with key, symbol, address, type and comment, five of them selected, and one variable left out](img/connector-s7-import.webp)
+
+| What you export | File | How |
+|---|---|---|
+| TIA Portal PLC tags | `.xlsx` | *PLC tags → Show all tags → Export* |
+| TIA Portal PLC tags | `.xml` | exported with TIA Portal Openness |
+| TIA Portal data block | `.db` | right-click the block → *Generate source from blocks* → *Including all dependent blocks*, so its data types are in the same file |
+| TIA Portal data block | `.xml` | exported with TIA Portal Openness |
+| STEP 7 V5 symbol table | `.sdf`, `.asc`, `.seq` | *Symbol Table → Export* |
+| STEP 7 V5 data block | `.awl` | *File → Generate Source* in the LAD/STL/FBD editor |
+| anything else | `.csv` | a table with name, address, type, comment — comma, semicolon or tab |
+
+| Setting | Type | Default | Allowed values |
+|---|---|:---:|---|
+| File | file | — | at most 8 MB |
+| Data block number | number | from the file | 1–65535; needed for TIA Portal block sources, which do not carry the number |
+| Key prefix | text | — | `^[a-z][a-z0-9_]{0,15}$`, for example `m1_`; put before every key |
+| Text encoding | list | from the language | Western Europe (1252), Central Europe (1250), Cyrillic (1251), Greek (1253), Baltic (1257); used for files that are not UTF-8 |
+
+**Read file** shows the proposal. Filter it by text or by area (inputs, outputs, bit memory, data blocks), tick the
+variables — *Select shown* ticks everything the filter shows — and press **Add selected tags**. An address that is
+already in the tag list is not added twice.
+
+- **Keys** are made from the symbol: `Tlak čerpadla` becomes `tlak_cerpadla`, `Motor.Current` becomes `motor_current`,
+  `Temps[3]` becomes `temps_3`. A key that is already used gets `_2`, `_3` ….
+- **Imported tags are read-only.** Mark the ones the server may write with `rw` in the tag line, as before.
+- **Left out** lists every variable that did not become a tag, with the reason: peripheral addresses (`PEW 256`,
+  `%IW64:P`), symbols of blocks, timers and counters, data types the connector cannot read (S5TIME, DTL, DATE_AND_TIME,
+  LINT, WSTRING …).
+- TIME is read as DINT in milliseconds, TIME_OF_DAY as UDINT in milliseconds, DATE as UINT in days since 1990-01-01.
+
+#### Data blocks
+
+A block source holds the declaration, not the addresses, so the addresses are **calculated** by the layout rules of
+blocks with standard access. Structures and data types are expanded (`Motor.Current`), arrays element by element
+(at most 1024 elements of one array are proposed).
+
+!!! warning "Compare a few addresses before use"
+    Compare some of the calculated addresses with the *Offset* column of the block in TIA Portal or STEP 7 — the first
+    and the last variable, and the one after a string or an array. A wrong offset reads a wrong value without an
+    error.
+
+| Situation | What the import does |
+|---|---|
+| The block has optimized access | refuses the block: it has no absolute addresses. Switch *Optimized block access* off in the block properties, compile, download and export again |
+| A data type is not in the file | stops at that variable; the variables after it are left out, because their addresses depend on its size. Export the block with its dependent blocks |
+| The source has no block number (TIA Portal) | shows `DB{db}.…`; enter the *Data block number* and read the file again |
+| An instance data block of a function block | left out |
+
+![The import dialog with a STEP 7 symbol table in Central European encoding, filtered to bit memory](img/connector-s7-import-symbols.webp)
 
 ## Modbus TCP client
 
