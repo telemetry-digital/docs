@@ -12,7 +12,8 @@ and a device. The controls on the device page are described field by field in [T
 
 A command goes to an MQTT device on `d/{id}/cmd` as `{"id": "…", "m": "<method>", "a": {…}, "exp": <unix time>}`;
 devices with ThingsBoard firmware receive the same command as an RPC request. An HTTP device picks it up with
-`GET /api/v1/d/cmd?wait=30`. The device answers with the same id on `d/{id}/cmd/ack` (or
+`GET /api/v1/d/cmd?wait=30`; a command is handed to **one** poll only, also when several polls run at the same
+moment (0.90.2). The device answers with the same id on `d/{id}/cmd/ack` (or
 `POST /api/v1/d/cmd/{id}/ack`). For OPC UA and Modbus devices the server performs the write itself and reads the value
 back.
 
@@ -79,7 +80,15 @@ images and starting or cancelling campaigns needs `fota.manage`.
 | Version | — | required, 1–32 characters from `A–Z a–z 0–9 . _ + -` | for example `1.5.0` |
 | Hardware id | — | required, at most 32 characters | the hardware the image is for, for example `esp32-s3` |
 | Minimum current version | — | optional, same format as the version | the device must already run at least this version |
-| Ed25519 signature (hex) | — | optional, 64 bytes as 128 hexadecimal characters | the author's signature; the device verifies it |
+| Ed25519 signature (hex) | — | optional, 64 bytes as 128 hexadecimal characters | the author's signature; it is stored and sent to the device with the target |
+
+!!! warning "The device library does not verify the signature yet"
+    The device library (ctrl32-telemetry-c, ESP-IDF and Arduino ports) checks the **SHA-256** of the downloaded image
+    against the campaign and does **not** verify the Ed25519 signature. The SHA-256 proves that the image arrived
+    intact from this server; it does not prove who built it. Until the library verifies signatures, roll firmware
+    out only from a server you trust and control, and keep the right to upload firmware (`fota.manage`) to few
+    people.
+
 | File | — | required, at most the configured maximum (16 MiB by default, `max_size_mb` in `config.toml`) | the image |
 | Notes | — | at most 500 characters | — |
 | Reason (audit trail) | — | required | — |

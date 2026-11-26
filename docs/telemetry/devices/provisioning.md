@@ -90,7 +90,8 @@ a fleet behind one NAT address registers at once.
 ## Devices waiting for approval
 
 With *New devices wait for approval*, a newly provisioned device receives its token but cannot connect until it is
-approved. The list **Devices waiting for approval** shows the device's name and external id, its profile and when it
+approved — neither over MQTT nor over the device HTTP API (telemetry, attributes, commands; the HTTP API follows
+the rule since 0.90.2). The list **Devices waiting for approval** shows the device's name and external id, its profile and when it
 registered; the **Provisioning** tab shows their number as a badge.
 
 - **Approve** (with a reason) lets the device connect.
