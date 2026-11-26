@@ -38,7 +38,7 @@ section without anything for you is left out.
 | Section | In the menu | Needs |
 |---|---|---|
 | — | **Overview** (the start dashboard of your organization), **Dashboards** (all of them) | signed in, `data.read` |
-| Monitoring | **Home**, **Energy**, **Object counting**, **Cameras**, **Displays**, **Incidents**, **Reports** (report templates, stored reports, scheduled reports, report signatures) | `data.read`; Cameras `video.view`; Displays `display.control`; Reports `content.write`, `audit.read` or `report.sign` |
+| Monitoring | **Home**, **Energy**, **Object counting**, **Cameras**, **Displays**, **Alarms** (current, shelved, history, statistics, alarm classes), **Incidents**, **Reports** (report templates, stored reports, scheduled reports, report signatures) | `data.read`; Cameras `video.view`; Displays `display.control`; Reports `content.write`, `audit.read` or `report.sign` |
 | Devices and automation | **Devices**, **Assets** (sites, assets), **Automation** (flows, alarm rules, automation rules), **Firmware** | `data.read`; automation rules `config.write`; Firmware `fota.read` |
 | Administration | **Users**, **Audit**, **Settings**, **System** | `user.admin`; `audit.read` or `report.sign`; `content.write`; `system.admin` |
 | Bottom of the menu | **My account**: **Profile**, **Password and MFA**, **API tokens**, **Browser notifications**, **AI assistants**, **API documentation** | signed in |

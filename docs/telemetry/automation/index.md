@@ -33,6 +33,7 @@ automation rules, controls smart-home devices with scenes and keeps an incident 
 6. [Flow expressions](flow-expressions.md) — the expression and template language used by the nodes.
 7. [Subflows and groups](flow-subflows.md) — reusable parts and tidy canvases.
 8. [Alarms](alarms.md) — alarm rules, alarm states, acknowledgement and the alarm log.
+   [Alarm management (ISA-18.2)](alarm-management.md) — the Alarms page, alarm classes, shelving, the alarm bar and statistics.
 9. [Notifications and escalation](notifications.md) — channels, escalation policies, the delivery log and Web Push.
 10. [Incidents](incidents.md) — the incident log with impact, cause and CAPA.
 11. [Automation rules](automation-rules.md) — condition → action rules under *Automation → Automation rules*.

@@ -118,11 +118,15 @@ For conditions over several datastreams (for example "above the limit while the 
 
 ## Alarm states
 
+From 0.89.0 the alarms are managed after ISA-18.2 — the **Alarms** page, alarm classes, shelving, the alarm bar and
+statistics are described in [Alarm management (ISA-18.2)](alarm-management.md). The stored `state` of an alarm:
+
 | State | Meaning |
 |---|---|
 | active | raised and not yet acknowledged or cleared |
 | acknowledged | someone confirmed they know about it; it stays until the value clears it |
-| cleared | the value is back in range (or, for alarms of automation rules, the rule's condition ended) |
+| suppressed | shelved: recorded, not announced (0.89.0) |
+| cleared | the value is back in range (or, for alarms of automation rules, the rule's condition ended); from 0.89.0 it still waits for its acknowledgement when nobody acknowledged it before |
 
 | Severity | Raised by |
 |---|---|
@@ -142,6 +146,8 @@ Every alarm has an append-only history:
 | notified | a notification was sent (channel, kind and event) |
 | delivery_failed | a notification could not be sent (with the error) |
 | acknowledged | someone acknowledged it, with name and reason |
+| suppressed | someone shelved it, with name, reason and until when (0.89.0) |
+| unsuppressed | the shelf ended, by itself or by hand (0.89.0) |
 | cleared | the alarm cleared, with the value |
 
 The *Alarm log PDF* (permission `data.export`) and the export `GET /api/v1/export/alarms` contain the alarms with
@@ -150,14 +156,15 @@ their history. The **Alarms** widget on a dashboard lists active alarms first �
 
 ## Acknowledging an alarm
 
-Acknowledging confirms that a person knows about an active alarm. It:
+Acknowledging confirms that a person knows about an alarm. It:
 
 - needs the permission `alarm.ack` and a **reason** of at least 3 characters,
-- works only on an *active* alarm,
+- works on an active alarm and, from 0.89.0, on one that returned to normal before anyone acknowledged it,
 - stops the escalation: later steps of the escalation policy are cancelled,
 - is written to the alarm log with your name and reason and to the audit trail as `alarm.acknowledge`.
 
-Acknowledge an alarm with the **Acknowledge** button next to an active alarm — in the *Alarms* widget of a dashboard
+Acknowledge an alarm with the **Acknowledge** button next to it — on the [Alarms page](alarm-management.md) (one,
+the selected or all shown with one reason), in the *Alarms* widget of a dashboard
 and in the alarm list of the home page (shown when no dashboard is the home page) — or through the API:
 `POST /api/v1/alarms/{id}/ack` with `{"reason": "…"}`. The button asks for the reason and is shown only to users with `alarm.ack`; a public link never
 shows it. The acknowledgement updates every open list at once and starts flows whose
@@ -170,8 +177,8 @@ listed together in the [Logbook widget](../dashboards/widgets-lists.md) (0.87.0)
 `GET /api/v1/logbook` with the optional filters `devices`, `keys` (a trailing `*` matches a prefix), `kinds`
 (`commands`, `alarms`), `limit` (up to 500) and `before` (paging), permission `data.read`.
 
-There is no shelving or suppression of alarms in this version: to silence a rule, disable it (with a reason), and
-save it again when the cause is fixed.
+To silence a known alarm for a while, **shelve** it (0.89.0, 15 minutes to 24 hours with a reason) — see
+[Shelving](alarm-management.md#shelving). To silence a rule for good, disable it (with a reason).
 
 ## Who is told
 
