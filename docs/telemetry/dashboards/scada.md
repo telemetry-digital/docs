@@ -141,6 +141,9 @@ With nothing selected the Properties panel shows the picture:
 | Grid px | number | 10 | 1–100; the snap and grid step |
 | State colours | list | classic (WinCC-like) | classic, ISA-101 high performance |
 
+Below them, *Operator view* places the picture in the picture tree and *Faceplate type* makes it a faceplate that
+opens for any machine (0.90.0) — see [Operator view, picture tree and faceplate types](operator-view.md).
+
 The panel also counts the objects and widgets. Widgets must stay inside the canvas, so a smaller canvas can make a
 save fail with *geometry outside the canvas*. The state colours are listed in
 [Drawing elements](scada-elements.md).
