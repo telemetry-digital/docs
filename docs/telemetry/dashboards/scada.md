@@ -29,15 +29,43 @@ default flag, public links and retiring work as for dashboards — see [Dashboar
 
 ## The editor window
 
-![The process screen editor: drawing tools and the symbol library with vessels and pumps on the left, the canvas in the middle, the toolbar with align, arrange, zoom and grid buttons above, and the picture properties on the right](img/process-screen-editor.webp)
+The editor takes the **whole browser window** (0.90.1): the menu of the application is covered while you draw, so
+the picture gets all the room — also on a notebook. *Cancel* or *Save as new version* brings you back.
+
+![The process screen editor on a 1366 px notebook: the title row with Save as new version, the toolbar in one row, the strip of drawing tools, the symbol library, the canvas with a waterworks picture and a selected pump, and the properties of the pump on the right](img/process-screen-editor.webp)
 
 | Area | Content |
 |---|---|
-| Toolbar (top) | undo and redo, clipboard, align and distribute, order, group, lock and hide, grid and snap, zoom |
-| Left panel | drawing tools, the organization library, symbol search and the symbol library by category |
+| Title row | the name of the picture, *Dashboard settings*, *Add widget*, *Save as new version*, *Retire*, *Cancel* |
+| Toolbar | undo and redo, clipboard, align and distribute, order, group, lock and hide, grid and snap, zoom, and the two panel buttons |
+| Tool strip (left edge) | the drawing tools; always visible |
+| Left panel | the organization library, symbol search and the symbol library by category |
 | Canvas | the picture with live values; a grid when *Show grid* is on |
 | Right panel | **Properties** of the selection (or of the picture when nothing is selected) and **Layers** |
 | Status bar | the pointer position in picture pixels, the selection (name, type, size, position, rotation) and a hint for the current tool |
+
+### More room for the picture
+
+The two panels can be hidden, and the picture is fitted into the freed space:
+
+| Action | Does |
+|---|---|
+| *Symbol library panel* button | shows or hides the left panel; the drawing tools stay |
+| *Properties panel* button | shows or hides the right panel |
+| **Tab** | hides both panels, or shows both again |
+
+![The same picture with both panels hidden: the canvas takes the whole width of the window](img/process-screen-editor-wide.webp)
+
+- The browser remembers which panels were open.
+- The picture is fitted into the canvas when the editor opens and whenever the canvas changes its size — until you
+  zoom yourself; *Fit* (0) switches the automatic fit on again.
+- Below 1200 px the library starts hidden; below 900 px (a tablet held upright) both panels start hidden and open
+  **over** the canvas instead of beside it.
+
+| Moving around | How |
+|---|---|
+| Zoom at the pointer | Ctrl + mouse wheel, or a pinch on a touchpad |
+| Pan | hold **Space** and drag, or drag with the **middle mouse button**; the scroll bars and a two-finger swipe work too |
 
 Values update live while you edit. Unsaved changes mark *Save as new version* and the browser warns before you leave.
 Below a window width of 1100 px the panels are stacked under the canvas.
@@ -101,10 +129,11 @@ widget shows its widget properties on the right — see [Dashboard editor](dashb
 | Hide in operation / show | — | hidden elements are not drawn in view mode; in the editor they are pale |
 | Show grid | — | shows or hides the grid |
 | Snap to grid | — | snapping on or off |
-| Zoom out, Zoom in | −, + | zoom by a factor of 1.25, between 25 % and 400 % |
-| Fit | 0 | fits the whole picture into the window |
+| Zoom out, Zoom in | −, + | zoom by a factor of 1.25, between 10 % and 400 % |
+| Fit | 0 | fits the whole picture into the canvas and keeps it fitted when the canvas changes its size |
+| Symbol library panel, Properties panel | Tab (both) | show or hide the panels |
 
-**Ctrl + mouse wheel** zooms by a factor of 1.1. Buttons that do not apply to the selection are disabled.
+**Ctrl + mouse wheel** zooms by a factor of 1.1 and keeps the point under the pointer in place. Buttons that do not apply to the selection are disabled.
 
 ## Keyboard shortcuts
 
@@ -122,6 +151,8 @@ Shortcuts work when the focus is on the canvas, not in a text field or a dialog.
 | Esc | cancel drawing, then return to the select tool, then clear the selection |
 | Arrow keys / Shift + arrow keys | move by 1 px / by one grid step |
 | + or =, −, 0 | zoom in, zoom out, fit |
+| Tab | hide or show both panels |
+| Space + drag | pan the picture |
 
 ## Layers
 
