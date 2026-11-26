@@ -22,6 +22,7 @@ Built-in roles cannot be changed. ✓ = the role has the permission, — = it do
 | `device.manage` | — | — | — | ✓ | ✓ | — |
 | `device.console` | — | — | — | ✓ | ✓ | — |
 | `device.command` | — | ✓ | — | ✓ | ✓ | — |
+| `recipe.edit` | — | — | — | ✓ | ✓ | — |
 | `fota.read` | — | ✓ | ✓ | ✓ | ✓ | — |
 | `fota.manage` | — | — | — | ✓ | ✓ | — |
 | `config.write` | — | — | — | ✓ | ✓ | — |
@@ -76,7 +77,8 @@ Two flags of the built-in roles also matter:
 |---|---|
 | `device.manage` | creating, editing, approving, rejecting and revoking devices; device tokens; datastream assignments of a device, including *Create datastream and assign* for a key without a datastream on the *Telemetry* tab; shared attributes; provisioning profiles; MQTT accounts; the automatic device discovery inbox (adopt, ignore); renaming entities; scenes (create, change, delete) |
 | `device.console` | opening, using and closing a remote console on a device |
-| `device.command` | sending commands to devices and entities, writes through connectors, activating scenes; approving and rejecting commands and automation actions held by four eyes |
+| `device.command` | sending commands to devices and entities, writes through connectors, activating scenes; approving and rejecting commands and automation actions held by four eyes; loading a [recipe](../dashboards/recipes.md) record into a unit and approving or rejecting a load |
+| `recipe.edit` | creating, changing, deleting and importing data records of [recipes](../dashboards/recipes.md) (the elements and units of a recipe need `config.write`) |
 | `fota.read` | the Firmware pages: images and campaigns |
 | `fota.manage` | uploading firmware, creating and cancelling campaigns |
 

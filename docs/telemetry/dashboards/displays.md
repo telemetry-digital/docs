@@ -1,7 +1,7 @@
 ---
 title: Displays (kiosks)
 slug: displays
-sidebar_position: 11
+sidebar_position: 12
 tags: [displays, kiosk, video-wall, production, reference]
 ---
 

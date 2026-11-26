@@ -37,6 +37,7 @@ Values update live while the page is open, without reloading.
 | [Process picture editor](scada.md) | the SCADA editor: tools, selection, snap, zoom, layers, library, SVG import, keyboard shortcuts |
 | [Drawing elements, dynamics and faceplates](scada-elements.md) | element types, the symbol library, element properties, dynamics, click actions, faceplates, writing values |
 | [Operator view, picture tree and faceplate types](operator-view.md) | pictures in a fixed frame with the alarm line, navigation buttons with group alarms, faceplate types opened for any machine |
+| [Recipes](recipes.md) | data records with the setpoints of a product, loading a record into a unit with a check and read back, four eyes, the load log, CSV |
 | [Displays (kiosks)](displays.md) | pairing a screen at a wall, what it shows, operator commands and messages, video wall screens |
 | [Period tables](period-tables.md) | daily, weekly and monthly tables with Excel, CSV and PDF export |
 | [Filters and overviews](filters-and-overviews.md) | the dashboard filter bar, widgets that select datastreams by query, the overview table with search, column filters, grouping and export, the ready-made overviews |
