@@ -1,7 +1,7 @@
 ---
 title: Filters and overviews
 slug: dashboard-filters-and-overviews
-sidebar_position: 12
+sidebar_position: 13
 tags: [dashboards, filters, overviews, search, export, reference]
 ---
 

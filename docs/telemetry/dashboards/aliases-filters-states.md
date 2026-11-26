@@ -1,7 +1,7 @@
 ---
 title: Entity aliases, key filters and drill-down
 slug: dashboard-aliases-key-filters-states
-sidebar_position: 13
+sidebar_position: 14
 tags: [dashboards, aliases, key filters, states, drill-down, entity table, reference]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Period tables
 slug: period-tables
-sidebar_position: 11
+sidebar_position: 12
 tags: [dashboards, reports, export, xlsx, pdf, reference]
 ---
 

@@ -206,7 +206,7 @@ without an action do nothing.
 | Open faceplate | — | the faceplate of the element's tag, with operation when a device and a command key are bound |
 | Open trend | — | the faceplate without the operation part |
 | Go to screen | Screen: another dashboard or picture of the organization | opens it (not on public links) |
-| Open screen as popup | Screen: another dashboard or picture of the organization | opens it in a window over the current picture (not on public links) |
+| Open screen as popup | Screen: another dashboard or picture of the organization; for a [faceplate type](operator-view.md) also Asset and Key prefix | opens it in a window over the current picture (not on public links) |
 | Send command | Key, Value, Method (default `write`), Ask for confirmation (default on) | opens a command dialog |
 
 The **Send command** action needs the *Device for operation* of the Binding section. Its value is `true`, `false`, a
@@ -217,8 +217,14 @@ number, or a text of at most 64 characters; the method is a lower-case name of a
 *Open screen as popup* (0.87.0) shows another screen in a window: a small picture made as the faceplate of a machine,
 for example a motor with its speed, current, power, energy, running hours, a mode switch AUTOMATIC/MANUAL, a manual
 start and stop, a speed setpoint, a trend and its [logbook](widgets-lists.md). The window is as wide as the screen
-(at most the browser window) and refreshes every 3 seconds; ✕ or a click outside closes it. Widgets, click actions
-and commands in the window work as on the screen itself.
+(at most the browser window) and refreshes every 3 seconds. Widgets, click actions and commands in the window work
+as on the screen itself.
+
+Since 0.90.0 the windows can be dragged by their title and up to four stay open at once; ✕ closes a window and
+**Esc** the one on top. A popup picture can be a **faceplate type**: drawn for one machine and opened for any other,
+with its tags re-bound by datastream key — see
+[Operator view, picture tree and faceplate types](operator-view.md). In the [operator view](operator-view.md) the
+*Go to screen* action changes the picture without reloading the page.
 
 ## Faceplates
 
