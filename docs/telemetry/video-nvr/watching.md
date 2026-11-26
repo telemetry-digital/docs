@@ -111,6 +111,25 @@ the camera's picture size or codec inside the range ends the file early.
 
 ![A selected range of about nine minutes in the hour detail with the buttons Download selection (MP4), Hold as evidence and Evidence package (ZIP)](img/export-selection.webp)
 
+### Cameras recording H.265 (HEVC)
+
+Many cameras record in **H.265 (HEVC)**: half the size of H.264 at the same quality. Windows plays such files in
+*Media Player* or *Photos* only with the paid *HEVC Video Extensions* from the Microsoft Store and asks for it; VLC,
+Chrome and Edge play them without it. For a camera recording H.265 a selector appears next to the download button
+(0.88.0):
+
+| Choice | What you get |
+|---|---|
+| **Original (H.265)** (default) | The recording as it was made, remuxed only. The only form that is the unchanged recording. |
+| **Compatible (H.264)** | The server converts the selection to H.264 + AAC, at most 1080 lines (a 4K picture is scaled down), playable everywhere. **At most one hour**; the conversion takes roughly a third of the selected time (an hour of 4K about 20 minutes), the download runs meanwhile. The file is named `<camera>-<start time, UTC>-h264.mp4`. |
+
+- The selector shows only when the server has ffmpeg — the one installed with
+  [object counting](../object-counting/index.md) (`install.sh --analytics`); it converts with OpenH264.
+- One conversion runs at a time per server; another one meanwhile gets *another recording is being converted; try
+  again in a few minutes*.
+- The export is audited with the format. For the police, an insurer or a court give the original or an
+  [evidence package](evidence.md), which always holds the original.
+
 - Exporting needs the permission `video.playback`; every playback and every export is written to the audit trail
   with the camera and the time range.
 - Sound is in the export only when the camera's sound is on and you have `video.audio`.
