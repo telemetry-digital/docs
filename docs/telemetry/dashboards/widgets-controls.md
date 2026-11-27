@@ -60,6 +60,7 @@ Sends a number.
 | Decimals | number | 2 | for the current value |
 | Unit | text | — | shown next to the field |
 | Ask for confirmation | checkbox | on | — |
+| Needs a second person | checkbox | off | the command waits for a second person, see [Four eyes](../administration/four-eyes.md) |
 
 - With a bound datastream the widget shows *current value unit · time* and fills the field with the current value.
 - Minimum, maximum and step set the range and the arrows of the number field. A value typed outside the range is not
@@ -78,6 +79,7 @@ Sends `true` or `false`.
 | Label for on | text | On | — |
 | Label for off | text | Off | — |
 | Ask for confirmation | checkbox | on | — |
+| Needs a second person | checkbox | off | the command waits for a second person, see [Four eyes](../administration/four-eyes.md) |
 
 With a bound datastream a badge shows the current state — on when the value is 1 or true — and the time of the
 reading. The two buttons send `true` and `false`.
@@ -94,6 +96,7 @@ Sends a fixed value, for example a reset pulse. It binds only a device.
 | Value to send | text | 1 | `true` and `false` are sent as true and false, a number as a number, anything else as text |
 | Button label | text | Send | — |
 | Ask for confirmation | checkbox | on | — |
+| Needs a second person | checkbox | off | the command waits for a second person, see [Four eyes](../administration/four-eyes.md) |
 
 ## Knob
 
@@ -109,6 +112,7 @@ A rotary knob over 270 degrees that sends a number.
 | Step | number | 1 | above 0; otherwise 1 |
 | Unit (empty = datastream) | text | — | shown next to the value; when empty, the unit of the bound datastream is shown |
 | Ask for confirmation | checkbox | on | — |
+| Needs a second person | checkbox | off | the command waits for a second person, see [Four eyes](../administration/four-eyes.md) |
 
 - Drag the knob, or turn the mouse wheel over it by one step. The value always stays between the minimum and the
   maximum and on a multiple of the step from the minimum.
@@ -130,6 +134,7 @@ A slider that sends a number.
 | Step | number | 1 | above 0; otherwise 1 |
 | Unit (empty = datastream) | text | — | shown next to the value; when empty, the unit of the bound datastream is shown |
 | Ask for confirmation | checkbox | on | — |
+| Needs a second person | checkbox | off | the command waits for a second person, see [Four eyes](../administration/four-eyes.md) |
 
 The slider shows the minimum, the maximum and the chosen value, and under it the current value and its time. It
 starts at the current value or the minimum; values snap to the step.
@@ -146,6 +151,7 @@ A round power button that toggles a state.
 | On label | text | ON | — |
 | Off label | text | OFF | — |
 | Ask for confirmation | checkbox | on | — |
+| Needs a second person | checkbox | off | the command waits for a second person, see [Four eyes](../administration/four-eyes.md) |
 
 The button is lit when the bound datastream is 1 or true. A press sends the opposite state: `false` when it is on,
 `true` when it is off or has no value.

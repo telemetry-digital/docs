@@ -312,6 +312,8 @@ Requests expire after **7 days**. An approved VPN access starts at the approval 
 
 **History** shows each decision: approved, rejected, failed (approved, but the change itself failed) or expired.
 
+Everything that waits for a second person — also commands, recipe loads and approvals for cameras and displays — is on the page *Approvals*, and the second person can approve at the computer of the person who asked: see [Four eyes](four-eyes.md).
+
 Commands held by *Four eyes for commands* are approved on the device page (tab *Commands*), not here (see
 [Commands and firmware](../devices/commands-and-firmware.md)).
 
@@ -323,6 +325,11 @@ Commands held by *Four eyes for commands* are approved on the device page (tab *
 | Four eyes for alarm limits | off | new alarm rule versions and disabling a rule become change requests approved by a different user with `config.write` |
 | Four eyes for datastream assignments | off | assigning or removing a datastream on a device becomes a change request approved by a different user with `device.manage` |
 | Four eyes for VPN access | off | a technician's VPN access becomes active only after a different user with `vpn.manage` or `system.admin` approves a time-limited access grant here under *Approvals*; new technicians are added disabled, and enabling one or changing its expiry directly is refused; grants require a licence |
+| Four eyes for alarms | off | acknowledging an alarm, shelving it and ending a shelf wait until a different user with `alarm.ack` approves |
+| Four eyes for device attributes | off | a change of the shared attributes of a device waits until a different user with `device.manage` approves |
+| Four eyes for cameras | off | moving a camera, viewing and exporting recordings, evidence and pictures without privacy masks need the approval of a second person, given once for the time below on one computer |
+| Four eyes for displays | off | commands to displays and kiosk PCs need the approval of a second person, given once for the time below on one computer |
+| An approval for cameras and displays lasts (minutes) | 15 | 1 to 480 |
 | Operator log: record every action of the people at the controls | off | every command and press of a control, recipe load, camera movement, display command, alarm acknowledgement, sign-in and every page, picture and window a person opens is written to the [Operator log](operator-log.md) |
 | Stay signed in on a device (days, 0 = not allowed) | 0 | 1–90: the sign-in page offers *Stay signed in on this device*; such a sign-in lasts this many days, also after the browser or the installed app (PWA) is closed (persistent cookie). Two-factor authentication is still required at the sign-in itself. Signing out, *Sign out everywhere*, disabling the user or lowering the value end it — a lower value applies to sessions already open. Use only for personal devices with a screen lock |
 | Reason (audit trail) | — | required |

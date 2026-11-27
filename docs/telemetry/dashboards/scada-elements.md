@@ -99,6 +99,7 @@ Hex colours may have 3, 4, 6 or 8 digits. An empty colour field means the defaul
 | Decimals | 0–6; default 1 |
 | Device for operation | the device that receives commands from this object |
 | Command key (register / datastream key) | at most 64 characters: letters, digits and `_ . : / -` |
+| Needs a second person | off by default; when on, every command of this object waits for a second person, see [Four eyes](../administration/four-eyes.md) |
 
 The tag drives the value of symbols and texts and is the default tag of every dynamic. The tooltip of a bound element
 shows its name (or *asset / key*) and the value with unit. A true or false value is shown as ON or OFF. A reading with

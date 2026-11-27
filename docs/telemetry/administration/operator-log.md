@@ -38,6 +38,7 @@ save. You need the permission `user.admin`. The change is written to the audit t
 | Signed in; Signed out | sign-in and sign-out of the application |
 | Page opened; Window opened | every page and process picture a person opens, every faceplate and window |
 | Press cancelled | a control was pressed and the confirmation was answered with Cancel |
+| Second person asked for; Approved by a second person; Refused by a second person; Approval ended; Change held for approval; Change approved; Change rejected | [four eyes](four-eyes.md): an action was held, approved or refused, an approval for cameras or displays was asked for or ended |
 
 Every row holds:
 
@@ -82,6 +83,5 @@ An action that changes something is in both.
 
 ## What is not there yet
 
-- Four eyes for cameras, displays and alarms, and approval by a second person on the spot.
 - Users who sign in inside a process picture (operators with a PIN): today the log names the user of the browser
   session.
