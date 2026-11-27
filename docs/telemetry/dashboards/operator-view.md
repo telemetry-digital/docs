@@ -160,3 +160,8 @@ When the type is opened for another asset or prefix, the server re-binds it **by
 
 The place in the tree is `nav {parent, order, label}` and the type is `faceplate {asset, prefix}` in the spec of a
 screen; the popup action accepts `asset` and `prefix`.
+
+## Who is at the controls
+
+When the organization uses [SCADA users](../administration/scada-users.md), the frame shows the person signed in at
+the controls next to the account of the computer, with **Sign in at the controls** and **Sign out at the controls**.

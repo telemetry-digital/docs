@@ -38,6 +38,7 @@ save. You need the permission `user.admin`. The change is written to the audit t
 | Signed in; Signed out | sign-in and sign-out of the application |
 | Page opened; Window opened | every page and process picture a person opens, every faceplate and window |
 | Press cancelled | a control was pressed and the confirmation was answered with Cancel |
+| Signed in at the controls; Signed out at the controls; Sign-in at the controls refused; Control refused: not in its group; SCADA user changed | [SCADA users](scada-users.md): who signed in inside a picture, a wrong PIN, a control pressed by a person outside its groups |
 | Second person asked for; Approved by a second person; Refused by a second person; Approval ended; Change held for approval; Change approved; Change rejected | [four eyes](four-eyes.md): an action was held, approved or refused, an approval for cameras or displays was asked for or ended |
 
 Every row holds:
@@ -45,7 +46,7 @@ Every row holds:
 | Column | Meaning |
 |---|---|
 | Time | when it happened |
-| User | the signed-in user; for an API token or an AI assistant its name is added |
+| User | the person signed in at the controls with the account of the computer in brackets, when [SCADA users](scada-users.md) are used; otherwise the signed-in user; for an API token or an AI assistant its name is added |
 | Action | one of the actions above |
 | Target | the device, camera, display, alarm, recipe or picture |
 | Detail | what exactly: the key and the value of a command and its state, the preset of a camera, the address of a page |
@@ -81,7 +82,14 @@ When the log is switched off, the page says so and still shows the rows recorded
 
 An action that changes something is in both.
 
-## What is not there yet
+## How long it is kept
 
-- Users who sign in inside a process picture (operators with a PIN): today the log names the user of the browser
-  session.
+*Settings → Security policy* → **Keep the operator log for (days, 0 = for good)**.
+
+| Value | Effect |
+|---|---|
+| 0 (default) | every row is kept |
+| 30 to 3650 | rows older than this are dropped once a day |
+
+The rows still cannot be changed or deleted by anybody; the retention is the one exception, and it never drops
+anything younger than 30 days. The [audit trail](audit.md) is not affected.

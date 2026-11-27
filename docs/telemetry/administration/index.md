@@ -14,6 +14,7 @@ What an administrator of a telemetry.digital server takes care of.
 2. [Audit trail](audit.md) — the hash-chained record of every change, with its reason.
    The [Operator log](operator-log.md) is the diary of the people at the controls — every command, camera move and opened picture — when the organization switches it on.
    [Four eyes](four-eyes.md): a second person approves commands, alarms, camera work and display commands — on the spot or from the list — when the organization switches it on.
+   [SCADA users](scada-users.md): people sign in at the controls with a PIN or a password on top of the computer's account; groups say who may use which control.
 3. [White labeling and branding](white-labeling.md) — your logo and colours; your product name and footer (requires
    a licence).
 4. [Server, backups and updates](server.md) — the System pages at a glance, backups, updates, a second database

@@ -331,6 +331,9 @@ Commands held by *Four eyes for commands* are approved on the device page (tab *
 | Four eyes for displays | off | commands to displays and kiosk PCs need the approval of a second person, given once for the time below on one computer |
 | An approval for cameras and displays lasts (minutes) | 15 | 1 to 480 |
 | Operator log: record every action of the people at the controls | off | every command and press of a control, recipe load, camera movement, display command, alarm acknowledgement, sign-in and every page, picture and window a person opens is written to the [Operator log](operator-log.md) |
+| Keep the operator log for (days, 0 = for good) | 0 | 0, or 30 to 3650; older rows are dropped once a day |
+| SCADA users: operating needs a person signed in at the controls | off | commands, recipe loads and scenes from a browser need a person signed in at the controls with a PIN or a password; accounts that cannot manage devices send commands only from the controls of pictures and dashboards; see [SCADA users](scada-users.md) |
+| Sign a person out at the controls after (minutes without activity) | 10 | 1 to 480 |
 | Stay signed in on a device (days, 0 = not allowed) | 0 | 1–90: the sign-in page offers *Stay signed in on this device*; such a sign-in lasts this many days, also after the browser or the installed app (PWA) is closed (persistent cookie). Two-factor authentication is still required at the sign-in itself. Signing out, *Sign out everywhere*, disabling the user or lowering the value end it — a lower value applies to sessions already open. Use only for personal devices with a screen lock |
 | Reason (audit trail) | — | required |
 

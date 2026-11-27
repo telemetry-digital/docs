@@ -39,9 +39,10 @@ second person even when *Four eyes for commands* is off.
 |---|---|:---:|---|
 | Needs a second person | on / off | off | the command of this control is held until a second person approves it |
 
-!!! note "What the mark does not do"
-    The mark is applied by the page that sends the command. A program that calls the API itself with the permission
-    `device.command` is bound by *Four eyes for commands*, not by the mark of a control.
+!!! note "Who checks the mark"
+    Since 0.95.0 the server does: the command names the control it came from and the server reads the mark from the
+    stored dashboard. A program that calls the API itself and names no control is bound by *Four eyes for commands*.
+    To keep people at a station from leaving the control out, require [SCADA users](scada-users.md).
 
 ## Approving
 
@@ -59,6 +60,10 @@ fills in:
 | Code from the authenticator app | when that account uses two-factor sign-in | 6 digits |
 | Note of the second person | no | written to the audit trail; without it "approved on the spot" |
 | Why you need it | for cameras and displays | the reason of the person who asks |
+
+The second person can also be a [SCADA user](scada-users.md#the-second-person-with-a-pin): tick *The second person signs
+with the name and the PIN or password of the controls* and enter the name at the controls and the PIN or the password.
+It needs a group that may approve, and the request must have been made by another person signed in at the controls.
 
 **Approve** runs the action at once. Nobody is signed in or out: the session of the computer stays that of the person
 who asked. **Leave it waiting** (for cameras and displays **Ask and wait**) closes the dialog and leaves the action in
@@ -106,6 +111,4 @@ Moving a camera press by press cannot wait for a second person each time. So the
 
 ## What is not there yet
 
-- Operators who sign in inside a process picture with a PIN, and groups that may use a control (planned next). Until
-  then the second person signs with the password of their account.
 - A scene that sends several commands opens no dialog; its commands wait in *Approvals*.
