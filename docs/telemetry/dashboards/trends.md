@@ -109,8 +109,11 @@ For every raw sample of a long time use *Reports → Export*.
 The window of an object of a [process picture](scada.md) has **Open in Trends**: it opens this page with that value,
 where you can add more curves.
 
+## On a dashboard and for a batch
+
+- The widget [Trend](widgets-charts.md#trend) puts this control on a dashboard, into a process picture, the operator view and on displays.
+- [Batches](batches.md) draws the trend of every batch of a unit by itself and compares two batches.
+
 ## What is not there yet
 
-- The batch record: start and end of a batch with its trends, and comparing batches.
-- A trend on a dashboard, in a process picture or on a display — there the chart widget is used.
 - Comparing a curve with itself at another time, and curves of text values.

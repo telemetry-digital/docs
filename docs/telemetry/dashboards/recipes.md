@@ -184,3 +184,8 @@ The records are listed above the form, and the table of values scrolls sideways 
 - A batch record with the start and the end of a batch and the trends of its values.
 - Loading a record from a button in a process picture or from a flow.
 - Recipes for devices that are not behind an S7, OPC UA or Modbus connector.
+
+## Batches
+
+A unit of [Batches](batches.md) can follow the loads of a recipe: every load that finishes begins a batch, which
+names the recipe, the record and who loaded it, and draws the trend of the unit for it.

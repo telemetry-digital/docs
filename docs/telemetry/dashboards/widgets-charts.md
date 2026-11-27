@@ -176,3 +176,24 @@ phases.
 
 The radar needs **at least 3** bound datastreams; with fewer it shows *bind at least 3 datastreams*. Each axis is
 labelled with the datastream key and its value. Values below 0 are drawn at the centre.
+
+## Trend
+
+The trend control of the [Trends](trends.md) page inside a dashboard, a process picture, the operator view or on a
+display: the bound datastreams as curves on one time axis, with an axis per unit. Drag to move in time, turn the wheel
+to zoom, click to place a ruler. Available from 0.97.0.
+
+| Setting | Type | Default | Allowed values |
+|---|---|:---:|---|
+| Title | text | Trend | — |
+| Datastreams | datastreams | — | at least 1; the first 16 are drawn |
+| Time shown | choice | 1 h | 5 m, 15 m, 1 h, 6 h, 8 h, 12 h, 24 h, 7 d, 30 d |
+| Buttons for the time and Live | checkbox | on | the buttons 5 m to 7 d, *Live* and *Open in Trends* |
+| Table with the value at the ruler, minimum, maximum and average | checkbox | off | — |
+| Alarm limits | checkbox | off | the limits of the alarm rules as dashed lines; not on a public link |
+
+- The widget keeps the time a person moved to when the dashboard refreshes; *Live* returns to the clock.
+- A long window is drawn from averages with a band of the lowest and highest values, as on the Trends page.
+- For saved views, a second ruler and the export use *Open in Trends*.
+- Use the *Chart* widget for bars, areas, a fixed period or a legend with values; use *Trend* where people need to
+  look back and zoom.

@@ -169,3 +169,22 @@ The connection state of the devices of the organization, or of the selected ones
 
 Revoked devices are not listed. The list updates when a device connects or disconnects. On a public link the device
 names are not links. **Without data**: *no devices*.
+
+## Batches
+
+The [batch](batches.md) that runs on a unit now and the last batches. Available from 0.97.0.
+
+| Setting | Type | Default | Allowed values |
+|---|---|:---:|---|
+| Title | text | Batches | — |
+| Unit | choice | all units | one unit of *Batches → Units*, or all |
+| Batches listed | number | 6 | 0 to 30; 0 shows the running batch only |
+| Show the running batch on top | checkbox | on | — |
+
+| Part | Content |
+|---|---|
+| Running batch | the unit, the number and the code, the recipe and record, since when and for how long; *No batch is running.* otherwise |
+| List | number, code, when it began and how long it lasted; the unit when all units are shown |
+
+A click on a number opens the record of the batch. The widget is for signed-in users: a public link shows a note
+instead.
