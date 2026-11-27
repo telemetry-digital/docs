@@ -216,3 +216,8 @@ example *element 14: style.font must be 4..400*, and the editor selects that ele
 !!! danger "A screen is not an interlock"
     Operator commands from a process picture go through the server, which is not in the control loop. Interlocks,
     emergency stops and other safety functions belong in the PLC and in hard wiring.
+
+## From an object to its trend
+
+The window of an object with a datastream has **Open in Trends**: the [Trends](trends.md) page opens with that value,
+with rulers, zoom and more curves.
