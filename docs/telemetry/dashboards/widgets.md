@@ -63,6 +63,7 @@ widget becomes 300 × 200 px).
 | Knob | Control | devices, datastreams | 3 × 3 | [Control widgets](widgets-controls.md) |
 | Slider | Control | devices, datastreams | 4 × 2 | [Control widgets](widgets-controls.md) |
 | Round switch | Control | devices, datastreams | 2 × 2 | [Control widgets](widgets-controls.md) |
+| Person at the controls | Control | — | 4 × 3 | [Control widgets](widgets-controls.md#person-at-the-controls) |
 | Map | Other | devices | 6 × 4 | [Other widgets](widgets-other.md) |
 | Text | Other | — | 4 × 2 | [Other widgets](widgets-other.md) |
 | Markdown card | Other | datastreams | 4 × 2 | [Other widgets](widgets-other.md) |

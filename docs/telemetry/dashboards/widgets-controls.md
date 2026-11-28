@@ -162,6 +162,27 @@ A round power button that toggles a state.
 The button is lit when the bound datastream is 1 or true. A press sends the opposite state: `false` when it is on,
 `true` when it is off or has no value.
 
+## Person at the controls
+
+Who is signed in at the controls of this computer — see [SCADA users](../administration/scada-users.md) — with large
+buttons to sign in and to sign out. For a touch panel, where the chip above the page is small. It needs no binding.
+
+![A dashboard with the widget Person at the controls: the full name of the person, the groups, the time left before the sign-out and the button Sign out at the controls](../administration/img/scada-widget.webp)
+
+| Setting | Type | Default | Allowed values |
+|---|---|:---:|---|
+| Title | text | Person at the controls | — |
+| Show the groups of the person | checkbox | on | — |
+| Show the time left before the sign-out without activity | checkbox | on | — |
+| Buttons with the names used on this computer | checkbox | on | — |
+
+- Nobody signed in: the button **Sign in at the controls** and the names used on this computer before. A name opens
+  the sign-in with the name filled in; the person types the PIN or the password.
+- Somebody signed in: the name, the groups, the time left before the sign-out without activity (activity on the page
+  extends it) and the button **Sign out at the controls**.
+- The widget and the chip above the page show the same person. What a person may operate is decided by the server.
+- On a public link and on a display the widget only says that signing in works for signed-in users in a browser.
+
 ## Faceplate from a widget
 
 With *On click = faceplate* (Actions tab), a click outside the controls opens the faceplate of the first bound

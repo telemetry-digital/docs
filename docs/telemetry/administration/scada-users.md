@@ -89,6 +89,8 @@ The **server** checks it. The command names the control it came from; the server
 
 - Press a control that needs somebody, or **Sign in at the controls** above the page (in the header on a phone, in the
   frame of the [operator view](../dashboards/operator-view.md)).
+- A dashboard can carry the widget [Person at the controls](../dashboards/widgets-controls.md#person-at-the-controls)
+  with large buttons for a touch panel.
 - Type your name and your PIN or password. The PIN pad is for touch screens; names used at this computer before are
   offered as buttons.
 - The computer stays signed in with its own account. Signing in replaces the person who was at the controls.
