@@ -71,3 +71,13 @@ size, and the error.
     logged as *failed* with the reason.
 
 Every change of a report and every *Send now* is written to the audit trail.
+
+### When the server stops during a run
+
+- A report that became due while the server was down is sent once after the start, for its period. Several missed
+  runs of one report are not sent one by one.
+- A run that was **interrupted** — the server stopped after the run began and before it was recorded — is run once
+  more, half an hour after it began at the earliest (since 0.98.1). The mail may have left before the stop, so the
+  repeated mail says that you may have received the report already; the delivery log names the run *repeated after
+  an interrupted run*.
+- A run interrupted twice is logged as *failed* and not tried again.

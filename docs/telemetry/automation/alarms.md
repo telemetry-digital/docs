@@ -109,9 +109,13 @@ How a high rule with warning 8, action 10 and hysteresis 0.5 behaves:
 
 With a **delay**, the condition must last that long before the alarm is raised. The time is measured between the
 values' measurement times; when no newer value arrives, a clock raises the waiting alarm once the delay has passed.
-A value back in range during the delay cancels it. Waiting delays are kept in memory only: after a server restart
-the delay starts again with the next value. Without a delay an alarm is raised on the first value that crosses the
-limit.
+A value back in range during the delay cancels it. Without a delay an alarm is raised on the first value that crosses
+the limit.
+
+The start of a waiting delay is stored, so a **restart of the server does not start the delay again** (since 0.98.1):
+the alarm is raised when the delay has passed since the condition began. A waiting delay is dropped at the start when
+its rule was changed or disabled, or when the newest stored value shows that the condition ended while the server was
+down. A rule has at most one open alarm; the database guarantees it.
 
 For conditions over several datastreams (for example "above the limit while the line runs"), use an
 [automation rule](automation-rules.md) or a flow with a *True for* node.
